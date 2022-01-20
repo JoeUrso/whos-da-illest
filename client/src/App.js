@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// import "./App.scss";
+// TODO IMPORT COMPONENTS HERE
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// function App() {
+//     return (
+//         <Router>
+//             <Header />
+//             <div className="switch__container">
+//                 <Switch>
+//                     <Route
+//                         exact
+//                         path="/"
+//                         component={HomePage} // homepage
+//                     />
 
-export default App;
+//                     <Route
+//                         exact
+//                         path="/battles/:id"
+//                         component={BattlePage} // battle page
+//                     />
+
+//                     <Route
+//                         path="/battles/:id/:rapperId"
+//                         component={ArtistGrade} //artist grade
+//                     />
+
+//                     <Route
+//                         path="/battles/:id/results"
+//                         component={BattleResults} //battle results
+//                     />
+//                 </Switch>
+//                 <Footer />
+//             </div>
+//         </Router>
+//     );
+// }
+// export default App;
