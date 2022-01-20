@@ -1,0 +1,19 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "description": "Inspired by the popular Hip Hop competition Verzuz and Kool Moe Dee’s rap report card, “Whose Da Illest?” combines the competitive nature of Hip Hop music with a criteria based grading system, allowing users to have a say in which rapper reigns supreme.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/JoeUrso/whose-da-illest"
+    },
+    "author": "Joe Urso",
+    "license": "ISC",
+    "dependencies": {
+        "dotenv": "^14.2.0",
+        "express": "^4.17.2"
+    }
+}
