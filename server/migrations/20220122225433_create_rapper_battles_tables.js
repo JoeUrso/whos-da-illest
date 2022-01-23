@@ -3,9 +3,20 @@ exports.up = function (knex) {
         .createTable("rappers", (table) => {
             table.increments("id").primary();
             table.string("name").notNullable();
-            table.integer("avg_grade").notNullable().defaultTo(0);
             table.integer("wins").notNullable().defaultTo(0);
             table.integer("losses").notNullable().defaultTo(0);
+            table.timestamp("updated_at").defaultTo(knex.fn.now());
+        })
+        .createTable("grades", (table) => {
+            table.increments("id").primary();
+            table.integer("grade").notNullable().defaultTo(0);
+            table
+                .integer("rapper_id")
+                .unsigned()
+                .notNullable()
+                .references("id")
+                .inTable("rappers")
+                .onUpdate("CASCADE");
             table.timestamp("updated_at").defaultTo(knex.fn.now());
         })
         .createTable("battles", (table) => {
@@ -33,5 +44,8 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-    return knex.schema.dropTable("rappers").dropTable("battles");
+    return knex.schema
+        .dropTable("rappers")
+        .dropTable("battles")
+        .dropTable("grades");
 };
