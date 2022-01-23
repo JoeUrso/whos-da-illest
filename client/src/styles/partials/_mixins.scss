@@ -40,6 +40,11 @@
     line-height: 1.625rem;
 }
 
+@mixin mobileBodySmall {
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+
 // TABLET/DESKTOP FONT
 @mixin tabletDesktopPageHeader {
     font-size: 4rem;
@@ -59,4 +64,9 @@
 @mixin tabletDesktopBody {
     font-size: 2rem;
     line-height: 1.625rem;
+}
+
+@mixin tabletDesktopBodySmall {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
 }
