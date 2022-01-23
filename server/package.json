@@ -4,7 +4,12 @@
     "description": "Inspired by the popular Hip Hop competition Verzuz and Kool Moe Dee’s rap report card, “Whose Da Illest?” combines the competitive nature of Hip Hop music with a criteria based grading system, allowing users to have a say in which rapper reigns supreme.",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "migrate": "knex migrate:latest",
+        "migrate:down": "knex migrate:down",
+        "migrate:rollback": "knex migrate:rollback",
+        "seed": "knex seed:run",
+        "start": "npx nodemon server.js"
     },
     "repository": {
         "type": "git",
