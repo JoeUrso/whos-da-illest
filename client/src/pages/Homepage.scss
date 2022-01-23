@@ -2,3 +2,98 @@
 @use "../styles/partials/typography" as *;
 @use "../styles/partials/mixins" as *;
 @use "../styles/partials/variables" as *;
+
+.homepage {
+    display: flex;
+    flex-direction: column;
+
+    &__heading {
+        @include mobilePageHeader;
+        font-family: $graffiti-one;
+    }
+
+    &__button {
+        margin: 0 auto;
+        background: none;
+        border: none;
+        @include mobileBody;
+        font-family: $graffiti-two;
+        color: $accent-color;
+        cursor: pointer;
+    }
+
+    &__rappers {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+    }
+
+    &__subheading {
+        margin: 2rem auto 0rem;
+        @include mobileSubheader;
+        font-family: $graffiti-one;
+        color: $secondary-color;
+    }
+
+    &__rappers-table {
+        margin: 0rem 0.5rem;
+        border: 0.125rem solid $accent-color;
+        border-radius: $border-radius;
+        display: flex;
+    }
+
+    &__rappers-table-name {
+        @include mobileBodySmall;
+        font-family: $graffiti-two;
+        width: 50%;
+    }
+
+    &__rappers-table-w-l {
+        @include mobileBodySmall;
+        font-family: $graffiti-two;
+        width: 20%;
+    }
+
+    &__rappers-table-avg-grade {
+        @include mobileBodySmall;
+        font-family: $graffiti-two;
+        width: 30%;
+    }
+
+    &__battles {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__click-to-play {
+        margin: 0.5rem auto 0rem;
+        @include mobileBodySmall;
+        font-family: $graffiti-two;
+        color: $accent-color;
+    }
+
+    &__battles-table {
+        margin: 0rem 0.5rem;
+        border: 0.125rem solid $accent-color;
+        border-radius: $border-radius;
+        display: flex;
+    }
+
+    &__battles-table-name {
+        @include mobileBodySmall;
+        font-family: $graffiti-two;
+        width: 25%;
+    }
+
+    &__battles-table-rappers {
+        @include mobileBodySmall;
+        font-family: $graffiti-two;
+        width: 35%;
+    }
+
+    &__battles-table-battles-fought {
+        @include mobileBodySmall;
+        font-family: $graffiti-two;
+        width: 40%;
+    }
+}
