@@ -31,28 +31,13 @@
 }
 
 @mixin mobileCTA {
+    font-size: 1.75rem;
+    line-height: 1.25rem;
+}
+
+@mixin mobileBody {
     font-size: 1.5rem;
-    line-height: 1.25rem;
-}
-
-@mixin mobileTableHeader {
-    font-size: 1rem;
-    line-height: 1rem;
-}
-
-@mixin mobileBodyLarge {
-    font-size: 0.938rem;
     line-height: 1.625rem;
-}
-
-@mixin mobileBodyMedium {
-    font-size: 0.813rem;
-    line-height: 1.25rem;
-}
-
-@mixin mobileBodySmall {
-    font-size: 0.688rem;
-    line-height: 1rem;
 }
 
 // TABLET/DESKTOP FONT
@@ -71,22 +56,7 @@
     line-height: 1.25rem;
 }
 
-@mixin tabletDesktopTableHeader {
+@mixin tabletDesktopBody {
     font-size: 2rem;
-    line-height: 1rem;
-}
-
-@mixin tabletDesktopBodyLarge {
-    font-size: 1.5rem;
     line-height: 1.625rem;
-}
-
-@mixin tabletDesktopBodyMedium {
-    font-size: 1rem;
-    line-height: 1.25rem;
-}
-
-@mixin tabletDesktopBodySmall {
-    font-size: 0.75rem;
-    line-height: 1rem;
 }
