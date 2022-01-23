@@ -1,17 +1,4 @@
 @use "../styles/partials/global" as *;
 @use "../styles/partials/typography" as *;
-
-h1 {
-    font-size: 2.5rem;
-    color: black;
-}
-
-h2 {
-    font-size: 1.5rem;
-    color: white;
-}
-
-p {
-    font-size: 2rem;
-    color: black;
-}
+@use "../styles/partials/mixins" as *;
+@use "../styles/partials/variables" as *;
