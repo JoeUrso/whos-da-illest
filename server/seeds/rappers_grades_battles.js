@@ -1,16 +1,23 @@
-/**
- * @param { import("knex").Knex } knex
- * @returns { Promise<void> } 
- */
-exports.seed = function(knex) {
-  // Deletes ALL existing entries
-  return knex('table_name').del()
-    .then(function () {
-      // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
-      ]);
-    });
+const rappersData = require("../seed_data/rappers");
+const battlesData = require("../seed_data/battles");
+const gradesData = require("../seed_data/grades");
+
+exports.seed = function (knex) {
+    return knex("rappers")
+        .del()
+        .then(function () {
+            return knex("rappers").insert(rappersData);
+        })
+        .then(() => {
+            return knex("battles").del();
+        })
+        .then(() => {
+            return knex("battles").insert(battlesData);
+        })
+        .then(() => {
+            return knex("grades").del();
+        })
+        .then(() => {
+            return knex("grades").insert(gradesData);
+        });
 };
