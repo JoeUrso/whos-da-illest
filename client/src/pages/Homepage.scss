@@ -40,6 +40,11 @@
         border: 0.125rem solid $accent-color;
         border-radius: $border-radius;
         display: flex;
+        flex-direction: column;
+    }
+
+    &__rappers-table-headings {
+        display: flex;
     }
 
     &__rappers-table-name {
@@ -77,6 +82,10 @@
         border: 0.125rem solid $accent-color;
         border-radius: $border-radius;
         display: flex;
+    }
+
+    &__battles-table-headings {
+        display: none;
     }
 
     &__battles-table-name {
