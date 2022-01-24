@@ -1,4 +1,33 @@
-@use "../styles/partials/global" as *;
-@use "../styles/partials/typography" as *;
-@use "../styles/partials/mixins" as *;
-@use "../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.rapper-stats {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 0rem;
+
+    &__name {
+        width: 50%;
+        @include mobileBodySmall;
+        font-family: $graffiti-one;
+        color: $secondary-color;
+        margin: 0;
+    }
+
+    &__w-l {
+        width: 30%;
+        @include mobileBodySmall;
+        font-family: $graffiti-two;
+        color: $secondary-color;
+        margin: 0;
+    }
+
+    &__avg-grade {
+        @include mobileBodySmall;
+        font-family: $graffiti-two;
+        color: $secondary-color;
+        margin: 0;
+    }
+}

@@ -64,15 +64,21 @@ export default class HomePage extends Component {
                 <section className="homepage__rappers">
                     <h2 className="homepage__subheading">On Da Mic</h2>
                     <div className="homepage__rappers-table">
-                        <h3 className="homepage__rappers-table-name">NAME</h3>
-                        <h3 className="homepage__rappers-table-w-l">W-L</h3>
-                        <h3 className="homepage__rappers-table-avg-grade">
-                            AVG GRADE
-                        </h3>
+                        <div className="homepage__rappers-table-headings">
+                            <h3 className="homepage__rappers-table-name">
+                                NAME
+                            </h3>
+                            <h3 className="homepage__rappers-table-w-l">W-L</h3>
+                            <h3 className="homepage__rappers-table-avg-grade">
+                                AVG GRADE
+                            </h3>
+                        </div>
+                        {this.state.rappers.map((rapper) => {
+                            return (
+                                <RapperStats rapper={rapper} avgGrade={10} />
+                            );
+                        })}
                     </div>
-                    {this.state.rappers.map((rapper) => {
-                        <RapperStats rapper={rapper} avgGrade={10} />;
-                    })}
                 </section>
                 <section className="homepage__battles">
                     <h2 className="homepage__subheading">Battle Board</h2>
@@ -80,17 +86,21 @@ export default class HomePage extends Component {
                         click a battle to play
                     </p>
                     <div className="homepage__battles-table">
-                        <h3 className="homepage__battles-table-name">NAME</h3>
-                        <h3 className="homepage__battles-table-rappers">
-                            RAPPERS
-                        </h3>
-                        <h3 className="homepage__battles-table-battles-fought">
-                            BATTLES FOUGHT
-                        </h3>
+                        <div className="homepage__battles-table-headings">
+                            <h3 className="homepage__battles-table-name">
+                                NAME
+                            </h3>
+                            <h3 className="homepage__battles-table-rappers">
+                                RAPPERS
+                            </h3>
+                            <h3 className="homepage__battles-table-battles-fought">
+                                BATTLES FOUGHT
+                            </h3>
+                        </div>
+                        {this.state.battles.map((battle) => {
+                            return <BattleInfo battle={battle} />;
+                        })}
                     </div>
-                    {this.state.battles.map((battle) => {
-                        <BattleInfo battle={battle} />;
-                    })}
                 </section>
             </main>
         );
