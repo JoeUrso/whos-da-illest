@@ -9,38 +9,16 @@ const API_URL = process.env.API_URL || "http://localhost:8000";
 export default class HomePage extends Component {
     state = {
         rappers: [],
-        battles: [
-            {
-                id: 1,
-                name: "Battle of the Chart Toppers",
-                rapper1_id: 1,
-                rapper2_id: 2,
-                rapper1_wins: 22,
-                rapper2_wins: 12,
-                total_battles: 40,
-            },
-            {
-                id: 2,
-                name: "Battle of the Poets",
-                rapper1_id: 5,
-                rapper2_id: 10,
-                rapper1_wins: 20,
-                rapper2_wins: 11,
-                total_battles: 31,
-            },
-            {
-                id: 3,
-                name: "Battle of the BARS",
-                rapper1_id: 12,
-                rapper2_id: 15,
-                rapper1_wins: 12,
-                rapper2_wins: 9,
-                total_battles: 21,
-            },
-        ],
+        battles: [],
     };
 
     componentDidMount = () => {
+        axios.get(API_URL + "/rappers").then((response) => {
+            this.setState({
+                rappers: response.data,
+            });
+        });
+
         axios.get(API_URL + "/rappers").then((response) => {
             this.setState({
                 rappers: response.data,
