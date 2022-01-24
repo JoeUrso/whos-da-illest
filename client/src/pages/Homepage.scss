@@ -82,6 +82,10 @@
         border: 0.125rem solid $accent-color;
         border-radius: $border-radius;
         display: flex;
+
+        &--mobile {
+            flex-direction: column;
+        }
     }
 
     &__battles-table-headings {

@@ -1,4 +1,51 @@
-@use "../styles/partials/global" as *;
-@use "../styles/partials/typography" as *;
-@use "../styles/partials/mixins" as *;
-@use "../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.battle-info {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem 0rem;
+    border-bottom: 0.125rem solid $accent-color;
+
+    &__card-headings {
+        @include mobileBodySmall;
+        font-family: $graffiti-two;
+    }
+
+    &__rappers-battles-fought-container {
+        display: flex;
+        align-items: center;
+    }
+
+    &__rappers-container {
+        width: 60%;
+    }
+
+    &__battles-fought-container {
+        text-align: center;
+    }
+
+    &__name {
+        width: 100%;
+        @include mobileBody;
+        font-family: $graffiti-two;
+        color: $secondary-color;
+        margin: 0;
+    }
+
+    &__rappers {
+        @include mobileBodySmall;
+        font-family: $graffiti-two;
+        color: $secondary-color;
+        margin: 0;
+    }
+
+    &__total-battles {
+        @include mobileBody;
+        font-family: $graffiti-two;
+        color: $secondary-color;
+        margin: 0;
+    }
+}
