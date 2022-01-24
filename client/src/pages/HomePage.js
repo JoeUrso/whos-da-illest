@@ -85,7 +85,7 @@ export default class HomePage extends Component {
                     <p className="homepage__click-to-play">
                         click a battle to play
                     </p>
-                    <div className="homepage__battles-table">
+                    <div className="homepage__battles-table homepage__battles-table--mobile">
                         <div className="homepage__battles-table-headings">
                             <h3 className="homepage__battles-table-name">
                                 NAME
