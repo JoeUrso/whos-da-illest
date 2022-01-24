@@ -1,30 +1,14 @@
+import axios from "axios";
 import React, { Component } from "react";
+import "../";
 import BattleInfo from "../components/BattleInfo/BattleInfo";
 import RapperStats from "../components/RapperStats/RapperStats";
 import "./Homepage.scss";
+const API_URL = process.env.API_URL || "http://localhost:8000";
 
 export default class HomePage extends Component {
     state = {
-        rappers: [
-            {
-                id: 1,
-                name: "Jay-Z",
-                wins: 22,
-                losses: 4,
-            },
-            {
-                id: 2,
-                name: "Drake",
-                wins: 17,
-                losses: 7,
-            },
-            {
-                id: 3,
-                name: "The Notorious B.I.G",
-                wins: 29,
-                losses: 6,
-            },
-        ],
+        rappers: [],
         battles: [
             {
                 id: 1,
@@ -56,6 +40,14 @@ export default class HomePage extends Component {
         ],
     };
 
+    componentDidMount = () => {
+        axios.get(API_URL + "/rappers").then((response) => {
+            this.setState({
+                rappers: response.data,
+            });
+        });
+    };
+
     render() {
         return (
             <main className="homepage">
@@ -75,7 +67,11 @@ export default class HomePage extends Component {
                         </div>
                         {this.state.rappers.map((rapper) => {
                             return (
-                                <RapperStats rapper={rapper} avgGrade={10} />
+                                <RapperStats
+                                    key={rapper.id}
+                                    rapper={rapper}
+                                    avgGrade={10}
+                                />
                             );
                         })}
                     </div>
@@ -98,7 +94,9 @@ export default class HomePage extends Component {
                             </h3>
                         </div>
                         {this.state.battles.map((battle) => {
-                            return <BattleInfo battle={battle} />;
+                            return (
+                                <BattleInfo key={battle.id} battle={battle} />
+                            );
                         })}
                     </div>
                 </section>
