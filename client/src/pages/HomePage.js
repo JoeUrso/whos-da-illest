@@ -19,9 +19,9 @@ export default class HomePage extends Component {
             });
         });
 
-        axios.get(API_URL + "/rappers").then((response) => {
+        axios.get(API_URL + "/battles").then((response) => {
             this.setState({
-                rappers: response.data,
+                battles: response.data,
             });
         });
     };

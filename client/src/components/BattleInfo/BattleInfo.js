@@ -12,7 +12,7 @@ export default function BattleInfo({ battle }) {
                 <div className="battle-info__rappers-container">
                     <h3 className="battle-info__card-headings">RAPPERS</h3>
                     <p className="battle-info__rappers">
-                        {battle.rapper1_id} vs {battle.rapper2_id}
+                        {battle.rapper1_name} vs {battle.rapper2_name}
                     </p>
                 </div>
                 <div className="battle-info__battles-fought-container">
