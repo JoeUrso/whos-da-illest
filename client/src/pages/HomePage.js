@@ -62,6 +62,7 @@ export default class HomePage extends Component {
                         </div>
                         {this.state.rappers
                             .sort((a, b) => b.grade - a.grade)
+                            .slice(0, 20)
                             .map((rapper) => {
                                 return (
                                     <RapperStats
@@ -92,6 +93,7 @@ export default class HomePage extends Component {
                         </div>
                         {this.state.battles
                             .sort((a, b) => b.total_battles - a.total_battles)
+                            .slice(0, 10)
                             .map((battle) => {
                                 return (
                                     <BattleInfo
