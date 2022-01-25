@@ -90,11 +90,16 @@ export default class HomePage extends Component {
                                 BATTLES FOUGHT
                             </h3>
                         </div>
-                        {this.state.battles.map((battle) => {
-                            return (
-                                <BattleInfo key={battle.id} battle={battle} />
-                            );
-                        })}
+                        {this.state.battles
+                            .sort((a, b) => b.total_battles - a.total_battles)
+                            .map((battle) => {
+                                return (
+                                    <BattleInfo
+                                        key={battle.id}
+                                        battle={battle}
+                                    />
+                                );
+                            })}
                     </div>
                 </section>
             </main>
