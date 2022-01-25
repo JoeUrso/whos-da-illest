@@ -19,6 +19,23 @@ export default class HomePage extends Component {
             });
         });
 
+        axios.get(API_URL + "/grades/avg-grades").then((response) => {
+            let grades = response.data;
+            let rappersWithGrades = [];
+
+            this.state.rappers.forEach((rapper) => {
+                let foundGrade = grades.find(
+                    (grade) => grade.rapper_id === rapper.id
+                );
+                let updatedRapper = { ...rapper, grade: foundGrade.avgGrade };
+                rappersWithGrades.push(updatedRapper);
+            });
+
+            this.setState({
+                rappers: rappersWithGrades,
+            });
+        });
+
         axios.get(API_URL + "/battles").then((response) => {
             this.setState({
                 battles: response.data,
@@ -48,7 +65,7 @@ export default class HomePage extends Component {
                                 <RapperStats
                                     key={rapper.id}
                                     rapper={rapper}
-                                    avgGrade={10}
+                                    avgGrade={rapper.grade}
                                 />
                             );
                         })}
