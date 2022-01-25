@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import "../";
 import BattleInfo from "../components/BattleInfo/BattleInfo";
 import RapperStats from "../components/RapperStats/RapperStats";
@@ -10,6 +10,12 @@ export default class HomePage extends Component {
     state = {
         rappers: [],
         battles: [],
+    };
+
+    scrollToDiv = createRef();
+
+    scrollHandler = () => {
+        this.scrollToDiv.current.scrollIntoView({ behavior: "smooth" });
     };
 
     componentDidMount = () => {
@@ -47,7 +53,12 @@ export default class HomePage extends Component {
         return (
             <main className="homepage">
                 <h1 className="homepage__heading">WHOSE DA ILLEST?</h1>
-                <button className="homepage__button">Go To Battles</button>
+                <button
+                    className="homepage__button"
+                    onClick={this.scrollHandler}
+                >
+                    Go To Battles
+                </button>
                 <section className="homepage__rappers">
                     <h2 className="homepage__subheading">On Da Mic</h2>
                     <div className="homepage__rappers-table">
@@ -74,7 +85,7 @@ export default class HomePage extends Component {
                             })}
                     </div>
                 </section>
-                <section className="homepage__battles">
+                <section className="homepage__battles" ref={this.scrollToDiv}>
                     <h2 className="homepage__subheading">Battle Board</h2>
                     <p className="homepage__click-to-play">
                         click a battle to play
