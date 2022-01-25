@@ -60,15 +60,17 @@ export default class HomePage extends Component {
                                 AVG GRADE
                             </h3>
                         </div>
-                        {this.state.rappers.map((rapper) => {
-                            return (
-                                <RapperStats
-                                    key={rapper.id}
-                                    rapper={rapper}
-                                    avgGrade={rapper.grade}
-                                />
-                            );
-                        })}
+                        {this.state.rappers
+                            .sort((a, b) => b.grade - a.grade)
+                            .map((rapper) => {
+                                return (
+                                    <RapperStats
+                                        key={rapper.id}
+                                        rapper={rapper}
+                                        avgGrade={rapper.grade}
+                                    />
+                                );
+                            })}
                     </div>
                 </section>
                 <section className="homepage__battles">
