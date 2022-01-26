@@ -1,39 +1,61 @@
 import axios from "axios";
 import React, { Component } from "react";
-const client_id = "b5e35c2df7ec4fcd86e84ed4cb6deb0b";
-const client_secret = "f1d652247399449eb62b59c1db08d70d";
-const BASE_64_ENCODED_AUTH = buffer.from(client_id + ":" + client_secret);
+const API_URL = process.env.API_URL || "http://localhost:8000";
 
-console.log(BASE_64_ENCODED_AUTH);
+// const client_id = "b5e35c2df7ec4fcd86e84ed4cb6deb0b";
+// // ADD NEW const client_secret = "";
+// const BASE_64_ENCODED_AUTH = Buffer.from(client_id + ":" + client_secret);
 
-const getToken = {
-    url: "https://accounts.spotify.com/api/token",
-    headers: {
-        Accept: "application/json",
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: "",
-    },
-    grant_type: "client_credentials",
-};
+// console.log(BASE_64_ENCODED_AUTH);
+
+// const getToken = {
+//     url: "https://accounts.spotify.com/api/token",
+//     headers: {
+//         Accept: "application/json",
+//         "Content-Type": "application/x-www-form-urlencoded",
+//         Authorization: `Basic ${BASE_64_ENCODED_AUTH}`,
+//     },
+//     grant_type: "client_credentials",
+// };
 
 export default class BattlePage extends Component {
     state = {
+        battle: [],
         rapper1: [],
         rapper2: [],
-        token: "",
     };
 
-    requestAuthorization = () => {
-        axios.post(getToken).then((response) => {
-            console.log(response.data);
-        });
-    };
+    // requestAuthorization = () => {
+    //     axios.post(getToken).then((response) => {
+    //         console.log(response.data);
+    //     });
+    // };
 
     componentDidMount = () => {
-        this.requestAuthorization();
+        let selectedBattleId = this.props.match.params.battleId;
+
+        axios.get(API_URL + "/battles").then((response) => {
+            let battles = response.data;
+
+            let foundBattle = battles.find(
+                (battle) => battle.id === parseInt(selectedBattleId)
+            );
+
+            this.setState({
+                battle: foundBattle,
+            });
+        });
+
+        // this.requestAuthorization();
     };
 
     render() {
-        return <div></div>;
+        const { battle, rapper1, rapper2 } = this.state;
+        return (
+            <main className="battle">
+                <h1 className="battle__heading">WHOSE DA ILLEST?</h1>
+                <h2>{battle.name}</h2>
+            </main>
+        );
     }
 }
