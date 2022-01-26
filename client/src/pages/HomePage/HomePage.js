@@ -50,6 +50,8 @@ export default class HomePage extends Component {
     };
 
     render() {
+        const { rappers, battles } = this.state;
+
         return (
             <main className="homepage">
                 <h1 className="homepage__heading">WHOSE DA ILLEST?</h1>
@@ -71,7 +73,7 @@ export default class HomePage extends Component {
                                 AVG GRADE
                             </h3>
                         </div>
-                        {this.state.rappers
+                        {rappers
                             .sort((a, b) => b.grade - a.grade)
                             .slice(0, 20)
                             .map((rapper) => {
@@ -102,7 +104,7 @@ export default class HomePage extends Component {
                                 BATTLES FOUGHT
                             </h3>
                         </div>
-                        {this.state.battles
+                        {battles
                             .sort((a, b) => b.total_battles - a.total_battles)
                             .slice(0, 10)
                             .map((battle) => {

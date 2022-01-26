@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Redirect,
+    Route,
+    Switch,
+} from "react-router-dom";
 import "./App.scss";
 import BattlePage from "./pages/BattlePage/BattlePage";
 import HomePage from "./pages/HomePage/HomePage";
@@ -13,11 +18,9 @@ function App() {
                     component={HomePage} // homepage
                 />
 
-                <Route
-                    exact
-                    path="/battle"
-                    component={BattlePage} // battle page
-                />
+                <Redirect exact from="/battle" to="/battle/:battleId" />
+
+                <Route path="/battle/:battleId" component={BattlePage} />
 
                 {/* <Route
                         path="/battles/:id/:rapperId"
