@@ -9,15 +9,15 @@ export default function RapperInfo({ rapper }) {
                 <div className="rapper-info__albums">
                     <img
                         className="rapper-info__album"
-                        src="https://via.placeholder.com/100"
+                        src="https://via.placeholder.com/80"
                     ></img>
                     <img
                         className="rapper-info__album"
-                        src="https://via.placeholder.com/100"
+                        src="https://via.placeholder.com/80"
                     ></img>
                     <img
                         className="rapper-info__album"
-                        src="https://via.placeholder.com/100"
+                        src="https://via.placeholder.com/80"
                     ></img>
                 </div>
                 <div className="rapper-info__info-container">
