@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.scss";
 import BattlePage from "./pages/BattlePage/BattlePage";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/HomePage/HomePage";
 
 function App() {
     return (
@@ -15,7 +15,7 @@ function App() {
 
                 <Route
                     exact
-                    path="/battles/:id"
+                    path="/battle"
                     component={BattlePage} // battle page
                 />
 
