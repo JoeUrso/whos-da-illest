@@ -1,5 +1,8 @@
 import axios from "axios";
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import RapperInfo from "../../components/RapperInfo/RapperInfo";
+import "./BattlePage.scss";
 const API_URL = process.env.API_URL || "http://localhost:8000";
 
 // const client_id = "b5e35c2df7ec4fcd86e84ed4cb6deb0b";
@@ -51,10 +54,18 @@ export default class BattlePage extends Component {
 
     render() {
         const { battle, rapper1, rapper2 } = this.state;
+
         return (
             <main className="battle">
                 <h1 className="battle__heading">WHOSE DA ILLEST?</h1>
                 <h2>{battle.name}</h2>
+                <div>
+                    <RapperInfo rapper={rapper1} />
+                    <RapperInfo rapper={rapper2} />
+                </div>
+                <Link>
+                    <button>DJ! GET THAT SHIT!</button>
+                </Link>
             </main>
         );
     }

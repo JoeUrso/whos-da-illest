@@ -2,3 +2,9 @@
 @use "../../styles/partials/typography" as *;
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+
+.rapper-info {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
