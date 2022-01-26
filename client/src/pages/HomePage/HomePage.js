@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { Component, createRef } from "react";
-import "../";
-import BattleInfo from "../components/BattleInfo/BattleInfo";
-import RapperStats from "../components/RapperStats/RapperStats";
+import "../..";
+import BattleInfo from "../../components/BattleInfo/BattleInfo";
+import RapperStats from "../../components/RapperStats/RapperStats";
 import "./Homepage.scss";
 const API_URL = process.env.API_URL || "http://localhost:8000";
 

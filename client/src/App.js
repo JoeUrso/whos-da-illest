@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.scss";
+import BattlePage from "./pages/BattlePage/BattlePage";
 import HomePage from "./pages/HomePage";
 
 function App() {
@@ -12,13 +13,13 @@ function App() {
                     component={HomePage} // homepage
                 />
 
-                {/* <Route
-                        exact
-                        path="/battles/:id"
-                        component={BattlePage} // battle page
-                    />
+                <Route
+                    exact
+                    path="/battles/:id"
+                    component={BattlePage} // battle page
+                />
 
-                    <Route
+                {/* <Route
                         path="/battles/:id/:rapperId"
                         component={ArtistGrade} //artist grade
                     />
@@ -26,7 +27,7 @@ function App() {
                     <Route
                         path="/battles/:id/results"
                         component={BattleResults} //battle results
-                    /> */}
+                    />  */}
             </Switch>
         </Router>
     );
