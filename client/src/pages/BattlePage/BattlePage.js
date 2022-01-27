@@ -3,46 +3,14 @@ import React, { Component } from "react";
 import RapperInfo from "../../components/RapperInfo/RapperInfo";
 import "./BattlePage.scss";
 const API_URL = process.env.API_URL || "http://localhost:8000";
-const BASE_64_ENCODED_AUTH = btoa(
-    process.env.CLIENT_ID + ":" + process.env.CLIENT_SECRET_KEY
-);
-
-const SPOTIFY_API_URL =
-    "https://accounts.spotify.com/api/token?grant_type=client_credentials";
-
-const headers = {
-    headers: {
-        Accept: "application/json",
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Basic ${BASE_64_ENCODED_AUTH}`,
-    },
-};
-
-const getToken = {
-    url: "https://accounts.spotify.com/api/token",
-    method: "post",
-    data: "grant_type=client_credentials",
-    headers: {
-        Accept: "application/json",
-        "Content-Type": "application/x-www-form-urlencoded",
-    },
-    auth: {
-        username: process.env.CLIENT_ID, // User ID
-        password: process.env.CLIENT_SECRET_KEY, // User Secret
-    },
-};
+const SPOTIFY_URL = "https://api.spotify.com/v1/search?";
 
 export default class BattlePage extends Component {
     state = {
         battle: [],
         rapper1: [],
         rapper2: [],
-    };
-
-    requestAuthorization = () => {
-        axios(getToken).then((response) => {
-            console.log(response.data);
-        });
+        token: "",
     };
 
     componentDidMount = () => {
@@ -60,9 +28,62 @@ export default class BattlePage extends Component {
             });
         });
 
-        this.requestAuthorization();
-        // let token =
-        // console.log(token);
+        axios.get(API_URL + "/battles/rapper-data").then((response) => {
+            let token = response.data;
+            let header = {
+                Authorization: "Bearer" + " " + token,
+                "Content-Type": "application/json",
+            };
+
+            axios
+                .get(
+                    SPOTIFY_URL +
+                        `q=artist:${this.state.battle.rapper1_name}` +
+                        `&type=artist`,
+                    {
+                        headers: header,
+                    }
+                )
+                .then((response) => {
+                    this.setState({
+                        rapper1: response.data.artists.items[0],
+                    });
+                });
+
+            axios
+                .get(
+                    SPOTIFY_URL +
+                        `q=artist:${this.state.battle.rapper2_name}` +
+                        `&type=artist`,
+                    {
+                        headers: header,
+                    }
+                )
+                .then((response) => {
+                    this.setState({
+                        rapper2: response.data.artists.items[0],
+                    });
+                });
+
+            // this.setState({
+            //     token: response.data,
+            // });
+
+            // let header = {
+            //     Authorization: "Bearer" + " " + this.state.token,
+            //     "Content-Type": "application/json",
+            // };
+
+            // console.log(header);
+
+            // axios
+            //     .get(SPOTIFY_URL + `q=artist:Drake` + `&type=artist`, {
+            //         headers: header,
+            //     })
+            //     .then((response) => {
+            //         console.log(response);
+            //     });
+        });
     };
 
     render() {
