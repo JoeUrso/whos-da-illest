@@ -8,7 +8,7 @@ const knex = require("knex")(require("./knexfile").development);
 
 // Import from .env
 require("dotenv").config();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT;
 
 // Enable cors and allow paths to read req.body (let post read json input)
 app.use(cors());
