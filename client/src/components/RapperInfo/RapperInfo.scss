@@ -4,11 +4,60 @@
 @use "../../styles/partials/variables" as *;
 
 .rapper-info {
-    padding: 0.5rem;
+    padding: 2rem 0.5rem;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    width: 50%;
 
-    &__album {
+    &__name {
+        @include mobileBody;
+        font-family: $graffiti-two;
+        color: $secondary-color;
+        text-align: center;
+        margin: 0;
+        height: 15%;
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 85%;
+        padding-bottom: 5rem;
+    }
+
+    &__image {
         width: 8rem;
+        height: 8rem;
+    }
+
+    &__info-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 60%;
+    }
+
+    &__info-headings {
+        @include mobileBodySmall;
+        font-family: $graffiti-two;
+        text-align: center;
+    }
+
+    &__info {
+        @include mobileBody;
+        font-family: $graffiti-two;
+        text-align: center;
+        color: $secondary-color;
+        margin: 0;
+
+        &--genre {
+            @include mobileBodySmall;
+            font-family: $graffiti-two;
+            text-align: center;
+            color: $secondary-color;
+            margin: 0;
+        }
     }
 }

@@ -2,3 +2,41 @@
 @use "../../styles/partials/typography" as *;
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+
+.battle {
+    display: flex;
+    flex-direction: column;
+
+    &__heading {
+        @include mobilePageHeader;
+        font-family: $graffiti-one;
+    }
+
+    &__name {
+        @include mobileSubheader;
+        font-family: $graffiti-two;
+        color: $accent-color;
+        text-align: center;
+        margin: 2rem auto 1rem;
+        width: 80%;
+    }
+
+    &__loading {
+        @include mobileSubheader;
+        font-family: $graffiti-one;
+        text-align: center;
+    }
+
+    &__rapper-info-container {
+        display: flex;
+    }
+
+    // &__vs {
+    //     @include mobileBody;
+    //     width: 10%;
+    //     text-align: center;
+    //     font-family: $graffiti-two;
+    //     text-align: center;
+    //     padding-top: 1rem;
+    // }
+}

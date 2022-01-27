@@ -60,7 +60,6 @@ export default class BattlePage extends Component {
                     }
                 )
                 .then((response) => {
-                    console.log(response.data.artists.items[0]);
                     this.setState({
                         rapper2: response.data.artists.items[0],
                         isLoading: false,
@@ -93,13 +92,14 @@ export default class BattlePage extends Component {
 
         return (
             <main className="battle">
-                <h1 className="battle__heading">WHOSE DA ILLEST?</h1>
-                <h2 className="battle-name">{battle.name}</h2>
+                <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
+                <h2 className="battle__name">{battle.name}</h2>
                 {isLoading === true ? (
-                    <h3>loading</h3>
+                    <h3 className="battle__loading">loading</h3>
                 ) : (
-                    <div>
+                    <div className="battle__rapper-info-container">
                         <RapperInfo rapper={rapper1} />
+                        {/* <h4 className="battle__vs">VS</h4> */}
                         <RapperInfo rapper={rapper2} />
                     </div>
                 )}
