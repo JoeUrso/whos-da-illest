@@ -10,7 +10,7 @@ export default class BattlePage extends Component {
         battle: [],
         rapper1: [],
         rapper2: [],
-        token: "",
+        isLoading: true,
     };
 
     componentDidMount = () => {
@@ -60,8 +60,10 @@ export default class BattlePage extends Component {
                     }
                 )
                 .then((response) => {
+                    console.log(response.data.artists.items[0]);
                     this.setState({
                         rapper2: response.data.artists.items[0],
+                        isLoading: false,
                     });
                 });
 
@@ -87,16 +89,21 @@ export default class BattlePage extends Component {
     };
 
     render() {
-        const { battle, rapper1, rapper2 } = this.state;
+        const { battle, rapper1, rapper2, isLoading } = this.state;
 
         return (
             <main className="battle">
                 <h1 className="battle__heading">WHOSE DA ILLEST?</h1>
-                <h2>{battle.name}</h2>
-                <div>
-                    <RapperInfo rapper={rapper1} />
-                    <RapperInfo rapper={rapper2} />
-                </div>
+                <h2 className="battle-name">{battle.name}</h2>
+                {isLoading === true ? (
+                    <h3>loading</h3>
+                ) : (
+                    <div>
+                        <RapperInfo rapper={rapper1} />
+                        <RapperInfo rapper={rapper2} />
+                    </div>
+                )}
+
                 {/* <Link>
                     <button>DJ! GET THAT SHIT!</button>
                 </Link> */}

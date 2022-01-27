@@ -9,26 +9,20 @@ export default function RapperInfo({ rapper }) {
                 <div className="rapper-info__albums">
                     <img
                         className="rapper-info__album"
-                        src="https://via.placeholder.com/80"
-                    ></img>
-                    <img
-                        className="rapper-info__album"
-                        src="https://via.placeholder.com/80"
-                    ></img>
-                    <img
-                        className="rapper-info__album"
-                        src="https://via.placeholder.com/80"
+                        src={rapper.images[2].url}
                     ></img>
                 </div>
                 <div className="rapper-info__info-container">
                     <h4 className="rapper-info__info-headings">
                         Spotify Followers
                     </h4>
+                    <p>{rapper.followers.total}</p>
                     <h4 className="rapper-info__info-headings">
-                        Popularity Rating
+                        Spotify Popularity Rating
                     </h4>
-                    <h4 className="rapper-info__info-headings">Top Songs</h4>
-                    <h4 className="rapper-info__info-headings">Albums</h4>
+                    <p>{rapper.popularity}</p>
+                    <h4 className="rapper-info__info-headings">SubGenres</h4>
+                    <p>{rapper.genres[0]}</p>
                 </div>
             </article>
         </section>
