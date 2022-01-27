@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import RapperInfo from "../../components/RapperInfo/RapperInfo";
 import "./BattlePage.scss";
 const API_URL = process.env.API_URL || "http://localhost:8000";
@@ -8,16 +7,29 @@ const BASE_64_ENCODED_AUTH = btoa(
     process.env.CLIENT_ID + ":" + process.env.CLIENT_SECRET_KEY
 );
 
-console.log(BASE_64_ENCODED_AUTH);
+const SPOTIFY_API_URL =
+    "https://accounts.spotify.com/api/token?grant_type=client_credentials";
 
-const getToken = {
-    url: "https://accounts.spotify.com/api/token",
+const headers = {
     headers: {
         Accept: "application/json",
         "Content-Type": "application/x-www-form-urlencoded",
         Authorization: `Basic ${BASE_64_ENCODED_AUTH}`,
     },
-    grant_type: "client_credentials",
+};
+
+const getToken = {
+    url: "https://accounts.spotify.com/api/token",
+    method: "post",
+    data: "grant_type=client_credentials",
+    headers: {
+        Accept: "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
+    },
+    auth: {
+        username: process.env.CLIENT_ID, // User ID
+        password: process.env.CLIENT_SECRET_KEY, // User Secret
+    },
 };
 
 export default class BattlePage extends Component {
@@ -28,7 +40,7 @@ export default class BattlePage extends Component {
     };
 
     requestAuthorization = () => {
-        axios.post(getToken).then((response) => {
+        axios(getToken).then((response) => {
             console.log(response.data);
         });
     };
@@ -48,7 +60,9 @@ export default class BattlePage extends Component {
             });
         });
 
-        // this.requestAuthorization();
+        this.requestAuthorization();
+        // let token =
+        // console.log(token);
     };
 
     render() {
@@ -62,9 +76,9 @@ export default class BattlePage extends Component {
                     <RapperInfo rapper={rapper1} />
                     <RapperInfo rapper={rapper2} />
                 </div>
-                <Link>
+                {/* <Link>
                     <button>DJ! GET THAT SHIT!</button>
-                </Link>
+                </Link> */}
             </main>
         );
     }
