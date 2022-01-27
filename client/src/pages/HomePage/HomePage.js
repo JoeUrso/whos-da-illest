@@ -54,7 +54,7 @@ export default class HomePage extends Component {
 
         return (
             <main className="homepage">
-                <h1 className="homepage__heading">WHOSE DA ILLEST?</h1>
+                <h1 className="homepage__heading">WHO'S DA ILLEST?</h1>
                 <button
                     className="homepage__button"
                     onClick={this.scrollHandler}
