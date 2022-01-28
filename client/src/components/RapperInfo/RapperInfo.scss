@@ -30,6 +30,9 @@
     &__image {
         width: 8rem;
         height: 8rem;
+        border-radius: 0.5rem;
+        box-shadow: 0.1875rem 0.1875rem 0.25rem 0.25rem $accent-color;
+        margin-bottom: 1rem;
     }
 
     &__info-container {
