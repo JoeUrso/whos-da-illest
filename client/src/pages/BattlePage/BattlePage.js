@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
+import GradeRapper from "../../components/GradeRapper/GradeRapper";
 import RapperInfo from "../../components/RapperInfo/RapperInfo";
 import "./BattlePage.scss";
 const API_URL = process.env.API_URL || "http://localhost:8000";
@@ -19,7 +20,7 @@ export default class BattlePage extends Component {
 
     startBattle = () => {
         this.setState({
-            isinfo: false,
+            isInfo: false,
             isRapper1: true,
         });
     };
@@ -94,25 +95,6 @@ export default class BattlePage extends Component {
                         isLoading: false,
                     });
                 });
-
-            // this.setState({
-            //     token: response.data,
-            // });
-
-            // let header = {
-            //     Authorization: "Bearer" + " " + this.state.token,
-            //     "Content-Type": "application/json",
-            // };
-
-            // console.log(header);
-
-            // axios
-            //     .get(SPOTIFY_URL + `q=artist:Drake` + `&type=artist`, {
-            //         headers: header,
-            //     })
-            //     .then((response) => {
-            //         console.log(response);
-            //     });
         });
     };
 
@@ -154,64 +136,27 @@ export default class BattlePage extends Component {
                 {isRapper1 === true && (
                     <main className="battle">
                         <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
-                        <h2 className="battle__name">{battle.name}</h2>
-                        {isLoading === true ? (
-                            <h3 className="battle__loading">loading</h3>
-                        ) : (
-                            <div className="battle__rapper-info-container">
-                                <RapperInfo rapper={rapper1} />
-                                {/* <h4 className="battle__vs">VS</h4> */}
-                                <RapperInfo rapper={rapper2} />
-                            </div>
-                        )}
-                        <button
-                            className="battle__button"
-                            onClick={this.startBattle}
-                        >
-                            DJ! GET THAT SHIT!
-                        </button>
+                        <GradeRapper
+                            rapper={rapper1}
+                            buttonText={"PASS THE MIC!"}
+                            click={this.passTheMic}
+                        />
                     </main>
                 )}
                 {isRapper2 === true && (
                     <main className="battle">
                         <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
-                        <h2 className="battle__name">{battle.name}</h2>
-                        {isLoading === true ? (
-                            <h3 className="battle__loading">loading</h3>
-                        ) : (
-                            <div className="battle__rapper-info-container">
-                                <RapperInfo rapper={rapper1} />
-                                {/* <h4 className="battle__vs">VS</h4> */}
-                                <RapperInfo rapper={rapper2} />
-                            </div>
-                        )}
-                        <button
-                            className="battle__button"
-                            onClick={this.startBattle}
-                        >
-                            DJ! GET THAT SHIT!
-                        </button>
+                        <GradeRapper
+                            rapper={rapper2}
+                            buttonText={"DROP THE MIC!"}
+                            click={this.DropTheMic}
+                        />
                     </main>
                 )}
                 {isResults === true && (
                     <main className="battle">
                         <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
-                        <h2 className="battle__name">{battle.name}</h2>
-                        {isLoading === true ? (
-                            <h3 className="battle__loading">loading</h3>
-                        ) : (
-                            <div className="battle__rapper-info-container">
-                                <RapperInfo rapper={rapper1} />
-                                {/* <h4 className="battle__vs">VS</h4> */}
-                                <RapperInfo rapper={rapper2} />
-                            </div>
-                        )}
-                        <button
-                            className="battle__button"
-                            onClick={this.startBattle}
-                        >
-                            DJ! GET THAT SHIT!
-                        </button>
+                        <h2>RESULTS</h2>
                     </main>
                 )}
             </>
