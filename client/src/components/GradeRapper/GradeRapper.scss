@@ -2,3 +2,17 @@
 @use "../../styles/partials/typography" as *;
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+
+.grade {
+    display: flex;
+    flex-direction: column;
+
+    &__rapper-name {
+        @include mobileBody;
+        font-family: $graffiti-two;
+        color: $secondary-color;
+        text-align: center;
+        margin: 0;
+        height: 15%;
+    }
+}
