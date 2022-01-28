@@ -46,6 +46,7 @@
         @include mobileBodySmall;
         font-family: $graffiti-two;
         text-align: center;
+        color: $accent-color;
     }
 
     &__info {

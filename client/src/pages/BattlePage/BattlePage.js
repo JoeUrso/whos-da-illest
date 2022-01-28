@@ -11,6 +11,35 @@ export default class BattlePage extends Component {
         rapper1: [],
         rapper2: [],
         isLoading: true,
+        isInfo: true,
+        isRapper1: false,
+        isRapper2: false,
+        isResults: false,
+    };
+
+    startBattle = () => {
+        this.setState({
+            isinfo: false,
+            isRapper1: true,
+        });
+    };
+
+    passTheMic = () => {
+        this.setState({
+            isRapper1: false,
+            isRapper2: true,
+        });
+    };
+
+    DropTheMic = () => {
+        this.setState({
+            isRapper2: false,
+            isResults: true,
+        });
+    };
+
+    backToBattles = () => {
+        // THIS IS WHERE YOU'LL POST THE GRADES AND SCORES AND SHIT
     };
 
     componentDidMount = () => {
@@ -88,26 +117,104 @@ export default class BattlePage extends Component {
     };
 
     render() {
-        const { battle, rapper1, rapper2, isLoading } = this.state;
+        const {
+            battle,
+            rapper1,
+            rapper2,
+            isLoading,
+            isInfo,
+            isRapper1,
+            isRapper2,
+            isResults,
+        } = this.state;
 
         return (
-            <main className="battle">
-                <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
-                <h2 className="battle__name">{battle.name}</h2>
-                {isLoading === true ? (
-                    <h3 className="battle__loading">loading</h3>
-                ) : (
-                    <div className="battle__rapper-info-container">
-                        <RapperInfo rapper={rapper1} />
-                        {/* <h4 className="battle__vs">VS</h4> */}
-                        <RapperInfo rapper={rapper2} />
-                    </div>
+            <>
+                {isInfo === true && (
+                    <main className="battle">
+                        <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
+                        <h2 className="battle__name">{battle.name}</h2>
+                        {isLoading === true ? (
+                            <h3 className="battle__loading">loading</h3>
+                        ) : (
+                            <div className="battle__rapper-info-container">
+                                <RapperInfo rapper={rapper1} />
+                                {/* <h4 className="battle__vs">VS</h4> */}
+                                <RapperInfo rapper={rapper2} />
+                            </div>
+                        )}
+                        <button
+                            className="battle__button"
+                            onClick={this.startBattle}
+                        >
+                            DJ! GET THAT SHIT!
+                        </button>
+                    </main>
                 )}
-
-                {/* <Link>
-                    <button>DJ! GET THAT SHIT!</button>
-                </Link> */}
-            </main>
+                {isRapper1 === true && (
+                    <main className="battle">
+                        <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
+                        <h2 className="battle__name">{battle.name}</h2>
+                        {isLoading === true ? (
+                            <h3 className="battle__loading">loading</h3>
+                        ) : (
+                            <div className="battle__rapper-info-container">
+                                <RapperInfo rapper={rapper1} />
+                                {/* <h4 className="battle__vs">VS</h4> */}
+                                <RapperInfo rapper={rapper2} />
+                            </div>
+                        )}
+                        <button
+                            className="battle__button"
+                            onClick={this.startBattle}
+                        >
+                            DJ! GET THAT SHIT!
+                        </button>
+                    </main>
+                )}
+                {isRapper2 === true && (
+                    <main className="battle">
+                        <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
+                        <h2 className="battle__name">{battle.name}</h2>
+                        {isLoading === true ? (
+                            <h3 className="battle__loading">loading</h3>
+                        ) : (
+                            <div className="battle__rapper-info-container">
+                                <RapperInfo rapper={rapper1} />
+                                {/* <h4 className="battle__vs">VS</h4> */}
+                                <RapperInfo rapper={rapper2} />
+                            </div>
+                        )}
+                        <button
+                            className="battle__button"
+                            onClick={this.startBattle}
+                        >
+                            DJ! GET THAT SHIT!
+                        </button>
+                    </main>
+                )}
+                {isResults === true && (
+                    <main className="battle">
+                        <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
+                        <h2 className="battle__name">{battle.name}</h2>
+                        {isLoading === true ? (
+                            <h3 className="battle__loading">loading</h3>
+                        ) : (
+                            <div className="battle__rapper-info-container">
+                                <RapperInfo rapper={rapper1} />
+                                {/* <h4 className="battle__vs">VS</h4> */}
+                                <RapperInfo rapper={rapper2} />
+                            </div>
+                        )}
+                        <button
+                            className="battle__button"
+                            onClick={this.startBattle}
+                        >
+                            DJ! GET THAT SHIT!
+                        </button>
+                    </main>
+                )}
+            </>
         );
     }
 }
