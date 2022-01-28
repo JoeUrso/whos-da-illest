@@ -129,7 +129,7 @@ export default class BattlePage extends Component {
                             className="battle__button"
                             onClick={this.startBattle}
                         >
-                            DJ! GET THAT SHIT!
+                            YO DJ! START THE BATTLE!
                         </button>
                     </main>
                 )}
