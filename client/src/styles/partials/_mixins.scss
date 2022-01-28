@@ -70,3 +70,14 @@
     font-size: 1.5rem;
     line-height: 1.5rem;
 }
+
+// ANIMATIONS
+@mixin keyframes($name) {
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
+@mixin animate($animation, $duration, $method, $times) {
+    animation: $animation $duration $method $times;
+}

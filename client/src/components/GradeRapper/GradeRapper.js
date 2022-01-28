@@ -19,15 +19,15 @@ export default function GradeRapper({ rapper, buttonText, click }) {
         <section className="grade">
             <h2 className="grade__rapper-name">{rapper.name}</h2>
             <article className="grade__container">
-                {criteria.map((criterion) => {
+                {criteria.map((criterion, index) => {
                     return (
-                        <div className="grade__card-container">
+                        <div className="grade__card-container" key={index}>
                             <h3 className="grade__criterion">{criterion}</h3>
                             <div className="grade__slider-container">
                                 <input
                                     type="range"
                                     min="0"
-                                    max="10"
+                                    max="100"
                                     id="grade"
                                     className="grade__slider"
                                 ></input>
