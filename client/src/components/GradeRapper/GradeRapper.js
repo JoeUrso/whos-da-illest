@@ -6,13 +6,16 @@ export default class GradeRapper extends Component {
         presence: 0,
         flow: 0,
         rhymes: 0,
-        vocabulary: 0,
+        complexity: 0,
         articulation: 0,
         creativity: 0,
         versatility: 0,
-        voice: 0,
+        depth: 0,
         hits: 0,
         performance: 0,
+        rapper1Grade: null,
+        rapper2Grade: null,
+        isSaved: false,
     };
 
     displayPoints = (event) => {
@@ -21,6 +24,56 @@ export default class GradeRapper extends Component {
 
         this.setState({
             [name]: points,
+        });
+    };
+
+    storeGradeAndReset = () => {
+        const {
+            presence,
+            flow,
+            rhymes,
+            complexity,
+            articulation,
+            creativity,
+            versatility,
+            depth,
+            hits,
+            performance,
+        } = this.state;
+
+        let pointsArr = [
+            presence,
+            flow,
+            rhymes,
+            complexity,
+            articulation,
+            creativity,
+            versatility,
+            depth,
+            hits,
+            performance,
+        ];
+
+        let parsedPoints = pointsArr.map((point) => {
+            return parseInt(point);
+        });
+
+        let pointsSum = parsedPoints.reduce((a, b) => a + b, 0);
+        let grade = pointsSum / 10;
+
+        this.setState({
+            presence: 0,
+            flow: 0,
+            rhymes: 0,
+            complexity: 0,
+            articulation: 0,
+            creativity: 0,
+            versatility: 0,
+            depth: 0,
+            hits: 0,
+            performance: 0,
+            rapper1Grade: grade,
+            isSaved: true,
         });
     };
 
@@ -59,9 +112,18 @@ export default class GradeRapper extends Component {
                         );
                     })}
                 </article>
-                <button className="grade__button" onClick={click}>
-                    {buttonText}
-                </button>
+                {this.state.isSaved === false ? (
+                    <button
+                        className="grade__button"
+                        onClick={this.storeGradeAndReset}
+                    >
+                        SAVE YOUR GRADE!
+                    </button>
+                ) : (
+                    <button className="grade__button" onClick={click}>
+                        {buttonText}
+                    </button>
+                )}
             </section>
         );
     }
