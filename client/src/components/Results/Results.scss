@@ -1,0 +1,95 @@
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.results {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+
+    &__heading {
+        @include mobileBody;
+        font-family: $graffiti-two;
+        color: $accent-color;
+        text-align: center;
+        margin: 0;
+        padding-bottom: 1rem;
+        align-self: center;
+    }
+
+    &__main-container {
+        display: flex;
+        align-items: center;
+    }
+
+    &__rapper-container {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    &__name {
+        @include mobileBodySmall;
+        font-family: $graffiti-two;
+        color: $primary-color;
+        margin: 0.5rem;
+    }
+
+    &__result {
+        @include mobileBody;
+        font-family: $graffiti-two;
+        color: $accent-color;
+        margin: 0.5rem;
+    }
+
+    &__grade {
+        @include mobileBodySmall;
+        font-family: $graffiti-two;
+        color: $secondary-color;
+        margin: 0.5rem;
+    }
+
+    &__avg-grade {
+        @include mobileBodySmall;
+        font-family: $graffiti-two;
+        color: $secondary-color;
+        margin: 0.5rem;
+    }
+
+    &__record-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+
+    &__wins {
+        width: 48%;
+        @include mobileSubheader;
+        font-family: $graffiti-two;
+        color: $secondary-color;
+        text-align: center;
+        margin: 0;
+    }
+
+    &__hyphen {
+        width: 4%;
+        @include mobileSubheader;
+        font-family: $graffiti-two;
+        color: $secondary-color;
+        margin: 0;
+    }
+
+    &__link {
+        text-decoration: none;
+        margin: 0 auto;
+        background: none;
+        border: none;
+        @include mobileBody;
+        font-family: $graffiti-two;
+        color: $accent-color;
+    }
+}

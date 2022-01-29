@@ -116,7 +116,7 @@ export default class GradeRapper extends Component {
                         className="grade__button"
                         onClick={this.storeGradeAndReset}
                     >
-                        SAVE YOUR GRADE!
+                        DROP YA MIC!
                     </button>
                 ) : (
                     <button
