@@ -16,6 +16,18 @@ export default class BattlePage extends Component {
         isRapper1: false,
         isRapper2: false,
         isResults: false,
+        criteria: [
+            { id: 1, criterion: "Presence" },
+            { id: 2, criterion: "Flow" },
+            { id: 3, criterion: "Rhymes" },
+            { id: 4, criterion: "Vocabulary" },
+            { id: 5, criterion: "Articulation" },
+            { id: 6, criterion: "Creativity" },
+            { id: 7, criterion: "Versatility" },
+            { id: 8, criterion: "Voice" },
+            { id: 9, criterion: "Hits" },
+            { id: 10, criterion: "Performance" },
+        ],
     };
 
     startBattle = () => {
@@ -108,6 +120,7 @@ export default class BattlePage extends Component {
             isRapper1,
             isRapper2,
             isResults,
+            criteria,
         } = this.state;
 
         return (
@@ -138,6 +151,7 @@ export default class BattlePage extends Component {
                         <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
                         <GradeRapper
                             rapper={rapper1}
+                            criteria={criteria}
                             buttonText={"PASS THE MIC!"}
                             click={this.passTheMic}
                         />
