@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import GradeRapper from "../../components/GradeRapper/GradeRapper";
 import RapperInfo from "../../components/RapperInfo/RapperInfo";
+import Results from "../../components/Results/Results";
 import "./BattlePage.scss";
 const API_URL = process.env.API_URL || "http://localhost:8000";
 const SPOTIFY_URL = "https://api.spotify.com/v1/search?";
@@ -125,6 +126,8 @@ export default class BattlePage extends Component {
             isRapper2,
             isResults,
             criteria,
+            rapper1Grade,
+            rapper2Grade,
         } = this.state;
 
         return (
@@ -175,7 +178,13 @@ export default class BattlePage extends Component {
                 {isResults === true && (
                     <main className="battle">
                         <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
-                        <h2>RESULTS</h2>
+                        <Results
+                            rapper1={rapper1}
+                            rapper2={rapper2}
+                            rapper1Grade={rapper1Grade}
+                            rapper2Grade={rapper2Grade}
+                            battle={battle}
+                        />
                     </main>
                 )}
             </>
