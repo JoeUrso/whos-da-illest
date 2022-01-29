@@ -56,7 +56,7 @@ export default class BattlePage extends Component {
         });
     };
 
-    backToBattles = () => {
+    backToBattles = (rapper1Grade, Rapper2Grade, winner) => {
         // THIS IS WHERE YOU'LL POST THE GRADES AND SCORES AND SHIT
     };
 
@@ -184,6 +184,7 @@ export default class BattlePage extends Component {
                             rapper1Grade={rapper1Grade}
                             rapper2Grade={rapper2Grade}
                             battle={battle}
+                            click={this.backToBattles}
                         />
                     </main>
                 )}
