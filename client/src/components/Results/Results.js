@@ -10,6 +10,11 @@ export default function Results({
     rapper2Grade,
     click,
 }) {
+    let winner = "";
+    rapper1Grade > rapper2Grade
+        ? (winner = rapper1.name)
+        : (winner = rapper2.name);
+
     return (
         <section className="results">
             <h2 className="results__heading">Battle Results</h2>
@@ -41,7 +46,11 @@ export default function Results({
                 <p className="results__hyphen">-</p>
                 <p className="results__wins">{battle.rapper2_wins}</p>
             </article>
-            <Link className="results__link" to={"/"}>
+            <Link
+                className="results__link"
+                to={"/"}
+                onClick={click(rapper1Grade, rapper2Grade, winner)}
+            >
                 Back to Battles!
             </Link>
         </section>
