@@ -11,7 +11,7 @@ export default class BattlePage extends Component {
         battle: [],
         rapper1: [],
         rapper2: [],
-        isLoading: true,
+        isRapperInfoLoading: true,
         isInfo: true,
         isRapper1: false,
         isRapper2: false,
@@ -28,6 +28,8 @@ export default class BattlePage extends Component {
             { id: 9, criterion: "Hits" },
             { id: 10, criterion: "Performance" },
         ],
+        rapper1Grade: null,
+        rapper2Grade: null,
     };
 
     startBattle = () => {
@@ -37,17 +39,19 @@ export default class BattlePage extends Component {
         });
     };
 
-    passTheMic = () => {
+    passTheMic = (grade) => {
         this.setState({
             isRapper1: false,
             isRapper2: true,
+            rapper1Grade: grade,
         });
     };
 
-    DropTheMic = () => {
+    DropTheMic = (grade) => {
         this.setState({
             isRapper2: false,
             isResults: true,
+            rapper2Grade: grade,
         });
     };
 
@@ -104,7 +108,7 @@ export default class BattlePage extends Component {
                 .then((response) => {
                     this.setState({
                         rapper2: response.data.artists.items[0],
-                        isLoading: false,
+                        isRapperInfoLoading: false,
                     });
                 });
         });
@@ -115,7 +119,7 @@ export default class BattlePage extends Component {
             battle,
             rapper1,
             rapper2,
-            isLoading,
+            isRapperInfoLoading,
             isInfo,
             isRapper1,
             isRapper2,
@@ -129,7 +133,7 @@ export default class BattlePage extends Component {
                     <main className="battle">
                         <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
                         <h2 className="battle__name">{battle.name}</h2>
-                        {isLoading === true ? (
+                        {isRapperInfoLoading === true ? (
                             <h3 className="battle__loading">loading</h3>
                         ) : (
                             <div className="battle__rapper-info-container">
@@ -162,6 +166,7 @@ export default class BattlePage extends Component {
                         <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
                         <GradeRapper
                             rapper={rapper2}
+                            criteria={criteria}
                             buttonText={"DROP THE MIC!"}
                             click={this.DropTheMic}
                         />

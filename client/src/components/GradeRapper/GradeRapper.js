@@ -13,8 +13,7 @@ export default class GradeRapper extends Component {
         depth: 0,
         hits: 0,
         performance: 0,
-        rapper1Grade: null,
-        rapper2Grade: null,
+        rapperGrade: null,
         isSaved: false,
     };
 
@@ -72,7 +71,7 @@ export default class GradeRapper extends Component {
             depth: 0,
             hits: 0,
             performance: 0,
-            rapper1Grade: grade,
+            rapperGrade: grade,
             isSaved: true,
         });
     };
@@ -120,10 +119,31 @@ export default class GradeRapper extends Component {
                         SAVE YOUR GRADE!
                     </button>
                 ) : (
-                    <button className="grade__button" onClick={click}>
+                    <button
+                        className="grade__button"
+                        onClick={click(this.state.rapperGrade)}
+                    >
                         {buttonText}
                     </button>
                 )}
+
+                {/* {this.state.isSaved === false && (
+                    <button
+                        className="grade__button"
+                        onClick={this.storeGradeAndReset}
+                    >
+                        SAVE YOUR GRADE!
+                    </button>
+                )}
+
+                {this.state.isSaved === true && (
+                    <button
+                        className="grade__button"
+                        onClick={click(this.state.rapperGrade)}
+                    >
+                        {buttonText}
+                    </button>
+                )} */}
             </section>
         );
     }
