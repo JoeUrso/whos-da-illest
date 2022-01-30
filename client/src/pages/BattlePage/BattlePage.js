@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { Component } from "react";
-import uniqid from "uniqid";
 import GradeRapper from "../../components/GradeRapper/GradeRapper";
 import RapperInfo from "../../components/RapperInfo/RapperInfo";
 import Results from "../../components/Results/Results";
@@ -42,7 +41,6 @@ export default class BattlePage extends Component {
     };
 
     passTheMic = (grade) => {
-        console.log(grade);
         this.setState({
             isRapper1: false,
             isRapper2: true,
@@ -51,7 +49,6 @@ export default class BattlePage extends Component {
     };
 
     dropTheMic = (grade) => {
-        console.log(grade);
         this.setState({
             isRapper2: false,
             isResults: true,
@@ -63,28 +60,22 @@ export default class BattlePage extends Component {
         // THIS IS WHERE YOU'LL POST THE GRADES AND SCORES AND SHIT
 
         let newGrade1 = {
-            id: uniqid(),
-            grade: rapper1Grade,
-            rapper_id: this.state.battle.rapper1_id,
+            grade: rapper1Grade.toString(),
+            rapper_id: this.state.battle.rapper1_id.toString(),
         };
 
         let newGrade2 = {
-            id: uniqid(),
-            grade: rapper2Grade,
-            rapper_id: this.state.battle.rapper2_id,
+            grade: rapper2Grade.toString(),
+            rapper_id: this.state.battle.rapper2_id.toString(),
         };
 
-        let newGrade1Stringified = JSON.stringify(newGrade1);
-        let newGrade2Stringified = JSON.stringify(newGrade2);
+        axios.post(API_URL + "/grades", newGrade1).then((response) => {
+            console.log(response);
+        });
 
-        console.log(newGrade1Stringified);
-        console.log(newGrade2Stringified);
-
-        // axios
-        //     .post(API_URL + "/grades", newGrade1Stringified)
-        //     .then((response) => {
-        //         console.log(response);
-        //     });
+        axios.post(API_URL + "/grades", newGrade2).then((response) => {
+            console.log(response);
+        });
     };
 
     componentDidMount = () => {
