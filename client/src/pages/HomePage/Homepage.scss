@@ -10,6 +10,12 @@
     &__heading {
         @include mobilePageHeader;
         font-family: $graffiti-one;
+        text-align: center;
+
+        @include tablet {
+            @include tabletDesktopPageHeader;
+            margin-bottom: 4rem;
+        }
     }
 
     &__button {
@@ -20,6 +26,11 @@
         font-family: $graffiti-two;
         color: $accent-color;
         cursor: pointer;
+
+        @include tablet {
+            @include tabletDesktopBody;
+            margin-bottom: 2rem;
+        }
     }
 
     &__rappers {
@@ -33,6 +44,10 @@
         @include mobileSubheader;
         font-family: $graffiti-one;
         color: $secondary-color;
+
+        @include tablet {
+            @include tabletDesktopSubheader;
+        }
     }
 
     &__rappers-table {
@@ -51,18 +66,30 @@
         @include mobileBodySmall;
         font-family: $graffiti-two;
         width: 50%;
+
+        @include tablet {
+            @include tabletDesktopBodySmall;
+        }
     }
 
     &__rappers-table-w-l {
         @include mobileBodySmall;
         font-family: $graffiti-two;
         width: 20%;
+
+        @include tablet {
+            @include tabletDesktopBodySmall;
+        }
     }
 
     &__rappers-table-avg-grade {
         @include mobileBodySmall;
         font-family: $graffiti-two;
         width: 30%;
+
+        @include tablet {
+            @include tabletDesktopBodySmall;
+        }
     }
 
     &__battles {
@@ -90,23 +117,42 @@
 
     &__battles-table-headings {
         display: none;
+
+        @include tablet {
+            display: flex;
+        }
     }
 
     &__battles-table-name {
         @include mobileBodySmall;
         font-family: $graffiti-two;
         width: 25%;
+
+        @include tablet {
+            @include tabletDesktopBodySmall;
+            width: 59%;
+        }
     }
 
     &__battles-table-rappers {
         @include mobileBodySmall;
         font-family: $graffiti-two;
         width: 35%;
+
+        @include tablet {
+            @include tabletDesktopBodySmall;
+            width: 27%;
+        }
     }
 
     &__battles-table-battles-fought {
         @include mobileBodySmall;
         font-family: $graffiti-two;
         width: 40%;
+
+        @include tablet {
+            @include tabletDesktopBodySmall;
+            width: 13%;
+        }
     }
 }

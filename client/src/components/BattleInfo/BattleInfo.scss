@@ -12,24 +12,50 @@
         flex-direction: column;
         margin: 0.5rem 0rem;
         border-bottom: 0.125rem solid $accent-color;
+
+        @include tablet {
+            flex-direction: row;
+            padding-bottom: 1rem;
+        }
     }
 
     &__card-headings {
         @include mobileBodySmall;
         font-family: $graffiti-two;
+
+        @include tablet {
+            display: none;
+        }
+    }
+
+    &__name-container {
+        @include tablet {
+            width: 55%;
+            margin-right: 4rem;
+        }
     }
 
     &__rappers-battles-fought-container {
         display: flex;
         align-items: center;
+
+        @include tablet {
+            width: 45%;
+        }
     }
 
     &__rappers-container {
         width: 60%;
+
+        @include tablet {
+            @include tabletDesktopBodySmall;
+            width: 66%;
+        }
     }
 
     &__battles-fought-container {
         text-align: center;
+        width: 34%;
     }
 
     &__name {
@@ -38,6 +64,10 @@
         font-family: $graffiti-two;
         color: $secondary-color;
         margin: 0;
+
+        @include tablet {
+            @include tabletDesktopBody;
+        }
     }
 
     &__rappers {
@@ -45,6 +75,10 @@
         font-family: $graffiti-two;
         color: $secondary-color;
         margin: 0;
+
+        @include tablet {
+            @include tabletDesktopBodySmall;
+        }
     }
 
     &__total-battles {
@@ -52,5 +86,9 @@
         font-family: $graffiti-two;
         color: $secondary-color;
         margin: 0;
+
+        @include tablet {
+            @include tabletDesktopBody;
+        }
     }
 }
