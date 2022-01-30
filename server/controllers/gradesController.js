@@ -62,3 +62,12 @@ exports.AvgGrades = (_req, res) => {
             res.status(400).send(`Error retrieving rappers: ${err}`)
         );
 };
+
+exports.addNewGrade = (req, res) => {
+    knex("grades")
+        .insert(req.body)
+        .then((data) => {
+            res.status(200).json(data);
+        })
+        .catch((err) => res.status(400).send(`Error adding grade: ${err}`));
+};
