@@ -176,9 +176,12 @@ export default class BattlePage extends Component {
 
         return (
             <>
-                {isInfo === false && isRapper1 === false && (
-                    <h1 className="battle__loading">loading</h1>
-                )}
+                {isInfo === false &&
+                    isRapper1 === false &&
+                    isRapper2 === false &&
+                    isResults === false && (
+                        <h1 className="battle__loading">loading</h1>
+                    )}
                 {isInfo === true && (
                     <main className="battle">
                         <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
