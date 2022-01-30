@@ -22,13 +22,17 @@
             @include tabletBody;
             margin: 2rem 0rem;
         }
+
+        @include desktop {
+            @include desktopBody;
+        }
     }
 
     &__container {
         margin-bottom: 2rem;
 
         @include tablet {
-            margin-bottom: 3rem;
+            margin-bottom: 5rem;
         }
     }
 
@@ -50,12 +54,21 @@
             text-align: left;
             width: 30%;
         }
+
+        @include desktop {
+            @include desktopBodySmall;
+            width: 40%;
+        }
     }
 
     &__slider-container {
         width: 50%;
 
         @include tablet {
+            width: 60%;
+        }
+
+        @include desktop {
             width: 60%;
         }
     }
@@ -129,6 +142,11 @@
                 width: 2rem;
             }
 
+            @include desktop {
+                height: 4rem;
+                width: 4rem;
+            }
+
             &:active {
                 height: 2rem;
                 width: 2rem;
@@ -136,6 +154,11 @@
                 @include tablet {
                     height: 4rem;
                     width: 4rem;
+                }
+
+                @include desktop {
+                    height: 8rem;
+                    width: 8rem;
                 }
             }
         }
@@ -152,6 +175,10 @@
         @include tablet {
             @include tabletBodySmall;
         }
+
+        @include desktop {
+            @include desktopBodySmall;
+        }
     }
 
     &__button {
@@ -165,6 +192,10 @@
 
         @include tablet {
             @include tabletBody;
+        }
+
+        @include desktop {
+            @include desktopBody;
         }
     }
 }
