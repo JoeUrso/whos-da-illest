@@ -56,7 +56,6 @@ exports.incrementRapper1Wins = (req, res) => {
             res.sendStatus(200);
         })
         .catch((err) => {
-            console.log(err);
             res.status(400).send(`Error incrementing wins: ${err}`);
         });
 };
@@ -69,7 +68,6 @@ exports.incrementRapper2Wins = (req, res) => {
             res.sendStatus(200);
         })
         .catch((err) => {
-            console.log(err);
             res.status(400).send(`Error incrementing wins: ${err}`);
         });
 };
