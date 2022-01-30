@@ -64,6 +64,7 @@ exports.AvgGrades = (_req, res) => {
 };
 
 exports.addNewGrade = (req, res) => {
+    console.log(req.body);
     knex("grades")
         .insert(req.body)
         .then((data) => {

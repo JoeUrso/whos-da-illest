@@ -14,7 +14,7 @@ export default class GradeRapper extends Component {
         hits: 0,
         performance: 0,
         rapperGrade: null,
-        isSaved: false,
+        isRapperSaved: false,
     };
 
     displayPoints = (event) => {
@@ -26,7 +26,7 @@ export default class GradeRapper extends Component {
         });
     };
 
-    storeGradeAndReset = () => {
+    storeGradeAndReset1 = () => {
         const {
             presence,
             flow,
@@ -72,12 +72,13 @@ export default class GradeRapper extends Component {
             hits: 0,
             performance: 0,
             rapperGrade: grade,
-            isSaved: true,
+            isRapperSaved: true,
         });
     };
 
     render() {
-        const { rapper, criteria, click, buttonText } = this.props;
+        const { rapper, criteria, click1, click2, buttonText, isRapper1 } =
+            this.props;
 
         return (
             <section className="grade">
@@ -111,39 +112,57 @@ export default class GradeRapper extends Component {
                         );
                     })}
                 </article>
-                {this.state.isSaved === false ? (
-                    <button
-                        className="grade__button"
-                        onClick={this.storeGradeAndReset}
-                    >
-                        DROP YA MIC!
-                    </button>
-                ) : (
-                    <button
-                        className="grade__button"
-                        onClick={click(this.state.rapperGrade)}
-                    >
-                        {buttonText}
-                    </button>
+
+                {isRapper1 === true && (
+                    <>
+                        {this.state.isRapperSaved === false && (
+                            <button
+                                className="grade__button"
+                                onClick={this.storeGradeAndReset1}
+                            >
+                                SAVE YA GRADE!
+                            </button>
+                        )}
+
+                        {this.state.isRapperSaved === true && (
+                            <button
+                                className="grade__button"
+                                onClick={() => {
+                                    click1(this.state.rapperGrade);
+                                    this.setState({
+                                        isRapper1Done: true,
+                                    });
+                                }}
+                            >
+                                {buttonText}
+                            </button>
+                        )}
+                    </>
                 )}
 
-                {/* {this.state.isSaved === false && (
-                    <button
-                        className="grade__button"
-                        onClick={this.storeGradeAndReset}
-                    >
-                        SAVE YOUR GRADE!
-                    </button>
-                )}
+                {isRapper1 === false && (
+                    <>
+                        {this.state.isRapperSaved === false && (
+                            <button
+                                className="grade__button"
+                                onClick={this.storeGradeAndReset1}
+                            >
+                                SAVE YA GRADE!
+                            </button>
+                        )}
 
-                {this.state.isSaved === true && (
-                    <button
-                        className="grade__button"
-                        onClick={click(this.state.rapperGrade)}
-                    >
-                        {buttonText}
-                    </button>
-                )} */}
+                        {this.state.isRapperSaved === true && (
+                            <button
+                                className="grade__button"
+                                onClick={() => {
+                                    click2(this.state.rapperGrade);
+                                }}
+                            >
+                                {buttonText}
+                            </button>
+                        )}
+                    </>
+                )}
             </section>
         );
     }
