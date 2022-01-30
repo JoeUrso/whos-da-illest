@@ -21,7 +21,7 @@ export default function RapperInfo({ rapper }) {
                         Spotify Popularity Rating
                     </h4>
                     <p className="rapper-info__info">{rapper.popularity}</p>
-                    <h4 className="rapper-info__info-headings">SubGenres</h4>
+                    <h4 className="rapper-info__info-headings">SubGenre</h4>
                     <p className="rapper-info__info rapper-info__info--genre">
                         {rapper.genres[0]}
                     </p>

@@ -14,6 +14,10 @@
         margin-bottom: 3rem;
     }
 
+    @include desktop {
+        margin-bottom: 8rem;
+    }
+
     &__name {
         @include mobileBody;
         font-family: $graffiti-two;
@@ -24,6 +28,10 @@
 
         @include tablet {
             @include tabletBody;
+        }
+
+        @include desktop {
+            @include desktopBody;
         }
     }
 
@@ -45,6 +53,11 @@
             width: 16rem;
             height: 16rem;
         }
+
+        @include desktop {
+            width: 32rem;
+            height: 32rem;
+        }
     }
 
     &__info-container {
@@ -63,6 +76,10 @@
 
         @include tablet {
             @include tabletBodySmall;
+        }
+
+        @include desktop {
+            @include desktopBodySmall;
         }
     }
 
@@ -83,10 +100,18 @@
             @include tablet {
                 @include tabletBodySmall;
             }
+
+            @include desktop {
+                @include desktopBodySmall;
+            }
         }
 
         @include tablet {
             @include tabletBody;
+        }
+
+        @include desktop {
+            @include desktopBody;
         }
     }
 }
