@@ -17,10 +17,19 @@
         height: 15%;
         padding-bottom: 1rem;
         align-self: center;
+
+        @include tablet {
+            @include tabletBody;
+            margin: 2rem 0rem;
+        }
     }
 
     &__container {
         margin-bottom: 2rem;
+
+        @include tablet {
+            margin-bottom: 3rem;
+        }
     }
 
     &__card-container {
@@ -35,10 +44,20 @@
         color: $primary-color;
         width: 40%;
         margin: 0;
+
+        @include tablet {
+            @include tabletBodySmall;
+            text-align: left;
+            width: 30%;
+        }
     }
 
     &__slider-container {
         width: 50%;
+
+        @include tablet {
+            width: 60%;
+        }
     }
 
     &__slider {
@@ -105,9 +124,19 @@
             border-radius: 50%;
             cursor: pointer;
 
+            @include tablet {
+                height: 2rem;
+                width: 2rem;
+            }
+
             &:active {
                 height: 2rem;
                 width: 2rem;
+
+                @include tablet {
+                    height: 4rem;
+                    width: 4rem;
+                }
             }
         }
     }
@@ -119,6 +148,10 @@
         width: 10%;
         margin: 0;
         text-align: right;
+
+        @include tablet {
+            @include tabletBodySmall;
+        }
     }
 
     &__button {
@@ -129,5 +162,9 @@
         @include mobileBody;
         font-family: $graffiti-two;
         color: $accent-color;
+
+        @include tablet {
+            @include tabletBody;
+        }
     }
 }
