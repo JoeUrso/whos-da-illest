@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import GradeRapper from "../../components/GradeRapper/GradeRapper";
 import RapperInfo from "../../components/RapperInfo/RapperInfo";
 import Results from "../../components/Results/Results";
@@ -13,7 +14,7 @@ export default class BattlePage extends Component {
         rapper1: [],
         rapper2: [],
         isRapperInfoLoading: true,
-        isInfo: true,
+        isInfo: false,
         isRapper1: false,
         isRapper2: false,
         isResults: false,
@@ -31,6 +32,7 @@ export default class BattlePage extends Component {
         ],
         rapper1Grade: null,
         rapper2Grade: null,
+        resultsArePosted: false,
     };
 
     startBattle = () => {
@@ -57,8 +59,6 @@ export default class BattlePage extends Component {
     };
 
     backToBattles = (rapper1Grade, rapper2Grade, winner) => {
-        // THIS IS WHERE YOU'LL POST THE GRADES AND SCORES AND SHIT
-
         let newGrade1 = {
             grade: rapper1Grade.toString(),
             rapper_id: this.state.battle.rapper1_id.toString(),
@@ -77,11 +77,31 @@ export default class BattlePage extends Component {
             axios
                 .patch(API_URL + "/battles/rapper1", this.state.battle)
                 .then((response) => {});
+
+            axios
+                .patch(API_URL + "/rappers/rapper1-wins", this.state.battle)
+                .then((response) => {});
+
+            axios
+                .patch(API_URL + "/rappers/rapper2-losses", this.state.battle)
+                .then((response) => {});
         } else {
             axios
                 .patch(API_URL + "/battles/rapper2", this.state.battle)
                 .then((response) => {});
+
+            axios
+                .patch(API_URL + "/rappers/rapper1-losses", this.state.battle)
+                .then((response) => {});
+
+            axios
+                .patch(API_URL + "/rappers/rapper2-wins", this.state.battle)
+                .then((response) => {});
         }
+
+        this.setState({
+            resultsArePosted: true,
+        });
     };
 
     componentDidMount = () => {
@@ -134,6 +154,7 @@ export default class BattlePage extends Component {
                     this.setState({
                         rapper2: response.data.artists.items[0],
                         isRapperInfoLoading: false,
+                        isInfo: true,
                     });
                 });
         });
@@ -152,10 +173,12 @@ export default class BattlePage extends Component {
             criteria,
             rapper1Grade,
             rapper2Grade,
+            resultsArePosted,
         } = this.state;
 
         return (
             <>
+                {isInfo === false && isRapper1 === false && <h1>loading</h1>}
                 {isInfo === true && (
                     <main className="battle">
                         <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
@@ -217,6 +240,8 @@ export default class BattlePage extends Component {
                         />
                     </main>
                 )}
+
+                {resultsArePosted === true && <Redirect to="/" />}
             </>
         );
     }
