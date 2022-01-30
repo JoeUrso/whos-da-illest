@@ -46,8 +46,7 @@ export default function Results({
                 <p className="results__wins">{battle.rapper2_wins}</p>
             </article>
             <button
-                className="results__link"
-                to={"/"}
+                className="results__button"
                 onClick={() => {
                     click3(rapper1Grade, rapper2Grade, winner);
                 }}
