@@ -64,13 +64,10 @@ exports.AvgGrades = (_req, res) => {
 };
 
 exports.addNewGrade = (req, res) => {
-    console.log(req.body);
     knex("grades")
         .insert(req.body)
-        // .insert({ rapper_id: req.body.rapper_id })
         .then((data) => {
             res.status(200).json(data);
-            console.log(data);
         })
         .catch((err) => {
             res.status(400).send(`Error adding grade: ${err}`);

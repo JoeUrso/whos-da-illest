@@ -69,13 +69,25 @@ export default class BattlePage extends Component {
             rapper_id: this.state.battle.rapper2_id.toString(),
         };
 
-        axios.post(API_URL + "/grades", newGrade1).then((response) => {
-            console.log(response);
-        });
+        axios.post(API_URL + "/grades", newGrade1).then((response) => {});
 
-        axios.post(API_URL + "/grades", newGrade2).then((response) => {
-            console.log(response);
-        });
+        axios.post(API_URL + "/grades", newGrade2).then((response) => {});
+
+        if (winner.toLowerCase() === this.state.rapper1.name.toLowerCase()) {
+            console.log("RAPPER1WINS");
+            axios
+                .patch(API_URL + "/battles/rapper1", this.state.battle)
+                .then((response) => {
+                    console.log(response);
+                });
+        } else {
+            console.log("RAPPER2WINS");
+            axios
+                .patch(API_URL + "/battles/rapper2", this.state.battle)
+                .then((response) => {
+                    console.log(response);
+                });
+        }
     };
 
     componentDidMount = () => {

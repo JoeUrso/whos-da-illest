@@ -47,3 +47,29 @@ exports.getToken = (_req, res) => {
         })
         .catch((err) => res.status(400).send(`Error retrieving token: ${err}`));
 };
+
+exports.incrementRapper1Wins = (req, res) => {
+    knex("battles")
+        .where("id", "=", req.body.id)
+        .increment({ rapper1_wins: 1, total_battles: 1 })
+        .then((response) => {
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(400).send(`Error incrementing wins: ${err}`);
+        });
+};
+
+exports.incrementRapper2Wins = (req, res) => {
+    knex("battles")
+        .where("id", "=", req.body.id)
+        .increment({ rapper2_wins: 1, total_battles: 1 })
+        .then((response) => {
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(400).send(`Error incrementing wins: ${err}`);
+        });
+};
