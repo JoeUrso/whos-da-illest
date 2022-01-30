@@ -45,30 +45,56 @@
     line-height: 1rem;
 }
 
-// TABLET/DESKTOP FONT
-@mixin tabletDesktopPageHeader {
+// TABLET FONT
+@mixin tabletPageHeader {
     font-size: 4rem;
     line-height: 2.25rem;
 }
 
-@mixin tabletDesktopSubheader {
+@mixin tabletSubheader {
     font-size: 2.5rem;
     line-height: 1.75rem;
 }
 
-@mixin tabletDesktopCTA {
+@mixin tabletCTA {
     font-size: 2.5rem;
     line-height: 1.25rem;
 }
 
-@mixin tabletDesktopBody {
+@mixin tabletBody {
     font-size: 2rem;
     line-height: 1.625rem;
 }
 
-@mixin tabletDesktopBodySmall {
+@mixin tabletBodySmall {
     font-size: 1.5rem;
     line-height: 1.5rem;
+}
+
+// DESKTOP FONT
+@mixin desktopPageHeader {
+    font-size: 8rem;
+    line-height: 2.25rem;
+}
+
+@mixin desktopSubheader {
+    font-size: 4rem;
+    line-height: 1.75rem;
+}
+
+@mixin desktopCTA {
+    font-size: 2.5rem;
+    line-height: 1.25rem;
+}
+
+@mixin desktopBody {
+    font-size: 3.5rem;
+    line-height: 3.5rem;
+}
+
+@mixin desktopBodySmall {
+    font-size: 3rem;
+    line-height: 3rem;
 }
 
 // ANIMATIONS
