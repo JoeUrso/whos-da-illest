@@ -13,7 +13,6 @@ export default class BattlePage extends Component {
         battle: [],
         rapper1: [],
         rapper2: [],
-        isRapperInfoLoading: true,
         isInfo: false,
         isRapper1: false,
         isRapper2: false,
@@ -165,7 +164,6 @@ export default class BattlePage extends Component {
             battle,
             rapper1,
             rapper2,
-            isRapperInfoLoading,
             isInfo,
             isRapper1,
             isRapper2,
@@ -178,20 +176,18 @@ export default class BattlePage extends Component {
 
         return (
             <>
-                {isInfo === false && isRapper1 === false && <h1>loading</h1>}
+                {isInfo === false && isRapper1 === false && (
+                    <h1 className="battle__loading">loading</h1>
+                )}
                 {isInfo === true && (
                     <main className="battle">
                         <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
                         <h2 className="battle__name">{battle.name}</h2>
-                        {isRapperInfoLoading === true ? (
-                            <h3 className="battle__loading">loading</h3>
-                        ) : (
-                            <div className="battle__rapper-info-container">
-                                <RapperInfo rapper={rapper1} />
-                                {/* <h4 className="battle__vs">VS</h4> */}
-                                <RapperInfo rapper={rapper2} />
-                            </div>
-                        )}
+                        <div className="battle__rapper-info-container">
+                            <RapperInfo rapper={rapper1} />
+                            {/* <h4 className="battle__vs">VS</h4> */}
+                            <RapperInfo rapper={rapper2} />
+                        </div>
                         <button
                             className="battle__button"
                             onClick={this.startBattle}
