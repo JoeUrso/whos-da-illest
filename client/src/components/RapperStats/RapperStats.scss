@@ -16,7 +16,11 @@
         margin: 0;
 
         @include tablet {
-            @include tabletDesktopBodySmall;
+            @include tabletBodySmall;
+        }
+
+        @include desktop {
+            @include desktopBodySmall;
         }
     }
 
@@ -28,7 +32,11 @@
         margin: 0;
 
         @include tablet {
-            @include tabletDesktopBodySmall;
+            @include tabletBodySmall;
+        }
+
+        @include desktop {
+            @include desktopBodySmall;
         }
     }
 
@@ -39,7 +47,11 @@
         margin: 0;
 
         @include tablet {
-            @include tabletDesktopBodySmall;
+            @include tabletBodySmall;
+        }
+
+        @include desktop {
+            @include desktopBodySmall;
         }
     }
 }

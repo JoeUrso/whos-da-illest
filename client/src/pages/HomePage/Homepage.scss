@@ -13,8 +13,13 @@
         text-align: center;
 
         @include tablet {
-            @include tabletDesktopPageHeader;
+            @include tabletPageHeader;
             margin-bottom: 4rem;
+        }
+
+        @include desktop {
+            @include desktopPageHeader;
+            margin-bottom: 10rem;
         }
     }
 
@@ -28,8 +33,13 @@
         cursor: pointer;
 
         @include tablet {
-            @include tabletDesktopBody;
+            @include tabletBody;
             margin-bottom: 2rem;
+        }
+
+        @include desktop {
+            @include desktopSubheader;
+            margin-bottom: 8rem;
         }
     }
 
@@ -37,6 +47,14 @@
         display: flex;
         flex-direction: column;
         margin-bottom: 2rem;
+
+        @include tablet {
+            margin-bottom: 4rem;
+        }
+
+        @include desktop {
+            margin-bottom: 8rem;
+        }
     }
 
     &__subheading {
@@ -46,7 +64,12 @@
         color: $secondary-color;
 
         @include tablet {
-            @include tabletDesktopSubheader;
+            @include tabletSubheader;
+        }
+
+        @include desktop {
+            @include desktopSubheader;
+            margin-bottom: 2rem;
         }
     }
 
@@ -68,7 +91,11 @@
         width: 50%;
 
         @include tablet {
-            @include tabletDesktopBodySmall;
+            @include tabletBodySmall;
+        }
+
+        @include desktop {
+            @include desktopBodySmall;
         }
     }
 
@@ -78,7 +105,11 @@
         width: 20%;
 
         @include tablet {
-            @include tabletDesktopBodySmall;
+            @include tabletBodySmall;
+        }
+
+        @include desktop {
+            @include desktopBodySmall;
         }
     }
 
@@ -88,7 +119,11 @@
         width: 30%;
 
         @include tablet {
-            @include tabletDesktopBodySmall;
+            @include tabletBodySmall;
+        }
+
+        @include desktop {
+            @include desktopBodySmall;
         }
     }
 
@@ -102,6 +137,11 @@
         @include mobileBodySmall;
         font-family: $graffiti-two;
         color: $accent-color;
+
+        @include desktop {
+            @include tabletBodySmall;
+            margin-bottom: 2rem;
+        }
     }
 
     &__battles-table {
@@ -129,8 +169,13 @@
         width: 25%;
 
         @include tablet {
-            @include tabletDesktopBodySmall;
+            @include tabletBodySmall;
             width: 59%;
+        }
+
+        @include desktop {
+            @include desktopBodySmall;
+            width: 57.5%;
         }
     }
 
@@ -140,8 +185,13 @@
         width: 35%;
 
         @include tablet {
-            @include tabletDesktopBodySmall;
+            @include tabletBodySmall;
             width: 27%;
+        }
+
+        @include desktop {
+            @include desktopBodySmall;
+            width: 28%;
         }
     }
 
@@ -151,8 +201,13 @@
         width: 40%;
 
         @include tablet {
-            @include tabletDesktopBodySmall;
+            @include tabletBodySmall;
             width: 13%;
+        }
+
+        @include desktop {
+            @include desktopBodySmall;
+            width: 14.5%;
         }
     }
 }
