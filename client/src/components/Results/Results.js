@@ -45,11 +45,6 @@ export default function Results({
                 <p className="results__hyphen">-</p>
                 <p className="results__wins">{battle.rapper2_wins}</p>
             </article>
-            {/* <Link
-                
-            >
-                Back to Battles!
-            </Link> */}
             <button
                 className="results__link"
                 to={"/"}
