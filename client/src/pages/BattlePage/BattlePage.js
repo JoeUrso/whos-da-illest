@@ -185,7 +185,6 @@ export default class BattlePage extends Component {
                         <h2 className="battle__name">{battle.name}</h2>
                         <div className="battle__rapper-info-container">
                             <RapperInfo rapper={rapper1} />
-                            {/* <h4 className="battle__vs">VS</h4> */}
                             <RapperInfo rapper={rapper2} />
                         </div>
                         <button
