@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./Results.scss";
 
 export default function Results({
@@ -46,13 +45,20 @@ export default function Results({
                 <p className="results__hyphen">-</p>
                 <p className="results__wins">{battle.rapper2_wins}</p>
             </article>
-            <Link
-                className="results__link"
-                to={"/"}
-                onClick={click3(rapper1Grade, rapper2Grade, winner)}
+            {/* <Link
+                
             >
                 Back to Battles!
-            </Link>
+            </Link> */}
+            <button
+                className="results__link"
+                to={"/"}
+                onClick={() => {
+                    click3(rapper1Grade, rapper2Grade, winner);
+                }}
+            >
+                Back to Battles!
+            </button>
         </section>
     );
 }
