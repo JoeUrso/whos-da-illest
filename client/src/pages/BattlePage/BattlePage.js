@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
+import uniqid from "uniqid";
 import GradeRapper from "../../components/GradeRapper/GradeRapper";
 import RapperInfo from "../../components/RapperInfo/RapperInfo";
 import Results from "../../components/Results/Results";
@@ -41,6 +42,7 @@ export default class BattlePage extends Component {
     };
 
     passTheMic = (grade) => {
+        console.log(grade);
         this.setState({
             isRapper1: false,
             isRapper2: true,
@@ -48,7 +50,8 @@ export default class BattlePage extends Component {
         });
     };
 
-    DropTheMic = (grade) => {
+    dropTheMic = (grade) => {
+        console.log(grade);
         this.setState({
             isRapper2: false,
             isResults: true,
@@ -56,8 +59,32 @@ export default class BattlePage extends Component {
         });
     };
 
-    backToBattles = (rapper1Grade, Rapper2Grade, winner) => {
+    backToBattles = (rapper1Grade, rapper2Grade, winner) => {
         // THIS IS WHERE YOU'LL POST THE GRADES AND SCORES AND SHIT
+
+        let newGrade1 = {
+            id: uniqid(),
+            grade: rapper1Grade,
+            rapper_id: this.state.battle.rapper1_id,
+        };
+
+        let newGrade2 = {
+            id: uniqid(),
+            grade: rapper2Grade,
+            rapper_id: this.state.battle.rapper2_id,
+        };
+
+        let newGrade1Stringified = JSON.stringify(newGrade1);
+        let newGrade2Stringified = JSON.stringify(newGrade2);
+
+        console.log(newGrade1Stringified);
+        console.log(newGrade2Stringified);
+
+        // axios
+        //     .post(API_URL + "/grades", newGrade1Stringified)
+        //     .then((response) => {
+        //         console.log(response);
+        //     });
     };
 
     componentDidMount = () => {
@@ -153,6 +180,7 @@ export default class BattlePage extends Component {
                         </button>
                     </main>
                 )}
+
                 {isRapper1 === true && (
                     <main className="battle">
                         <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
@@ -160,10 +188,12 @@ export default class BattlePage extends Component {
                             rapper={rapper1}
                             criteria={criteria}
                             buttonText={"PASS THE MIC!"}
-                            click={this.passTheMic}
+                            click1={this.passTheMic}
+                            isRapper1={true}
                         />
                     </main>
                 )}
+
                 {isRapper2 === true && (
                     <main className="battle">
                         <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
@@ -171,10 +201,12 @@ export default class BattlePage extends Component {
                             rapper={rapper2}
                             criteria={criteria}
                             buttonText={"DROP THE MIC!"}
-                            click={this.DropTheMic}
+                            click2={this.dropTheMic}
+                            isRapper1={false}
                         />
                     </main>
                 )}
+
                 {isResults === true && (
                     <main className="battle">
                         <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
@@ -184,7 +216,7 @@ export default class BattlePage extends Component {
                             rapper1Grade={rapper1Grade}
                             rapper2Grade={rapper2Grade}
                             battle={battle}
-                            click={this.backToBattles}
+                            click3={this.backToBattles}
                         />
                     </main>
                 )}

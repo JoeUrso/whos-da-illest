@@ -8,7 +8,7 @@ export default function Results({
     battle,
     rapper1Grade,
     rapper2Grade,
-    click,
+    click3,
 }) {
     let winner = "";
     rapper1Grade > rapper2Grade
@@ -49,7 +49,7 @@ export default function Results({
             <Link
                 className="results__link"
                 to={"/"}
-                onClick={click(rapper1Grade, rapper2Grade, winner)}
+                onClick={click3(rapper1Grade, rapper2Grade, winner)}
             >
                 Back to Battles!
             </Link>
