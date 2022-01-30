@@ -26,7 +26,6 @@ export default function Results({
                         <h3 className="results__result">LOSE</h3>
                     )}
                     <p className="results__grade">Your Grade: {rapper1Grade}</p>
-                    <p className="results__avg-grade">EMPTY</p>
                 </div>
                 <div className="results__rapper-container">
                     <h3 className="results__name">{rapper2.name}</h3>
@@ -36,7 +35,6 @@ export default function Results({
                         <h3 className="results__result">LOSE</h3>
                     )}
                     <p className="results__grade">Your Grade: {rapper2Grade}</p>
-                    <p className="results__avg-grade">EMPTY</p>
                 </div>
             </article>
             <h4 className="results__heading">This Battle</h4>
