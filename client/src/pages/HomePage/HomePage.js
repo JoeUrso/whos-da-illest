@@ -101,7 +101,7 @@ export default class HomePage extends Component {
                                 RAPPERS
                             </h3>
                             <h3 className="homepage__battles-table-battles-fought">
-                                BATTLES FOUGHT
+                                FOUGHT
                             </h3>
                         </div>
                         {battles
