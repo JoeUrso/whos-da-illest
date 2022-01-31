@@ -18,16 +18,63 @@ export default class BattlePage extends Component {
         isRapper2: false,
         isResults: false,
         criteria: [
-            { id: 1, criterion: "Presence" },
-            { id: 2, criterion: "Flow" },
-            { id: 3, criterion: "Rhymes" },
-            { id: 4, criterion: "Complexity" },
-            { id: 5, criterion: "Articulation" },
-            { id: 6, criterion: "Creativity" },
-            { id: 7, criterion: "Versatility" },
-            { id: 8, criterion: "Depth" },
-            { id: 9, criterion: "Hits" },
-            { id: 10, criterion: "Performance" },
+            {
+                id: 1,
+                criterion: "Presence",
+                explainer:
+                    "Energy on the mic. Voice. They stand out when featured on a song.",
+            },
+            {
+                id: 2,
+                criterion: "Flow",
+                explainer:
+                    "Cadence. Melody. The way the words move over the beat.",
+            },
+            {
+                id: 3,
+                criterion: "Rhymes",
+                explainer:
+                    "Complexity of rhyme schemes: use of internal rhymes, slant rhymes, etc.",
+            },
+            {
+                id: 4,
+                criterion: "Complexity",
+                explainer:
+                    "Vocabulary. Use of metaphors, entendres, and other figurative language.",
+            },
+            {
+                id: 5,
+                criterion: "Articulation",
+                explainer: "How well you can understand what they are saying.",
+            },
+            {
+                id: 6,
+                criterion: "Creativity",
+                explainer:
+                    "Sticking to themes. Experimentation. Music video concepts. Image.",
+            },
+            {
+                id: 7,
+                criterion: "Versatility",
+                explainer:
+                    "How many styles of rap have they mastered (ie trap, boom bap, etc)?",
+            },
+            {
+                id: 8,
+                criterion: "Depth",
+                explainer:
+                    "Concepts. Emotion. Storytelling. Philosophy. Political statements.",
+            },
+            {
+                id: 9,
+                criterion: "Hits",
+                explainer: "How many hit records do they have?",
+            },
+            {
+                id: 10,
+                criterion: "Performance",
+                explainer: "Live performances. Music video performances.",
+            },
         ],
         rapper1Grade: null,
         rapper2Grade: null,
@@ -152,7 +199,6 @@ export default class BattlePage extends Component {
                 .then((response) => {
                     this.setState({
                         rapper2: response.data.artists.items[0],
-                        isRapperInfoLoading: false,
                         isInfo: true,
                     });
                 });
