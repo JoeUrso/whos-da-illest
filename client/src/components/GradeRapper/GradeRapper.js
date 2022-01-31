@@ -15,6 +15,7 @@ export default class GradeRapper extends Component {
         performance: 0,
         rapperGrade: null,
         isRapperSaved: false,
+        isExplainerShown: false,
     };
 
     displayPoints = (event) => {
@@ -87,28 +88,50 @@ export default class GradeRapper extends Component {
                     {criteria.map((criterion) => {
                         let key = criterion.criterion.toLowerCase();
                         return (
-                            <div
-                                className="grade__card-container"
-                                key={criterion.id}
-                            >
-                                <h3 className="grade__criterion">
-                                    {criterion.criterion}
-                                </h3>
-                                <div className="grade__slider-container">
-                                    <input
-                                        type="range"
-                                        name={criterion.criterion}
-                                        min={0}
-                                        max={100}
-                                        defaultValue={0}
-                                        className="grade__slider"
-                                        onChange={this.displayPoints}
-                                    ></input>
+                            <>
+                                <div
+                                    className="grade__card-container"
+                                    key={criterion.id}
+                                >
+                                    <div
+                                        className="grade__criterion"
+                                        // onMouseEnter={() => {
+                                        //     this.setState({
+                                        //         isExplainerShown: true,
+                                        //     });
+                                        // }}
+                                        // onMouseLeave={() => {
+                                        //     this.setState({
+                                        //         isExplainerShown: false,
+                                        //     });
+                                        // }}
+                                    >
+                                        {criterion.criterion}
+                                        <span className="grade__criterion-explainer">
+                                            {criterion.explainer}
+                                        </span>
+                                    </div>
+                                    <div className="grade__slider-container">
+                                        <input
+                                            type="range"
+                                            name={criterion.criterion}
+                                            min={0}
+                                            max={100}
+                                            defaultValue={0}
+                                            className="grade__slider"
+                                            onChange={this.displayPoints}
+                                        ></input>
+                                    </div>
+                                    <p className="grade__value">
+                                        {this.state[key]}
+                                    </p>
                                 </div>
-                                <p className="grade__value">
-                                    {this.state[key]}
-                                </p>
-                            </div>
+                                {/* {isExplainerShown && (
+                                    <p className="grade__criterion-explainer">
+                                        {criterion.explainer}
+                                    </p>
+                                )} */}
+                            </>
                         );
                     })}
                 </article>
