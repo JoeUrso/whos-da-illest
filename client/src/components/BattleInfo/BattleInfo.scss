@@ -7,6 +7,39 @@
     text-decoration: none;
     color: $primary-color;
 
+    &:hover {
+        @include keyframes(shake2) {
+            0%,
+            100% {
+                transform: translateX(0);
+                transform: translateX(0);
+            }
+            10%,
+            30%,
+            50%,
+            70% {
+                transform: translateX(-10px);
+                transform: translateX(-10px);
+            }
+            20%,
+            40%,
+            60% {
+                transform: translateX(10px);
+                transform: translateX(10px);
+            }
+            80% {
+                transform: translateX(8px);
+                transform: translateX(8px);
+            }
+            90% {
+                transform: translateX(-8px);
+                transform: translateX(-8px);
+            }
+        }
+
+        @include animate(shake2, 3s, linear, infinite);
+    }
+
     &__container {
         display: flex;
         flex-direction: column;
