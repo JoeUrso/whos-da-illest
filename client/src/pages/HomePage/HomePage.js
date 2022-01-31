@@ -14,10 +14,14 @@ export default class HomePage extends Component {
         isLoading: true,
     };
 
+    // classicScratch = new Audio("../../assets/sounds/ClassicScratch.mp3");
+    // scratch1 = new Audio("../../assets/sounds/Scratch1.mp3");
+
     scrollToDiv = createRef();
 
     scrollHandler = () => {
         this.scrollToDiv.current.scrollIntoView({ behavior: "smooth" });
+        this.classicScratch.play();
     };
 
     componentDidMount = () => {
@@ -62,7 +66,10 @@ export default class HomePage extends Component {
                 </Link>
                 <button
                     className="homepage__button"
-                    onClick={this.scrollHandler}
+                    onClick={() => {
+                        this.scrollHandler();
+                        // this.classicScratch.play();
+                    }}
                 >
                     Go To Battles
                 </button>
