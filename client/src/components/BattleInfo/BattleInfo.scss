@@ -8,36 +8,34 @@
     color: $primary-color;
 
     &:hover {
-        @include keyframes(shake2) {
-            0%,
-            100% {
-                transform: translateX(0);
-                transform: translateX(0);
+        @include keyframes(vibrate) {
+            0% {
+                -webkit-transform: translate(0);
+                transform: translate(0);
             }
-            10%,
-            30%,
-            50%,
-            70% {
-                transform: translateX(-10px);
-                transform: translateX(-10px);
+            20% {
+                -webkit-transform: translate(-2px, 2px);
+                transform: translate(-2px, 2px);
             }
-            20%,
-            40%,
+            40% {
+                -webkit-transform: translate(-2px, -2px);
+                transform: translate(-2px, -2px);
+            }
             60% {
-                transform: translateX(10px);
-                transform: translateX(10px);
+                -webkit-transform: translate(2px, 2px);
+                transform: translate(2px, 2px);
             }
             80% {
-                transform: translateX(8px);
-                transform: translateX(8px);
+                -webkit-transform: translate(2px, -2px);
+                transform: translate(2px, -2px);
             }
-            90% {
-                transform: translateX(-8px);
-                transform: translateX(-8px);
+            100% {
+                -webkit-transform: translate(0);
+                transform: translate(0);
             }
         }
 
-        @include animate(shake2, 3s, linear, infinite);
+        @include animate(vibrate, 0.5s, linear, infinite);
     }
 
     &__container {
