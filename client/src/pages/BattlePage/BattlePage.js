@@ -17,66 +17,7 @@ export default class BattlePage extends Component {
         isRapper1: false,
         isRapper2: false,
         isResults: false,
-        // criteria: [
-        //     {
-        //         id: 1,
-        //         criterion: "Presence",
-        //         explainer:
-        //             "Energy on the mic. Voice. Rapper stands out when featured on a song.",
-        //     },
-        //     {
-        //         id: 2,
-        //         criterion: "Flow",
-        //         explainer:
-        //             "Cadence. Melody. The way the words move over the beat.",
-        //     },
-        //     {
-        //         id: 3,
-        //         criterion: "Rhymes",
-        //         explainer:
-        //             "Complexity of rhyme schemes: use of internal rhymes, slant rhymes, etc.",
-        //     },
-        //     {
-        //         id: 4,
-        //         criterion: "Complexity",
-        //         explainer:
-        //             "Vocabulary. Use of metaphors, entendres, and other figurative language.",
-        //     },
-        //     {
-        //         id: 5,
-        //         criterion: "Articulation",
-        //         explainer:
-        //             "How well you can understand what the Rapper is saying.",
-        //     },
-        //     {
-        //         id: 6,
-        //         criterion: "Creativity",
-        //         explainer:
-        //             "Sticking to themes. Experimentation. Music video concepts. Image.",
-        //     },
-        //     {
-        //         id: 7,
-        //         criterion: "Versatility",
-        //         explainer:
-        //             "How many subgenres has the Rapper mastered (ie trap, boom bap, etc)?",
-        //     },
-        //     {
-        //         id: 8,
-        //         criterion: "Depth",
-        //         explainer:
-        //             "Concepts. Emotion. Storytelling. Philosophy. Political statements.",
-        //     },
-        //     {
-        //         id: 9,
-        //         criterion: "Hits",
-        //         explainer: "How many hit records does the Rapper have?",
-        //     },
-        //     {
-        //         id: 10,
-        //         criterion: "Performance",
-        //         explainer: "Live performances. Music video performances.",
-        //     },
-        // ],
+        criteria: [],
         rapper1Grade: null,
         rapper2Grade: null,
         resultsArePosted: false,
@@ -203,6 +144,12 @@ export default class BattlePage extends Component {
                         isInfo: true,
                     });
                 });
+
+            axios.get(API_URL + "/criteria").then((response) => {
+                this.setState({
+                    criteria: response.data,
+                });
+            });
         });
     };
 
