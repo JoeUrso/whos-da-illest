@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Component, createRef } from "react";
+import { Link } from "react-router-dom";
 import "../..";
 import BattleInfo from "../../components/BattleInfo/BattleInfo";
 import RapperStats from "../../components/RapperStats/RapperStats";
@@ -10,6 +11,7 @@ export default class HomePage extends Component {
     state = {
         rappers: [],
         battles: [],
+        isLoading: true,
     };
 
     scrollToDiv = createRef();
@@ -39,6 +41,7 @@ export default class HomePage extends Component {
 
             this.setState({
                 rappers: rappersWithGrades,
+                isLoading: false,
             });
         });
 
@@ -54,7 +57,9 @@ export default class HomePage extends Component {
 
         return (
             <main className="homepage">
-                <h1 className="homepage__heading">WHO'S DA ILLEST?</h1>
+                <Link to="/" className="homepage__heading">
+                    WHO'S DA ILLEST?
+                </Link>
                 <button
                     className="homepage__button"
                     onClick={this.scrollHandler}
@@ -73,18 +78,22 @@ export default class HomePage extends Component {
                                 AVG GRADE
                             </h3>
                         </div>
-                        {rappers
-                            .sort((a, b) => b.grade - a.grade)
-                            .slice(0, 20)
-                            .map((rapper) => {
-                                return (
-                                    <RapperStats
-                                        key={rapper.id}
-                                        rapper={rapper}
-                                        avgGrade={rapper.grade}
-                                    />
-                                );
-                            })}
+                        {this.state.isLoading === false && (
+                            <>
+                                {rappers
+                                    .sort((a, b) => b.grade - a.grade)
+                                    .slice(0, 20)
+                                    .map((rapper) => {
+                                        return (
+                                            <RapperStats
+                                                key={rapper.id}
+                                                rapper={rapper}
+                                                avgGrade={rapper.grade}
+                                            />
+                                        );
+                                    })}
+                            </>
+                        )}
                     </div>
                 </section>
                 <section className="homepage__battles" ref={this.scrollToDiv}>
