@@ -22,7 +22,7 @@ export default class BattlePage extends Component {
                 id: 1,
                 criterion: "Presence",
                 explainer:
-                    "Energy on the mic. Voice. They stand out when featured on a song.",
+                    "Energy on the mic. Voice. Rapper stands out when featured on a song.",
             },
             {
                 id: 2,
@@ -45,7 +45,8 @@ export default class BattlePage extends Component {
             {
                 id: 5,
                 criterion: "Articulation",
-                explainer: "How well you can understand what they are saying.",
+                explainer:
+                    "How well you can understand what the Rapper is saying.",
             },
             {
                 id: 6,
@@ -57,7 +58,7 @@ export default class BattlePage extends Component {
                 id: 7,
                 criterion: "Versatility",
                 explainer:
-                    "How many styles of rap have they mastered (ie trap, boom bap, etc)?",
+                    "How many styles has the Rapper mastered (ie trap, boom bap, etc)?",
             },
             {
                 id: 8,
@@ -68,7 +69,7 @@ export default class BattlePage extends Component {
             {
                 id: 9,
                 criterion: "Hits",
-                explainer: "How many hit records do they have?",
+                explainer: "How many hit records does the Rapper have?",
             },
             {
                 id: 10,
