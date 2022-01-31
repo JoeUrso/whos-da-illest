@@ -88,50 +88,31 @@ export default class GradeRapper extends Component {
                     {criteria.map((criterion) => {
                         let key = criterion.criterion.toLowerCase();
                         return (
-                            <>
-                                <div
-                                    className="grade__card-container"
-                                    key={criterion.id}
-                                >
-                                    <div
-                                        className="grade__criterion"
-                                        // onMouseEnter={() => {
-                                        //     this.setState({
-                                        //         isExplainerShown: true,
-                                        //     });
-                                        // }}
-                                        // onMouseLeave={() => {
-                                        //     this.setState({
-                                        //         isExplainerShown: false,
-                                        //     });
-                                        // }}
-                                    >
-                                        {criterion.criterion}
-                                        <span className="grade__criterion-explainer">
-                                            {criterion.explainer}
-                                        </span>
-                                    </div>
-                                    <div className="grade__slider-container">
-                                        <input
-                                            type="range"
-                                            name={criterion.criterion}
-                                            min={0}
-                                            max={100}
-                                            defaultValue={0}
-                                            className="grade__slider"
-                                            onChange={this.displayPoints}
-                                        ></input>
-                                    </div>
-                                    <p className="grade__value">
-                                        {this.state[key]}
-                                    </p>
-                                </div>
-                                {/* {isExplainerShown && (
-                                    <p className="grade__criterion-explainer">
+                            <div
+                                className="grade__card-container"
+                                key={criterion.id}
+                            >
+                                <div className="grade__criterion tooltip">
+                                    {criterion.criterion}
+                                    <span className="grade__criterion--explainer tooltiptext">
                                         {criterion.explainer}
-                                    </p>
-                                )} */}
-                            </>
+                                    </span>
+                                </div>
+                                <div className="grade__slider-container">
+                                    <input
+                                        type="range"
+                                        name={criterion.criterion}
+                                        min={0}
+                                        max={100}
+                                        defaultValue={0}
+                                        className="grade__slider"
+                                        onChange={this.displayPoints}
+                                    ></input>
+                                </div>
+                                <p className="grade__value">
+                                    {this.state[key]}
+                                </p>
+                            </div>
                         );
                     })}
                 </article>
