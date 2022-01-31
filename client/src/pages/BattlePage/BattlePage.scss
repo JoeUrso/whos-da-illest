@@ -11,6 +11,8 @@
     &__heading {
         @include mobilePageHeader;
         font-family: $graffiti-one;
+        text-decoration: none;
+        color: $primary-color;
 
         @include tablet {
             @include tabletPageHeader;

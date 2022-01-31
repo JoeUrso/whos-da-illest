@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import GradeRapper from "../../components/GradeRapper/GradeRapper";
 import RapperInfo from "../../components/RapperInfo/RapperInfo";
 import Results from "../../components/Results/Results";
@@ -231,7 +231,9 @@ export default class BattlePage extends Component {
                     )}
                 {isInfo === true && (
                     <main className="battle">
-                        <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
+                        <Link to="/" className="battle__heading">
+                            WHO'S DA ILLEST?
+                        </Link>
                         <h2 className="battle__name">{battle.name}</h2>
                         <div className="battle__rapper-info-container">
                             <RapperInfo rapper={rapper1} />
@@ -248,7 +250,9 @@ export default class BattlePage extends Component {
 
                 {isRapper1 === true && (
                     <main className="battle">
-                        <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
+                        <Link to="/" className="battle__heading">
+                            WHO'S DA ILLEST?
+                        </Link>
                         <GradeRapper
                             rapper={rapper1}
                             criteria={criteria}
@@ -261,7 +265,9 @@ export default class BattlePage extends Component {
 
                 {isRapper2 === true && (
                     <main className="battle">
-                        <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
+                        <Link to="/" className="battle__heading">
+                            WHO'S DA ILLEST?
+                        </Link>
                         <GradeRapper
                             rapper={rapper2}
                             criteria={criteria}
@@ -274,7 +280,9 @@ export default class BattlePage extends Component {
 
                 {isResults === true && (
                     <main className="battle">
-                        <h1 className="battle__heading">WHO'S DA ILLEST?</h1>
+                        <Link to="/" className="battle__heading">
+                            WHO'S DA ILLEST?
+                        </Link>
                         <Results
                             rapper1={rapper1}
                             rapper2={rapper2}

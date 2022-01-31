@@ -11,6 +11,8 @@
         @include mobilePageHeader;
         font-family: $graffiti-one;
         text-align: center;
+        text-decoration: none;
+        color: $primary-color;
 
         @include tablet {
             @include tabletPageHeader;
