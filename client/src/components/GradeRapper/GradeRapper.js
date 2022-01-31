@@ -94,7 +94,7 @@ export default class GradeRapper extends Component {
                             >
                                 <div className="grade__criterion tooltip">
                                     {criterion.criterion}
-                                    <span className="grade__criterion--explainer tooltiptext">
+                                    <span className="grade__criterion-explainer tooltiptext">
                                         {criterion.explainer}
                                     </span>
                                 </div>
