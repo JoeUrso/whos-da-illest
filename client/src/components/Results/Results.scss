@@ -73,6 +73,59 @@
         font-family: $graffiti-two;
         color: $accent-color;
         margin: 0.5rem;
+        @include keyframes(bounceIn) {
+            0% {
+                transform: translateY(-31.25rem);
+                transform: translateY(-31.25rem);
+                animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
+                opacity: 0;
+            }
+            38% {
+                transform: translateY(0);
+                transform: translateY(0);
+                animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
+                opacity: 1;
+            }
+            55% {
+                transform: translateY(-4.0625rem);
+                transform: translateY(-4.0625rem);
+                animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
+            }
+            72% {
+                transform: translateY(0);
+                transform: translateY(0);
+                animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
+            }
+            81% {
+                transform: translateY(-1.75rem);
+                transform: translateY(-1.75rem);
+                animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
+            }
+            90% {
+                transform: translateY(0);
+                transform: translateY(0);
+                animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
+            }
+            95% {
+                transform: translateY(-0.5rem);
+                transform: translateY(-0.5rem);
+                animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
+            }
+            100% {
+                transform: translateY(0);
+                transform: translateY(0);
+                animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
+            }
+        }
+        @include animate(bounceIn, 3s, linear, 1);
 
         @include tablet {
             @include tabletSubheader;
@@ -88,6 +141,23 @@
         font-family: $graffiti-two;
         color: $secondary-color;
         margin: 0.5rem;
+        @include keyframes(swingIn) {
+            0% {
+                -webkit-transform: rotateX(-70deg);
+                transform: rotateX(-70deg);
+                -webkit-transform-origin: bottom;
+                transform-origin: bottom;
+                opacity: 0;
+            }
+            100% {
+                -webkit-transform: rotateX(0);
+                transform: rotateX(0);
+                -webkit-transform-origin: bottom;
+                transform-origin: bottom;
+                opacity: 1;
+            }
+        }
+        @include animate(swingIn, 0.75s, linear, 1);
 
         @include tablet {
             @include tabletBodySmall;
@@ -125,6 +195,19 @@
         color: $accent-color;
         text-align: center;
         margin: 0;
+        @include keyframes(rollInBottom) {
+            0% {
+                transform: translateY(50rem) rotate(540deg);
+                transform: translateY(50rem) rotate(540deg);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+        }
+        @include animate(rollInBottom, 2.5s, ease-in, 1);
 
         @include tablet {
             @include tabletSubheader;
@@ -158,6 +241,18 @@
         @include mobileBody;
         font-family: $graffiti-two;
         color: $accent-color;
+        @include keyframes(bounce) {
+            0% {
+                transform: scale(1, 1);
+            }
+            50% {
+                transform: scale(1.5, 1.5);
+            }
+            100% {
+                transform: scale(1, 1);
+            }
+        }
+        @include animate(bounce, 2s, linear, infinite);
 
         @include tablet {
             @include tabletSubheader;

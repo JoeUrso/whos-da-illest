@@ -13,16 +13,20 @@
         font-family: $graffiti-one;
         text-decoration: none;
         color: $primary-color;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
 
         @include tablet {
             @include tabletPageHeader;
             font-size: 5rem;
             margin-bottom: 3rem;
+            margin-top: 4rem;
         }
 
         @include desktop {
             @include desktopPageHeader;
             margin-bottom: 6rem;
+            margin-top: 8rem;
         }
     }
 
@@ -79,6 +83,18 @@
         font-family: $graffiti-two;
         color: $accent-color;
         cursor: pointer;
+        @include keyframes(bounce) {
+            0% {
+                transform: scale(1, 1);
+            }
+            50% {
+                transform: scale(1.5, 1.5);
+            }
+            100% {
+                transform: scale(1, 1);
+            }
+        }
+        @include animate(bounce, 2s, linear, infinite);
 
         @include tablet {
             @include tabletBody;
