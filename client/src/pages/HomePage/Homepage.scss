@@ -13,15 +13,19 @@
         text-align: center;
         text-decoration: none;
         color: $primary-color;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
 
         @include tablet {
             @include tabletPageHeader;
             margin-bottom: 4rem;
+            margin-top: 4rem;
         }
 
         @include desktop {
             @include desktopPageHeader;
             margin-bottom: 10rem;
+            margin-top: 8rem;
         }
     }
 
@@ -33,6 +37,22 @@
         font-family: $graffiti-two;
         color: $accent-color;
         cursor: pointer;
+
+        &:hover {
+            @include keyframes(bounce) {
+                0% {
+                    transform: scale(1, 1);
+                }
+                50% {
+                    transform: scale(1.5, 1.5);
+                }
+                100% {
+                    transform: scale(1, 1);
+                }
+            }
+
+            @include animate(bounce, 1s, linear, infinite);
+        }
 
         @include tablet {
             @include tabletBody;
