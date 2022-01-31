@@ -4,6 +4,7 @@ const cors = require("cors");
 const battlesRoutes = require("./routes/battlesRoute");
 const rappersRoutes = require("./routes/rappersRoute");
 const gradesRoutes = require("./routes/gradesRoute");
+const criteriaRoutes = require("./routes/criteriaRoute");
 const knex = require("knex")(require("./knexfile").development);
 
 // Import from .env
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/battles", battlesRoutes);
 app.use("/rappers", rappersRoutes);
 app.use("/grades", gradesRoutes);
+app.use("/criteria", criteriaRoutes);
 
 app.listen(PORT, () => {
     console.log("server running on port", PORT);
