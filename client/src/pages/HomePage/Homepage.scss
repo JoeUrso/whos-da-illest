@@ -84,7 +84,8 @@
 
         @include desktop {
             @include desktopSubheader;
-            margin-bottom: 2rem;
+            @include desktopShadow;
+            margin-bottom: 1rem;
         }
     }
 
@@ -98,6 +99,10 @@
 
         @include tablet {
             padding: 0rem 1.5rem 1rem;
+        }
+
+        @include desktop {
+            padding: 0rem 2.5rem 2rem;
         }
     }
 
@@ -159,6 +164,10 @@
         color: $accent-color;
         @include mobileShadow;
 
+        @include tablet {
+            margin-bottom: 1rem;
+        }
+
         @include desktop {
             @include tabletBodySmall;
             margin-bottom: 2rem;
@@ -197,6 +206,7 @@
         @include tablet {
             @include tabletBodySmall;
             width: 59%;
+            margin-bottom: 0;
         }
 
         @include desktop {
@@ -213,6 +223,7 @@
         @include tablet {
             @include tabletBodySmall;
             width: 25%;
+            margin-bottom: 0;
         }
 
         @include desktop {
@@ -229,6 +240,7 @@
         @include tablet {
             @include tabletBodySmall;
             width: 15%;
+            margin-bottom: 0;
         }
 
         @include desktop {
