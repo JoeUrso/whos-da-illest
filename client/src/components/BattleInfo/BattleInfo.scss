@@ -101,6 +101,7 @@
         font-family: $graffiti-two;
         color: $secondary-color;
         margin: 0;
+        @include shadow;
 
         @include tablet {
             @include tabletBody;
@@ -116,6 +117,7 @@
         font-family: $graffiti-two;
         color: $secondary-color;
         margin: 0;
+        @include shadow;
 
         @include tablet {
             @include tabletBodySmall;
@@ -131,6 +133,7 @@
         font-family: $graffiti-two;
         color: $secondary-color;
         margin: 0;
+        @include shadow;
 
         @include tablet {
             @include tabletBody;

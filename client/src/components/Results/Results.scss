@@ -16,6 +16,7 @@
         margin: 0;
         padding-bottom: 1rem;
         align-self: center;
+        @include shadow;
 
         @include tablet {
             @include tabletBody;
@@ -73,6 +74,8 @@
         font-family: $graffiti-two;
         color: $accent-color;
         margin: 0.5rem;
+        @include shadow;
+
         @include keyframes(bounceIn) {
             0% {
                 transform: translateY(-31.25rem);
@@ -141,6 +144,8 @@
         font-family: $graffiti-two;
         color: $secondary-color;
         margin: 0.5rem;
+        @include shadow;
+
         @include keyframes(swingIn) {
             0% {
                 -webkit-transform: rotateX(-70deg);
@@ -195,6 +200,8 @@
         color: $accent-color;
         text-align: center;
         margin: 0;
+        @include shadow;
+
         @include keyframes(rollInBottom) {
             0% {
                 transform: translateY(50rem) rotate(540deg);
@@ -224,6 +231,7 @@
         font-family: $graffiti-two;
         color: $accent-color;
         margin: 0;
+        @include shadow;
 
         @include tablet {
             @include tabletSubheader;
@@ -235,12 +243,8 @@
     }
 
     &__button {
-        margin: 0 auto;
-        background: none;
-        border: none;
-        @include mobileBody;
-        font-family: $graffiti-two;
-        color: $accent-color;
+        @include button;
+
         @include keyframes(bounce) {
             0% {
                 transform: scale(1, 1);

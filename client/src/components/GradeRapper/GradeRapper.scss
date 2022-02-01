@@ -17,6 +17,7 @@
         height: 15%;
         padding-bottom: 1rem;
         align-self: center;
+        @include shadow;
 
         @include tablet {
             @include tabletBody;
@@ -183,12 +184,8 @@
 
     &__button {
         text-decoration: none;
-        margin: 0 auto;
-        background: none;
-        border: none;
-        @include mobileBody;
-        font-family: $graffiti-two;
-        color: $accent-color;
+        @include button;
+
         @include keyframes(bounce) {
             0% {
                 transform: scale(1, 1);
