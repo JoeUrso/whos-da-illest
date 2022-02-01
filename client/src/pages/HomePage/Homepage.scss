@@ -30,7 +30,7 @@
     }
 
     &__button {
-        @include button;
+        @include mobileButton;
 
         &:hover {
             @include keyframes(bounce) {
@@ -49,13 +49,11 @@
         }
 
         @include tablet {
-            @include tabletBody;
-            margin-bottom: 2rem;
+            @include tabletButton;
         }
 
         @include desktop {
-            @include desktopSubheader;
-            margin-bottom: 3rem;
+            @include desktopButton;
         }
     }
 
@@ -74,11 +72,11 @@
     }
 
     &__subheading {
-        margin: 2rem auto 0rem;
+        margin: 2rem auto 0.5rem;
         @include mobileSubheader;
         font-family: $graffiti-one;
         color: $secondary-color;
-        @include shadow;
+        @include mobileShadow;
 
         @include tablet {
             @include tabletSubheader;
@@ -92,6 +90,7 @@
 
     &__rappers-table {
         margin: 0rem 0.5rem;
+        padding: 0rem 1rem;
         border: 0.125rem solid $accent-color;
         border-radius: $border-radius;
         display: flex;
@@ -150,10 +149,11 @@
     }
 
     &__click-to-play {
-        margin: 0.5rem auto 0rem;
+        margin: 0.5rem auto 0.5rem;
         @include mobileBodySmall;
         font-family: $graffiti-two;
         color: $accent-color;
+        @include mobileShadow;
 
         @include desktop {
             @include tabletBodySmall;
@@ -163,6 +163,7 @@
 
     &__battles-table {
         margin: 0rem 0.5rem;
+        padding: 0rem 1rem;
         border: 0.125rem solid $accent-color;
         border-radius: $border-radius;
         display: flex;

@@ -109,20 +109,52 @@
 }
 
 // BUTTON
-@mixin button {
+@mixin mobileButton {
     margin: 0 auto;
+    background: none;
+    border: 0.3125rem dashed black;
+    padding: 1rem;
+    @include mobileBody();
+    font-family: $graffiti-two;
+    color: $accent-color;
+    cursor: pointer;
+    @include mobileShadow();
+}
+
+@mixin tabletButton {
+    margin: 0rem auto 3rem;
     background: none;
     border: 10px dashed black;
     padding: 1rem;
-    @include mobileBody;
+    @include desktopSubheader();
     font-family: $graffiti-two;
     color: $accent-color;
-    @include shadow();
+    cursor: pointer;
+}
+
+@mixin desktopButton {
+    margin: 0rem auto 3rem;
+    background: none;
+    border: 10px dashed black;
+    padding: 1rem;
+    @include desktopSubheader();
+    font-family: $graffiti-two;
+    color: $accent-color;
     cursor: pointer;
 }
 
 // TEXT SHADOW
-@mixin shadow {
+@mixin mobileShadow {
+    text-shadow: 0 5.5px 0 $primary-color, 0 1px 0 $primary-color,
+        0 1.5px 0 $primary-color, 0 2px 0 $primary-color;
+}
+
+@mixin tabletShadow {
+    text-shadow: 0 11px 0 $primary-color, 0 2px 0 $primary-color,
+        0 3px 0 $primary-color, 0 4px 0 $primary-color;
+}
+
+@mixin desktopShadow {
     text-shadow: 0 11px 0 $primary-color, 0 2px 0 $primary-color,
         0 3px 0 $primary-color, 0 4px 0 $primary-color;
 }
