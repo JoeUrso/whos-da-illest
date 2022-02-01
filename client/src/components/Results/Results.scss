@@ -16,7 +16,7 @@
         margin: 0;
         padding-bottom: 1rem;
         align-self: center;
-        @include shadow;
+        @include desktopShadow;
 
         @include tablet {
             @include tabletBody;
@@ -224,7 +224,7 @@
         font-family: $graffiti-two;
         color: $accent-color;
         margin: 0.5rem;
-        @include shadow;
+        @include desktopShadow;
 
         @include keyframes(bounceIn) {
             0% {
@@ -294,7 +294,7 @@
         font-family: $graffiti-two;
         color: $secondary-color;
         margin: 0.5rem;
-        @include shadow;
+        @include desktopShadow;
 
         @include keyframes(swingIn) {
             0% {
@@ -350,7 +350,7 @@
         color: $accent-color;
         text-align: center;
         margin: 0;
-        @include shadow;
+        @include desktopShadow;
 
         @include keyframes(rollInBottom) {
             0% {
@@ -381,7 +381,7 @@
         font-family: $graffiti-two;
         color: $accent-color;
         margin: 0;
-        @include shadow;
+        @include desktopShadow;
 
         @include tablet {
             @include tabletSubheader;
@@ -393,7 +393,7 @@
     }
 
     &__button {
-        @include button;
+        @include mobileButton;
 
         @include keyframes(bounce) {
             0% {
@@ -409,11 +409,11 @@
         @include animate(bounce, 2s, linear, infinite);
 
         @include tablet {
-            @include tabletSubheader;
+            @include tabletButton;
         }
 
         @include desktop {
-            @include desktopSubheader;
+            @include desktopButton;
         }
     }
 }

@@ -17,7 +17,7 @@
         height: 15%;
         padding-bottom: 1rem;
         align-self: center;
-        @include shadow;
+        @include desktopShadow;
 
         @include tablet {
             @include tabletBody;
@@ -184,7 +184,7 @@
 
     &__button {
         text-decoration: none;
-        @include button;
+        @include mobileButton;
 
         @include keyframes(bounce) {
             0% {
@@ -200,11 +200,11 @@
         @include animate(bounce, 2s, linear, infinite);
 
         @include tablet {
-            @include tabletBody;
+            @include tabletButton;
         }
 
         @include desktop {
-            @include desktopBody;
+            @include desktopButton;
         }
     }
 }

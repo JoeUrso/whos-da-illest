@@ -25,7 +25,7 @@
         text-align: center;
         margin: 0;
         height: 15%;
-        @include shadow;
+        @include mobileShadow;
 
         @include tablet {
             @include tabletBody;
@@ -74,7 +74,7 @@
         font-family: $graffiti-two;
         text-align: center;
         color: $accent-color;
-        @include shadow;
+        @include desktopShadow;
 
         @include tablet {
             @include tabletBodySmall;
@@ -91,7 +91,7 @@
         text-align: center;
         color: $secondary-color;
         margin: 0;
-        @include shadow;
+        @include desktopShadow;
 
         &--genre {
             @include mobileBodySmall;
