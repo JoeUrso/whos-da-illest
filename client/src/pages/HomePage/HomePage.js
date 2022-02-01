@@ -2,9 +2,11 @@ import axios from "axios";
 import React, { Component, createRef } from "react";
 import { Link } from "react-router-dom";
 import "../..";
+import classicScratch from "../../assets/sounds/ClassicScratch.mp3";
 import BattleInfo from "../../components/BattleInfo/BattleInfo";
 import RapperStats from "../../components/RapperStats/RapperStats";
 import "./Homepage.scss";
+
 const API_URL = process.env.API_URL || "http://localhost:8000";
 
 export default class HomePage extends Component {
@@ -14,8 +16,7 @@ export default class HomePage extends Component {
         isLoading: true,
     };
 
-    // classicScratch = new Audio("../../assets/sounds/ClassicScratch.mp3");
-    // scratch1 = new Audio("../../assets/sounds/Scratch1.mp3");
+    classicScratch = new Audio(classicScratch);
 
     scrollToDiv = createRef();
 
@@ -68,7 +69,7 @@ export default class HomePage extends Component {
                     className="homepage__button"
                     onClick={() => {
                         this.scrollHandler();
-                        // this.classicScratch.play();
+                        this.classicScratch.play();
                     }}
                 >
                     Go To Battles
