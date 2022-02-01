@@ -2,9 +2,21 @@ const knex = require("knex")(require("../knexfile").development);
 const axios = require("axios");
 const qs = require("qs");
 
-// Import from .env
+// IMPORT FROM ENV
 require("dotenv").config();
 
+// SEND BATTLES TABLE
+exports.index = (_req, res) => {
+    knex("battles")
+        .then((data) => {
+            res.status(200).json(data);
+        })
+        .catch((err) =>
+            res.status(400).send(`Error retrieving battles: ${err}`)
+        );
+};
+
+// TODO add comment explainer here
 // const clientId = process.env.SPOTIFY_CLIENT_ID;
 // const clientSecret = process.env.SPOTIFY_CLIENT_SECRET_KEY;
 const clientId = "b5e35c2df7ec4fcd86e84ed4cb6deb0b";
@@ -24,16 +36,7 @@ const data = {
     grant_type: "client_credentials",
 };
 
-exports.index = (_req, res) => {
-    knex("battles")
-        .then((data) => {
-            res.status(200).json(data);
-        })
-        .catch((err) =>
-            res.status(400).send(`Error retrieving battles: ${err}`)
-        );
-};
-
+// GET RAPPER INFO FROM SPOTIFY
 exports.getToken = (_req, res) => {
     axios
         .post(
@@ -48,6 +51,7 @@ exports.getToken = (_req, res) => {
         .catch((err) => res.status(400).send(`Error retrieving token: ${err}`));
 };
 
+// INCREMENT RAPPER WINS/LOSSES
 exports.incrementRapper1Wins = (req, res) => {
     knex("battles")
         .where("id", "=", req.body.id)

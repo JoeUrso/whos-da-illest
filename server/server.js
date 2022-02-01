@@ -7,20 +7,21 @@ const gradesRoutes = require("./routes/gradesRoute");
 const criteriaRoutes = require("./routes/criteriaRoute");
 const knex = require("knex")(require("./knexfile").development);
 
-// Import from .env
+// IMPORT FROM ENV
 require("dotenv").config();
 const PORT = process.env.PORT;
 
-// Enable cors and allow paths to read req.body (let post read json input)
+// ENABLE CORS AND ALLOW PATHS TO READ REQ.BODY
 app.use(cors());
 app.use(express.json());
 
-// default routes
+// DEFAULT ROUTES
 app.use("/battles", battlesRoutes);
 app.use("/rappers", rappersRoutes);
 app.use("/grades", gradesRoutes);
 app.use("/criteria", criteriaRoutes);
 
+// LISTEN TO SERVER
 app.listen(PORT, () => {
     console.log("server running on port", PORT);
 });
