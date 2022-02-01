@@ -81,6 +81,7 @@
 
         @include tablet {
             width: 45%;
+            align-items: center;
         }
     }
 
@@ -95,7 +96,6 @@
 
     &__battles-fought-container {
         text-align: center;
-        // width: 30%;
     }
 
     &__name {
@@ -142,6 +142,7 @@
 
         @include tablet {
             @include tabletBody;
+            margin-left: 0.85rem;
         }
 
         @include desktop {

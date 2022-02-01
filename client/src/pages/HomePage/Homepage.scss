@@ -90,11 +90,15 @@
 
     &__rappers-table {
         margin: 0rem 0.5rem;
-        padding: 0rem 1rem;
+        padding: 0rem 1rem 0.5rem;
         border: 0.125rem solid $accent-color;
         border-radius: $border-radius;
         display: flex;
         flex-direction: column;
+
+        @include tablet {
+            padding: 0rem 1.5rem 1rem;
+        }
     }
 
     &__rappers-table-headings {
@@ -168,6 +172,10 @@
         border-radius: $border-radius;
         display: flex;
 
+        @include tablet {
+            padding: 0rem 1.5rem;
+        }
+
         &--mobile {
             flex-direction: column;
         }
@@ -204,7 +212,7 @@
 
         @include tablet {
             @include tabletBodySmall;
-            width: 27%;
+            width: 25%;
         }
 
         @include desktop {
@@ -220,7 +228,7 @@
 
         @include tablet {
             @include tabletBodySmall;
-            width: 13%;
+            width: 15%;
         }
 
         @include desktop {
