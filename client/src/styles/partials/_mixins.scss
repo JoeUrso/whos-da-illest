@@ -122,14 +122,15 @@
 }
 
 @mixin tabletButton {
-    margin: 0rem auto 3rem;
+    margin: 0rem auto 1.5rem;
     background: none;
-    border: 10px dashed black;
+    border: 0.4375rem dashed black;
     padding: 1rem;
-    @include desktopSubheader();
+    @include tabletBody();
     font-family: $graffiti-two;
     color: $accent-color;
     cursor: pointer;
+    @include mobileShadow();
 }
 
 @mixin desktopButton {
@@ -141,6 +142,7 @@
     font-family: $graffiti-two;
     color: $accent-color;
     cursor: pointer;
+    @include desktopShadow();
 }
 
 // TEXT SHADOW
@@ -150,7 +152,7 @@
 }
 
 @mixin tabletShadow {
-    text-shadow: 0 11px 0 $primary-color, 0 2px 0 $primary-color,
+    text-shadow: 0 7px 0 $primary-color, 0 2px 0 $primary-color,
         0 3px 0 $primary-color, 0 4px 0 $primary-color;
 }
 
