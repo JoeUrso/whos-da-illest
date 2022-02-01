@@ -119,13 +119,6 @@
     color: $accent-color;
     @include shadow();
     cursor: pointer;
-    // text-shadow: 0 4px 0 $primary-color, 0 2px 0 $primary-color,
-    //     0 3px 0 $primary-color, 0 4px 0 $primary-color,
-    //     0 5px 0 $primary-color, 0 6px 0 $primary-color,
-    //     0 7px 0 $primary-color, 0 8px 0 $primary-color,
-    //     0 9px 0 $primary-color, 0 10px 0 $secondary-color,
-    //     0 11px 0 $secondary-color, 0 12px 0 $secondary-color,
-    //     0 20px 30px rgba(0, 0, 0, 0.5);
 }
 
 // TEXT SHADOW

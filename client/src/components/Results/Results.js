@@ -18,24 +18,40 @@ export default function Results({
         <section className="results">
             <h2 className="results__heading">Battle Results</h2>
             <article className="results__main-container">
-                <div className="results__rapper-container">
-                    <h3 className="results__name">{rapper1.name}</h3>
-                    {rapper1Grade > rapper2Grade ? (
+                {rapper1Grade > rapper2Grade ? (
+                    <div className="results__rapper-container results__rapper-container--1-wins">
+                        <h3 className="results__name">{rapper1.name}</h3>
                         <h3 className="results__result">WIN</h3>
-                    ) : (
+                        <p className="results__grade">
+                            Your Grade: {rapper1Grade}
+                        </p>
+                    </div>
+                ) : (
+                    <div className="results__rapper-container results__rapper-container--1-loses">
+                        <h3 className="results__name">{rapper1.name}</h3>
                         <h3 className="results__result">LOSE</h3>
-                    )}
-                    <p className="results__grade">Your Grade: {rapper1Grade}</p>
-                </div>
-                <div className="results__rapper-container">
-                    <h3 className="results__name">{rapper2.name}</h3>
-                    {rapper2Grade > rapper1Grade ? (
+                        <p className="results__grade">
+                            Your Grade: {rapper1Grade}
+                        </p>
+                    </div>
+                )}
+                {rapper1Grade < rapper2Grade ? (
+                    <div className="results__rapper-container results__rapper-container--2-wins">
+                        <h3 className="results__name">{rapper2.name}</h3>
                         <h3 className="results__result">WIN</h3>
-                    ) : (
+                        <p className="results__grade">
+                            Your Grade: {rapper2Grade}
+                        </p>
+                    </div>
+                ) : (
+                    <div className="results__rapper-container results__rapper-container--2-loses">
+                        <h3 className="results__name">{rapper2.name}</h3>
                         <h3 className="results__result">LOSE</h3>
-                    )}
-                    <p className="results__grade">Your Grade: {rapper2Grade}</p>
-                </div>
+                        <p className="results__grade">
+                            Your Grade: {rapper2Grade}
+                        </p>
+                    </div>
+                )}
             </article>
             <h4 className="results__heading">This Battle</h4>
             <article className="results__record-container">
