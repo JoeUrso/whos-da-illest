@@ -1,6 +1,10 @@
 import axios from "axios";
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
+import classicScratch from "../../assets/sounds/ClassicScratch.mp3";
+import scratch1 from "../../assets/sounds/Scratch1.mp3";
+import scratch2 from "../../assets/sounds/Scratch2.mp3";
+import watchThis from "../../assets/sounds/WatchThis.mp3";
 import GradeRapper from "../../components/GradeRapper/GradeRapper";
 import RapperInfo from "../../components/RapperInfo/RapperInfo";
 import Results from "../../components/Results/Results";
@@ -23,7 +27,13 @@ export default class BattlePage extends Component {
         resultsArePosted: false,
     };
 
+    watchThis = new Audio(watchThis);
+    scratch1 = new Audio(scratch1);
+    scratch2 = new Audio(scratch2);
+    classicScratch = new Audio(classicScratch);
+
     startBattle = () => {
+        this.watchThis.play();
         this.setState({
             isInfo: false,
             isRapper1: true,
@@ -31,6 +41,7 @@ export default class BattlePage extends Component {
     };
 
     passTheMic = (grade) => {
+        this.scratch1.play();
         this.setState({
             isRapper1: false,
             isRapper2: true,
@@ -39,6 +50,7 @@ export default class BattlePage extends Component {
     };
 
     dropTheMic = (grade) => {
+        this.scratch2.play();
         this.setState({
             isRapper2: false,
             isResults: true,
@@ -47,6 +59,7 @@ export default class BattlePage extends Component {
     };
 
     backToBattles = (rapper1Grade, rapper2Grade, winner) => {
+        this.classicScratch.play();
         let newGrade1 = {
             grade: rapper1Grade.toString(),
             rapper_id: this.state.battle.rapper1_id.toString(),
