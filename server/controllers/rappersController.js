@@ -1,5 +1,6 @@
 const knex = require("knex")(require("../knexfile").development);
 
+// SEND RAPPERS TABLE
 exports.index = (_req, res) => {
     knex("rappers")
         .then((data) => {
@@ -10,6 +11,7 @@ exports.index = (_req, res) => {
         );
 };
 
+// ADD A WIN TO RAPPER
 exports.editRapper1Wins = (req, res) => {
     console.log(req.body);
     knex("rappers")
@@ -23,11 +25,10 @@ exports.editRapper1Wins = (req, res) => {
         );
 };
 
-exports.editRapper1Losses = (req, res) => {
-    console.log(req.body);
+exports.editRapper2Wins = (req, res) => {
     knex("rappers")
-        .where({ id: req.body.rapper1_id })
-        .increment({ losses: 1 })
+        .where({ id: req.body.rapper2_id })
+        .increment({ wins: 1 })
         .then((data) => {
             res.status(200).json(data);
         })
@@ -36,10 +37,12 @@ exports.editRapper1Losses = (req, res) => {
         );
 };
 
-exports.editRapper2Wins = (req, res) => {
+// ADD A LOSS TO RAPPER
+exports.editRapper1Losses = (req, res) => {
+    console.log(req.body);
     knex("rappers")
-        .where({ id: req.body.rapper2_id })
-        .increment({ wins: 1 })
+        .where({ id: req.body.rapper1_id })
+        .increment({ losses: 1 })
         .then((data) => {
             res.status(200).json(data);
         })

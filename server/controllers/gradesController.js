@@ -1,5 +1,6 @@
 const knex = require("knex")(require("../knexfile").development);
 
+// SEND GRADES TABLE
 exports.index = (_req, res) => {
     knex("grades")
         .then((data) => {
@@ -10,6 +11,7 @@ exports.index = (_req, res) => {
         );
 };
 
+// SEND AVERAGE GRADE
 exports.AvgGrades = (_req, res) => {
     knex("grades")
         .then((grades) => {
@@ -63,6 +65,7 @@ exports.AvgGrades = (_req, res) => {
         );
 };
 
+// ADD NEW GRADE TO GRADES TABLE
 exports.addNewGrade = (req, res) => {
     knex("grades")
         .insert(req.body)
