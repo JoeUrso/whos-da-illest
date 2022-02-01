@@ -151,11 +151,6 @@
         0 1.5px 0 $primary-color, 0 2px 0 $primary-color;
 }
 
-@mixin tabletShadow {
-    text-shadow: 0 7px 0 $primary-color, 0 2px 0 $primary-color,
-        0 3px 0 $primary-color, 0 4px 0 $primary-color;
-}
-
 @mixin desktopShadow {
     text-shadow: 0 11px 0 $primary-color, 0 2px 0 $primary-color,
         0 3px 0 $primary-color, 0 4px 0 $primary-color;
