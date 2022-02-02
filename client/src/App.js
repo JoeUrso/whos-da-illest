@@ -12,25 +12,11 @@ function App() {
     return (
         <Router>
             <Switch>
-                <Route
-                    exact
-                    path="/"
-                    component={HomePage} // homepage
-                />
+                <Route exact path="/" component={HomePage} />
 
                 <Redirect exact from="/battle" to="/battle/:battleId" />
 
                 <Route path="/battle/:battleId" component={BattlePage} />
-
-                {/* <Route
-                        path="/battles/:id/:rapperId"
-                        component={ArtistGrade} //artist grade
-                    />
-
-                    <Route
-                        path="/battles/:id/results"
-                        component={BattleResults} //battle results
-                    />  */}
             </Switch>
         </Router>
     );

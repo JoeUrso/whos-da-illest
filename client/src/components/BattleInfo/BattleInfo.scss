@@ -148,6 +148,7 @@
         @include desktop {
             @include desktopBody;
             @include desktopShadow;
+            margin-left: 2.5rem;
         }
     }
 }
