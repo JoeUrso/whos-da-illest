@@ -15,7 +15,7 @@ export default function RapperInfo({ rapper }) {
                         Spotify Followers
                     </h4>
                     <p className="rapper-info__info">
-                        {rapper.followers.total}
+                        {rapper.followers.total.toLocaleString("en-US")}
                     </p>
                     <h4 className="rapper-info__info-headings">
                         Spotify Popularity Rating

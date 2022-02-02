@@ -39,7 +39,6 @@ exports.editRapper2Wins = (req, res) => {
 
 // ADD A LOSS TO RAPPER
 exports.editRapper1Losses = (req, res) => {
-    console.log(req.body);
     knex("rappers")
         .where({ id: req.body.rapper1_id })
         .increment({ losses: 1 })
