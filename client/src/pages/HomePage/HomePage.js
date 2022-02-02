@@ -46,8 +46,11 @@ export default class HomePage extends Component {
 
             this.setState({
                 rappers: rappersWithGrades,
-                isLoading: false,
             });
+
+            setTimeout(() => {
+                this.setState({ isLoading: false });
+            }, 100);
         });
 
         axios.get(API_URL + "/battles").then((response) => {
