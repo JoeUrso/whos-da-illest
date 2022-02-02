@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import { Link, Redirect } from "react-router-dom";
 import classicScratch from "../../assets/sounds/ClassicScratch.mp3";
 import scratch1 from "../../assets/sounds/Scratch1.mp3";
@@ -32,7 +32,14 @@ export default class BattlePage extends Component {
     scratch2 = new Audio(scratch2);
     classicScratch = new Audio(classicScratch);
 
+    scrollToTop = createRef();
+
+    scrollHandler = () => {
+        this.scrollToTop.current.scrollIntoView({ behavior: "auto" });
+    };
+
     startBattle = () => {
+        this.scrollHandler();
         this.watchThis.play();
         this.setState({
             isInfo: false,
@@ -41,6 +48,7 @@ export default class BattlePage extends Component {
     };
 
     passTheMic = (grade) => {
+        this.scrollHandler();
         this.scratch1.play();
         this.setState({
             isRapper1: false,
@@ -50,6 +58,7 @@ export default class BattlePage extends Component {
     };
 
     dropTheMic = (grade) => {
+        this.scrollHandler();
         this.scratch2.play();
         this.setState({
             isRapper2: false,
@@ -59,6 +68,7 @@ export default class BattlePage extends Component {
     };
 
     backToBattles = (rapper1Grade, rapper2Grade, winner) => {
+        this.scrollHandler();
         this.classicScratch.play();
         let newGrade1 = {
             grade: rapper1Grade.toString(),
@@ -164,6 +174,8 @@ export default class BattlePage extends Component {
                 });
             });
         });
+
+        window.scrollTo(0, 0);
     };
 
     render() {
@@ -190,7 +202,7 @@ export default class BattlePage extends Component {
                         <h1 className="battle__loading">loading</h1>
                     )}
                 {isInfo === true && (
-                    <main className="battle">
+                    <main className="battle" ref={this.scrollToTop}>
                         <Link to="/" className="battle__heading">
                             WHO'S DA ILLEST?
                         </Link>
@@ -209,7 +221,7 @@ export default class BattlePage extends Component {
                 )}
 
                 {isRapper1 === true && (
-                    <main className="battle">
+                    <main className="battle" ref={this.scrollToTop}>
                         <Link to="/" className="battle__heading">
                             WHO'S DA ILLEST?
                         </Link>
@@ -224,7 +236,7 @@ export default class BattlePage extends Component {
                 )}
 
                 {isRapper2 === true && (
-                    <main className="battle">
+                    <main className="battle" ref={this.scrollToTop}>
                         <Link to="/" className="battle__heading">
                             WHO'S DA ILLEST?
                         </Link>
@@ -239,7 +251,7 @@ export default class BattlePage extends Component {
                 )}
 
                 {isResults === true && (
-                    <main className="battle">
+                    <main className="battle" ref={this.scrollToTop}>
                         <Link to="/" className="battle__heading">
                             WHO'S DA ILLEST?
                         </Link>
