@@ -92,9 +92,9 @@ export default class GradeRapper extends Component {
                                 className="grade__card-container"
                                 key={criterion.id}
                             >
-                                <div className="grade__criterion tooltip">
+                                <div className="tooltip">
                                     {criterion.criterion}
-                                    <span className="grade__criterion-explainer tooltiptext">
+                                    <span className="tooltip-text">
                                         {criterion.explainer}
                                     </span>
                                 </div>
