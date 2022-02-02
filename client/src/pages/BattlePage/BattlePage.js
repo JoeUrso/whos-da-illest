@@ -164,8 +164,13 @@ export default class BattlePage extends Component {
                 .then((response) => {
                     this.setState({
                         rapper2: response.data.artists.items[0],
-                        isInfo: true,
                     });
+
+                    setTimeout(() => {
+                        this.setState({
+                            isInfo: true,
+                        });
+                    }, 100);
                 });
 
             axios.get(API_URL + "/criteria").then((response) => {
