@@ -16,11 +16,9 @@ exports.index = (_req, res) => {
         );
 };
 
-// TODO add comment explainer here
-// const clientId = process.env.SPOTIFY_CLIENT_ID;
-// const clientSecret = process.env.SPOTIFY_CLIENT_SECRET_KEY;
-const clientId = "b5e35c2df7ec4fcd86e84ed4cb6deb0b";
-const clientSecret = "2979aade3c8e4719a40051955ca5d16a";
+// GET TOKEN FROM SPOTIFY API
+const clientId = process.env.SPOTIFY_CLIENT_ID;
+const clientSecret = process.env.SPOTIFY_CLIENT_SECRET_KEY;
 
 const headers = {
     headers: {
