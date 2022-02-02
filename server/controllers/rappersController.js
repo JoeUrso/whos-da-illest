@@ -13,7 +13,6 @@ exports.index = (_req, res) => {
 
 // ADD A WIN TO RAPPER
 exports.editRapper1Wins = (req, res) => {
-    console.log(req.body);
     knex("rappers")
         .where({ id: req.body.rapper1_id })
         .increment({ wins: 1 })
