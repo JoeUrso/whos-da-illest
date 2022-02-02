@@ -26,38 +26,43 @@ export default class HomePage extends Component {
     };
 
     componentDidMount = () => {
-        axios.get(API_URL + "/rappers").then((response) => {
-            this.setState({
-                rappers: response.data,
-            });
-        });
-
-        axios.get(API_URL + "/grades/avg-grades").then((response) => {
-            let grades = response.data;
-            let rappersWithGrades = [];
-
-            this.state.rappers.forEach((rapper) => {
-                let foundGrade = grades.find(
-                    (grade) => grade.rapper_id === rapper.id
-                );
-                let updatedRapper = { ...rapper, grade: foundGrade.avgGrade };
-                rappersWithGrades.push(updatedRapper);
+        setTimeout(() => {
+            axios.get(API_URL + "/rappers").then((response) => {
+                this.setState({
+                    rappers: response.data,
+                });
             });
 
-            this.setState({
-                rappers: rappersWithGrades,
+            axios.get(API_URL + "/grades/avg-grades").then((response) => {
+                let grades = response.data;
+                let rappersWithGrades = [];
+
+                this.state.rappers.forEach((rapper) => {
+                    let foundGrade = grades.find(
+                        (grade) => grade.rapper_id === rapper.id
+                    );
+                    let updatedRapper = {
+                        ...rapper,
+                        grade: foundGrade.avgGrade,
+                    };
+                    rappersWithGrades.push(updatedRapper);
+                });
+
+                this.setState({
+                    rappers: rappersWithGrades,
+                });
+
+                setTimeout(() => {
+                    this.setState({ isLoading: false });
+                }, 200);
             });
 
-            setTimeout(() => {
-                this.setState({ isLoading: false });
-            }, 100);
-        });
-
-        axios.get(API_URL + "/battles").then((response) => {
-            this.setState({
-                battles: response.data,
+            axios.get(API_URL + "/battles").then((response) => {
+                this.setState({
+                    battles: response.data,
+                });
             });
-        });
+        }, 150);
     };
 
     render() {
