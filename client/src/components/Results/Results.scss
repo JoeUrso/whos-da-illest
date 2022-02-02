@@ -24,6 +24,7 @@
 
         @include desktop {
             @include desktopBody;
+            @include desktopShadow;
         }
     }
 
@@ -212,10 +213,12 @@
 
         @include tablet {
             @include tabletBodySmall;
+            padding-bottom: 0.5rem;
         }
 
         @include desktop {
             @include desktopBodySmall;
+            padding-bottom: 2rem;
         }
     }
 
@@ -282,10 +285,13 @@
 
         @include tablet {
             @include tabletSubheader;
+            padding-bottom: 0.5rem;
         }
 
         @include desktop {
             @include desktopSubheader;
+            @include desktopShadow;
+            padding-bottom: 2rem;
         }
     }
 
@@ -320,6 +326,7 @@
 
         @include desktop {
             @include desktopBodySmall;
+            @include desktopShadow;
         }
     }
 
@@ -372,6 +379,7 @@
 
         @include desktop {
             @include desktopSubheader;
+            @include desktopShadow;
         }
     }
 
@@ -389,6 +397,7 @@
 
         @include desktop {
             @include desktopSubheader;
+            @include desktopShadow;
         }
     }
 
@@ -415,6 +424,7 @@
 
         @include desktop {
             @include desktopButton;
+            @include desktopShadow;
         }
     }
 }

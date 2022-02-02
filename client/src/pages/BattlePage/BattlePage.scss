@@ -47,6 +47,7 @@
 
         @include desktop {
             @include desktopSubheader;
+            @include desktopShadow;
             margin-bottom: 4rem;
         }
     }
@@ -95,11 +96,11 @@
         @include animate(bounce, 2s, linear, infinite);
 
         @include tablet {
-            @include tabletBody;
+            @include tabletButton;
         }
 
         @include desktop {
-            @include desktopBody;
+            @include desktopButton;
         }
     }
 }
