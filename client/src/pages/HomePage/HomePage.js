@@ -16,16 +16,18 @@ export default class HomePage extends Component {
         isLoading: true,
     };
 
+    // SOUND FX
     classicScratch = new Audio(classicScratch);
 
+    // SCROLL TO BATTLE BOARD
     scrollToDiv = createRef();
-
     scrollHandler = () => {
         this.scrollToDiv.current.scrollIntoView({ behavior: "smooth" });
         this.classicScratch.play();
     };
 
     componentDidMount = () => {
+        // GETS DATA FROM MYSQL
         setTimeout(() => {
             axios.get(API_URL + "/rappers").then((response) => {
                 this.setState({
@@ -54,7 +56,7 @@ export default class HomePage extends Component {
 
                 setTimeout(() => {
                     this.setState({ isLoading: false });
-                }, 200);
+                }, 300);
             });
 
             axios.get(API_URL + "/battles").then((response) => {
@@ -62,7 +64,7 @@ export default class HomePage extends Component {
                     battles: response.data,
                 });
             });
-        }, 150);
+        }, 200);
     };
 
     render() {
