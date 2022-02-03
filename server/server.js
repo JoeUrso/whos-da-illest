@@ -7,7 +7,7 @@ const gradesRoutes = require("./routes/gradesRoute");
 const criteriaRoutes = require("./routes/criteriaRoute");
 const knex = require("knex")(require("./knexfile").development);
 
-// IMPORT FROM ENV
+/// IMPORT FROM ENV
 require("dotenv").config();
 const PORT = process.env.PORT;
 
