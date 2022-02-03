@@ -18,6 +18,7 @@ export default class GradeRapper extends Component {
         isExplainerShown: false,
     };
 
+    // DISPLAY THE SLIDERS POINTS
     displayPoints = (event) => {
         let name = event.target.name.toLowerCase();
         let points = event.target.value;
@@ -27,6 +28,7 @@ export default class GradeRapper extends Component {
         });
     };
 
+    // STORES THE USERS GRADE
     storeGradeAndReset1 = () => {
         const {
             presence,

@@ -27,17 +27,19 @@ export default class BattlePage extends Component {
         resultsArePosted: false,
     };
 
+    // SOUND FX
     watchThis = new Audio(watchThis);
     scratch1 = new Audio(scratch1);
     scratch2 = new Audio(scratch2);
     classicScratch = new Audio(classicScratch);
 
+    // SCROLL TO TOP
     scrollToTop = createRef();
-
     scrollHandler = () => {
         this.scrollToTop.current.scrollIntoView({ behavior: "auto" });
     };
 
+    // CALLED BY RAPPERINFO
     startBattle = () => {
         this.scrollHandler();
         this.watchThis.play();
@@ -47,6 +49,7 @@ export default class BattlePage extends Component {
         });
     };
 
+    //CALLED BY GRADE RAPPER 1
     passTheMic = (grade) => {
         this.scrollHandler();
         this.scratch1.play();
@@ -57,6 +60,7 @@ export default class BattlePage extends Component {
         });
     };
 
+    // CALLED BY GRADE RAPPER 2
     dropTheMic = (grade) => {
         this.scrollHandler();
         this.scratch2.play();
@@ -67,6 +71,7 @@ export default class BattlePage extends Component {
         });
     };
 
+    // CALLED BY RESULTS
     backToBattles = (rapper1Grade, rapper2Grade, winner) => {
         this.scrollHandler();
         this.classicScratch.play();
@@ -75,6 +80,7 @@ export default class BattlePage extends Component {
             rapper_id: this.state.battle.rapper1_id.toString(),
         };
 
+        // SENDS DATA TO MYSQL
         let newGrade2 = {
             grade: rapper2Grade.toString(),
             rapper_id: this.state.battle.rapper2_id.toString(),
@@ -130,6 +136,7 @@ export default class BattlePage extends Component {
             });
         });
 
+        // HANDLES SPOTIFY INFO
         axios.get(API_URL + "/battles/rapper-data").then((response) => {
             let token = response.data;
             let header = {

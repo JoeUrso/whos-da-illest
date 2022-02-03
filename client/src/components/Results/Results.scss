@@ -49,8 +49,8 @@
         &--1-wins {
             @include keyframes(winner1Bounce) {
                 0% {
-                    transform: translateX(188px);
-                    transform: translateX(188px);
+                    transform: translateX(11.75rem);
+                    transform: translateX(11.75rem);
                     animation-timing-function: ease-in;
                     animation-timing-function: ease-in;
                     opacity: 1;
@@ -59,26 +59,26 @@
                     opacity: 1;
                 }
                 40% {
-                    transform: translateX(26px);
-                    transform: translateX(26px);
+                    transform: translateX(1.625rem);
+                    transform: translateX(1.625rem);
                     animation-timing-function: ease-in;
                     animation-timing-function: ease-in;
                 }
                 65% {
-                    transform: translateX(13px);
-                    transform: translateX(13px);
+                    transform: translateX(0.8125rem);
+                    transform: translateX(0.8125rem);
                     animation-timing-function: ease-in;
                     animation-timing-function: ease-in;
                 }
                 82% {
-                    transform: translateX(6.5px);
-                    transform: translateX(6.5px);
+                    transform: translateX(0.4063rem);
+                    transform: translateX(0.4063rem);
                     animation-timing-function: ease-in;
                     animation-timing-function: ease-in;
                 }
                 93% {
-                    transform: translateX(4px);
-                    transform: translateX(4px);
+                    transform: translateX(0.25rem);
+                    transform: translateX(0.25rem);
                     animation-timing-function: ease-in;
                     animation-timing-function: ease-in;
                 }
@@ -87,14 +87,14 @@
                 75%,
                 87%,
                 98% {
-                    transform: translateX(0px);
-                    transform: translateX(0px);
+                    transform: translateX(0rem);
+                    transform: translateX(0rem);
                     animation-timing-function: ease-out;
                     animation-timing-function: ease-out;
                 }
                 100% {
-                    transform: translateX(0px);
-                    transform: translateX(0px);
+                    transform: translateX(0rem);
+                    transform: translateX(0rem);
                     animation-timing-function: ease-out;
                     animation-timing-function: ease-out;
                     opacity: 1;
@@ -107,13 +107,13 @@
         &--1-loses {
             @include keyframes(loser1Roll) {
                 0% {
-                    -webkit-transform: translateX(0) rotate(0deg);
+                    transform: translateX(0) rotate(0deg);
                     transform: translateX(0) rotate(0deg);
                     opacity: 1;
                 }
                 100% {
-                    -webkit-transform: translateX(-1000px) rotate(-540deg);
-                    transform: translateX(-1000px) rotate(-540deg);
+                    transform: translateX(-62.5rem) rotate(-540deg);
+                    transform: translateX(-62.5rem) rotate(-540deg);
                     opacity: 0;
                 }
             }
@@ -124,9 +124,9 @@
         &--2-wins {
             @include keyframes(winner2Bounce) {
                 0% {
-                    -webkit-transform: translateX(-188px);
-                    transform: translateX(-188px);
-                    -webkit-animation-timing-function: ease-in;
+                    transform: translateX(-11.75rem);
+                    transform: translateX(-11.75rem);
+                    animation-timing-function: ease-in;
                     animation-timing-function: ease-in;
                     opacity: 1;
                 }
@@ -134,27 +134,27 @@
                     opacity: 1;
                 }
                 40% {
-                    -webkit-transform: translateX(-26px);
-                    transform: translateX(-26px);
-                    -webkit-animation-timing-function: ease-in;
+                    transform: translateX(-1.625rem);
+                    transform: translateX(-1.625rem);
+                    animation-timing-function: ease-in;
                     animation-timing-function: ease-in;
                 }
                 65% {
-                    -webkit-transform: translateX(-13px);
-                    transform: translateX(-13px);
-                    -webkit-animation-timing-function: ease-in;
+                    transform: translateX(-0.8125rem);
+                    transform: translateX(-0.8125rem);
+                    animation-timing-function: ease-in;
                     animation-timing-function: ease-in;
                 }
                 82% {
-                    -webkit-transform: translateX(-6.5px);
-                    transform: translateX(-6.5px);
-                    -webkit-animation-timing-function: ease-in;
+                    transform: translateX(-0.4063rem);
+                    transform: translateX(-0.4063rem);
+                    animation-timing-function: ease-in;
                     animation-timing-function: ease-in;
                 }
                 93% {
-                    -webkit-transform: translateX(-4px);
-                    transform: translateX(-4px);
-                    -webkit-animation-timing-function: ease-in;
+                    transform: translateX(-0.25rem);
+                    transform: translateX(-0.25rem);
+                    animation-timing-function: ease-in;
                     animation-timing-function: ease-in;
                 }
                 25%,
@@ -162,15 +162,15 @@
                 75%,
                 87%,
                 98% {
-                    -webkit-transform: translateX(0px);
-                    transform: translateX(0px);
-                    -webkit-animation-timing-function: ease-out;
+                    transform: translateX(0rem);
+                    transform: translateX(0rem);
+                    animation-timing-function: ease-out;
                     animation-timing-function: ease-out;
                 }
                 100% {
-                    -webkit-transform: translateX(0px);
-                    transform: translateX(0px);
-                    -webkit-animation-timing-function: ease-out;
+                    transform: translateX(0rem);
+                    transform: translateX(0rem);
+                    animation-timing-function: ease-out;
                     animation-timing-function: ease-out;
                     opacity: 1;
                 }
@@ -182,13 +182,13 @@
         &--2-loses {
             @include keyframes(loser2Roll) {
                 0% {
-                    -webkit-transform: translateX(0) rotate(0deg);
+                    transform: translateX(0) rotate(0deg);
                     transform: translateX(0) rotate(0deg);
                     opacity: 1;
                 }
                 100% {
-                    -webkit-transform: translateX(1000px) rotate(540deg);
-                    transform: translateX(1000px) rotate(540deg);
+                    transform: translateX(62.5rem) rotate(540deg);
+                    transform: translateX(62.5rem) rotate(540deg);
                     opacity: 0;
                 }
             }
