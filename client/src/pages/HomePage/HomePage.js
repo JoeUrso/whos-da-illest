@@ -7,7 +7,7 @@ import BattleInfo from "../../components/BattleInfo/BattleInfo";
 import RapperStats from "../../components/RapperStats/RapperStats";
 import "./Homepage.scss";
 
-const API_URL = process.env.API_URL || "http://localhost:8000";
+const API_URL = process.env.API_URL || "http://localhost:8080";
 
 export default class HomePage extends Component {
     state = {

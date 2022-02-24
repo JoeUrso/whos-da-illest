@@ -9,7 +9,7 @@ import GradeRapper from "../../components/GradeRapper/GradeRapper";
 import RapperInfo from "../../components/RapperInfo/RapperInfo";
 import Results from "../../components/Results/Results";
 import "./BattlePage.scss";
-const API_URL = process.env.API_URL || "http://localhost:8000";
+const API_URL = process.env.API_URL || "http://localhost:8080";
 const SPOTIFY_URL = "https://api.spotify.com/v1/search?";
 
 export default class BattlePage extends Component {
@@ -154,6 +154,7 @@ export default class BattlePage extends Component {
                     }
                 )
                 .then((response) => {
+                    console.log(response.data.artists.items[0]);
                     this.setState({
                         rapper1: response.data.artists.items[0],
                     });
