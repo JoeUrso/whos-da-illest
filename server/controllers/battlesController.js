@@ -44,6 +44,7 @@ exports.getToken = (_req, res) => {
         )
         .then((response) => {
             let token = response.data.access_token;
+            console.log(token);
             res.status(200).json(token);
         })
         .catch((err) => res.status(400).send(`Error retrieving token: ${err}`));
