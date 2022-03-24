@@ -10,4 +10,9 @@ router.route("/rapper2").patch(battlesController.incrementRapper2Wins);
 // SPOTIFY API DATA FOR BATTLES TO USE
 router.route("/rapper-data").get(battlesController.getToken);
 
-module.exports = router
+module.exports = router;
+
+let a = [1, 2, 3];
+a.map((a) => {
+    return "lemon";
+});
