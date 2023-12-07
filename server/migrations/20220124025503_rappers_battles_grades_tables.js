@@ -1,5 +1,5 @@
-exports.up = function (knex) {
-    return knex.schema
+exports.up = async function (knex) {
+    await knex.schema
         .createTable("rappers", (table) => {
             table.increments("id").primary();
             table.string("name").notNullable();
@@ -48,8 +48,8 @@ exports.up = function (knex) {
         });
 };
 
-exports.down = function (knex) {
-    return knex.schema
+exports.down = async function (knex) {
+    await knex.schema
         .dropTable("rappers")
         .dropTable("battles")
         .dropTable("grades");

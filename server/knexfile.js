@@ -1,12 +1,15 @@
-module.exports = {
-    development: {
-        client: "mysql",
-        connection: {
-            host: "127.0.0.1",
-            user: "root",
-            password: "rootroot",
-            database: "whose_da_illest",
-            charset: "utf8",
-        },
+const Knex = require("knex");
+require("dotenv").config();
+
+const config = {
+    client: "cockroachdb",
+    connection: process.env.DATABASE_URL,
+    migrations: {
+        directory: "migrations",
+    },
+    seeds: {
+        directory: "seeds",
     },
 };
+
+module.exports = config;
