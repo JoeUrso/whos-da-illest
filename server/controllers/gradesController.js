@@ -1,4 +1,7 @@
-const knex = require("knex")(require("../knexfile").development);
+const Knex = require("knex");
+
+const knexConfig = require("../knexfile");
+const client = Knex(knexConfig);
 
 // SEND GRADES TABLE
 exports.index = (_req, res) => {

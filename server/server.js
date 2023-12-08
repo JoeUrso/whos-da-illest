@@ -19,10 +19,10 @@ app.use(cors());
 app.use(express.json());
 
 // DEFAULT ROUTES
-// app.use("/battles", battlesRoutes);
-// app.use("/rappers", rappersRoutes);
-// app.use("/grades", gradesRoutes);
-// app.use("/criteria", criteriaRoutes);
+app.use("/battles", battlesRoutes);
+app.use("/rappers", rappersRoutes);
+app.use("/grades", gradesRoutes);
+app.use("/criteria", criteriaRoutes);
 
 // LISTEN TO SERVER
 app.listen(PORT, () => {

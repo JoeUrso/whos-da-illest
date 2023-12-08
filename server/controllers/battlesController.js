@@ -1,6 +1,10 @@
-const knex = require("knex")(require("../knexfile").development);
 const axios = require("axios");
 const qs = require("qs");
+
+const Knex = require("knex");
+
+const knexConfig = require("../knexfile");
+const client = Knex(knexConfig);
 
 // IMPORT FROM ENV
 require("dotenv").config();
