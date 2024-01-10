@@ -123,39 +123,18 @@ export default function BattlePage() {
         });
 
         // HANDLES SPOTIFY INFO
-        axios.get(API_URL + "/battles/rapper-data").then((response) => {
-            let token = response.data;
-            let header = {
-                Authorization: "Bearer " + token,
-                "Content-Type": "application/json",
-            };
+        axios
+            .get(API_URL + `/battles/rapper-data/${battle.rapper1_name}`)
+            .then((response) => {
+                console.log(response.data);
+                setRapper1(response.data);
+            });
 
-            axios
-                .get(
-                    SPOTIFY_URL +
-                        `q=artist:${battle.rapper1_name}` +
-                        `&type=artist`,
-                    {
-                        headers: header,
-                    }
-                )
-                .then((response) => {
-                    setRapper1(response.data.artists.items[0]);
-                });
-
-            axios
-                .get(
-                    SPOTIFY_URL +
-                        `q=artist:${battle.rapper2_name}` +
-                        `&type=artist`,
-                    {
-                        headers: header,
-                    }
-                )
-                .then((response) => {
-                    setRapper2(response.data.artists.items[0]);
-                });
-        });
+        axios
+            .get(API_URL + `/battles/rapper-data/${battle.rapper2_name}`)
+            .then((response) => {
+                setRapper2(response.data);
+            });
 
         axios.get(API_URL + "/criteria").then((response) => {
             setCriteria(response.data);

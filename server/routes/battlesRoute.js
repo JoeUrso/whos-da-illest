@@ -7,7 +7,7 @@ router.route("/").get(battlesController.index);
 router.route("/rapper1").patch(battlesController.incrementRapper1Wins);
 router.route("/rapper2").patch(battlesController.incrementRapper2Wins);
 
-// SPOTIFY API DATA FOR BATTLES TO USE
-router.route("/rapper-data").get(battlesController.getToken);
+// GETTING ARTIST DATA
+router.route("/rapper-data/:artistName").get(battlesController.getArtistData);
 
 module.exports = router;

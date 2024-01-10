@@ -20,6 +20,8 @@ exports.index = (_req, res) => {
         );
 };
 
+const SPOTIFY_URL = "https://api.spotify.com/v1/search?";
+
 // GET TOKEN FROM SPOTIFY API
 const clientId = process.env.SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET_KEY;
@@ -43,6 +45,33 @@ exports.getToken = (_req, res) => {
         .then((response) => {
             let token = response.data.access_token;
             res.status(200).json(token);
+        })
+        .catch((err) => res.status(400).send(`Error retrieving token: ${err}`));
+};
+
+exports.getArtistData = (req, res) => {
+    let artistName = req.params.artistName;
+
+    axios(authOptions)
+        .then((response) => {
+            let token = response.data.access_token;
+
+            let header = {
+                Authorization: "Bearer " + token,
+                "Content-Type": "application/json",
+            };
+
+            axios
+                .get(SPOTIFY_URL + `q=artist:${artistName}` + `&type=artist`, {
+                    headers: header,
+                })
+                .then((response) => {
+                    console.log(response.data.artists.items[0]);
+                    res.status(200).json(response.data.artists.items[0]);
+                })
+                .catch((err) =>
+                    res.status(400).send(`Error retrieving artist data: ${err}`)
+                );
         })
         .catch((err) => res.status(400).send(`Error retrieving token: ${err}`));
 };
