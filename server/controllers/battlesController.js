@@ -11,7 +11,7 @@ require("dotenv").config();
 
 // SEND BATTLES TABLE
 exports.index = (_req, res) => {
-    knex("battles")
+    client("battles")
         .then((data) => {
             res.status(200).json(data);
         })
@@ -56,7 +56,7 @@ exports.getToken = (_req, res) => {
 
 // INCREMENT RAPPER WINS/LOSSES
 exports.incrementRapper1Wins = (req, res) => {
-    knex("battles")
+    client("battles")
         .where("id", "=", req.body.id)
         .increment({ rapper1_wins: 1, total_battles: 1 })
         .then((response) => {
@@ -68,7 +68,7 @@ exports.incrementRapper1Wins = (req, res) => {
 };
 
 exports.incrementRapper2Wins = (req, res) => {
-    knex("battles")
+    client("battles")
         .where("id", "=", req.body.id)
         .increment({ rapper2_wins: 1, total_battles: 1 })
         .then((response) => {

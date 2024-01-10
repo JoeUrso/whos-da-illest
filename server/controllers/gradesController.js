@@ -5,7 +5,7 @@ const client = Knex(knexConfig);
 
 // SEND GRADES TABLE
 exports.index = (_req, res) => {
-    knex("grades")
+    client("grades")
         .then((data) => {
             res.status(200).json(data);
         })
@@ -16,7 +16,7 @@ exports.index = (_req, res) => {
 
 // SEND AVERAGE GRADE
 exports.AvgGrades = (_req, res) => {
-    knex("grades")
+    client("grades")
         .then((grades) => {
             let avgGrades = [];
 
@@ -70,7 +70,7 @@ exports.AvgGrades = (_req, res) => {
 
 // ADD NEW GRADE TO GRADES TABLE
 exports.addNewGrade = (req, res) => {
-    knex("grades")
+    client("grades")
         .insert(req.body)
         .then((data) => {
             res.status(200).json(data);
