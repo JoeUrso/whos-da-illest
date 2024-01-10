@@ -24,31 +24,24 @@ exports.index = (_req, res) => {
 const clientId = process.env.SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET_KEY;
 
-const headers = {
+const authOptions = {
+    method: "post",
+    url: "https://accounts.spotify.com/api/token",
     headers: {
-        Accept: "application/json",
+        Authorization:
+            "Basic " +
+            Buffer.from(clientId + ":" + clientSecret).toString("base64"),
         "Content-Type": "application/x-www-form-urlencoded",
     },
-    auth: {
-        username: clientId,
-        password: clientSecret,
-    },
-};
-const data = {
-    grant_type: "client_credentials",
+    data: qs.stringify({
+        grant_type: "client_credentials",
+    }),
 };
 
-// GET RAPPER INFO FROM SPOTIFY
 exports.getToken = (_req, res) => {
-    axios
-        .post(
-            "https://accounts.spotify.com/api/token",
-            qs.stringify(data),
-            headers
-        )
+    axios(authOptions)
         .then((response) => {
             let token = response.data.access_token;
-            console.log(token);
             res.status(200).json(token);
         })
         .catch((err) => res.status(400).send(`Error retrieving token: ${err}`));

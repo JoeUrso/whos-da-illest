@@ -24,7 +24,7 @@ const GoToBattlesButton = ({ onButtonClick }) => (
 
 const RapperTable = ({ isLoading, rappers }) => {
     if (isLoading) {
-        return <LoadingSpinner />;
+        return <LoadingSpinner size={12} />;
     }
 
     return (
