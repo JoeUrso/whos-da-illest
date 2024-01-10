@@ -1,3 +1,7 @@
+/**
+ * @param { import("knex").Knex } knex
+ * @returns { Promise<void> }
+ */
 exports.up = async function (knex) {
     await knex.schema
         .createTable("rappers", (table) => {
@@ -23,11 +27,6 @@ exports.up = async function (knex) {
         .createTable("battles", (table) => {
             table.increments("id").primary();
             table.string("name").notNullable();
-            table.string("rapper1_name").notNullable();
-            table.string("rapper2_name").notNullable();
-            table.integer("rapper1_wins").notNullable().defaultTo(0);
-            table.integer("rapper2_wins").notNullable().defaultTo(0);
-            table.integer("total_battles").notNullable().defaultTo(0);
             table
                 .integer("rapper1_id")
                 .unsigned()
@@ -44,13 +43,16 @@ exports.up = async function (knex) {
                 .inTable("rappers")
                 .onUpdate("CASCADE")
                 .onDelete("CASCADE");
+            table.integer("rapper1_wins").notNullable().defaultTo(0);
+            table.integer("rapper2_wins").notNullable().defaultTo(0);
+            table.integer("total_battles").notNullable().defaultTo(0);
             table.timestamp("updated_at").defaultTo(knex.fn.now());
         });
 };
 
 exports.down = async function (knex) {
     await knex.schema
-        .dropTable("rappers")
-        .dropTable("battles")
-        .dropTable("grades");
+        .dropTableIfExists("battles")
+        .dropTableIfExists("grades")
+        .dropTableIfExists("rappers");
 };

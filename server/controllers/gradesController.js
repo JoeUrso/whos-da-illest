@@ -1,82 +1,37 @@
 const Knex = require("knex");
-
 const knexConfig = require("../knexfile");
 const client = Knex(knexConfig);
 
 // SEND GRADES TABLE
-exports.index = (_req, res) => {
-    client("grades")
-        .then((data) => {
-            res.status(200).json(data);
-        })
-        .catch((err) =>
-            res.status(400).send(`Error retrieving grades: ${err}`)
-        );
+exports.index = async (_req, res) => {
+    try {
+        const data = await client("grades");
+        res.status(200).json(data);
+    } catch (err) {
+        res.status(400).send(`Error retrieving grades: ${err}`);
+    }
 };
 
 // SEND AVERAGE GRADE
-exports.AvgGrades = (_req, res) => {
-    client("grades")
-        .then((grades) => {
-            let avgGrades = [];
-
-            for (let i = 0; i < grades.length; i++) {
-                const individualGrade = grades[i];
-
-                let rapperGrades = grades.filter(
-                    (grade) => grade.rapper_id === individualGrade.rapper_id
-                );
-
-                let rapperAvgGrade = () => {
-                    let rapperGradesSum = 0;
-                    let rapperGradesCount = 0;
-                    let rapperId = "";
-
-                    rapperGrades.forEach((grade) => {
-                        rapperGradesSum += grade.grade;
-                        rapperGradesCount++;
-                        rapperId = grade.rapper_id;
-                    });
-
-                    return {
-                        avgGrade: Math.round(
-                            rapperGradesSum / rapperGradesCount
-                        ),
-                        rapper_id: rapperId,
-                    };
-                };
-
-                let foundAvgGrade = rapperAvgGrade();
-
-                avgGrades.push(foundAvgGrade);
-            }
-
-            removeDuplicates = () => {
-                let allAvgGrades = new Set();
-                return avgGrades.filter(
-                    (obj) =>
-                        !allAvgGrades.has(obj["rapper_id"]) &&
-                        allAvgGrades.add(obj["rapper_id"])
-                );
-            };
-
-            let avgGradesNoDuplicates = removeDuplicates();
-            res.status(200).json(avgGradesNoDuplicates);
-        })
-        .catch((err) =>
-            res.status(400).send(`Error retrieving rappers: ${err}`)
-        );
+exports.AvgGrades = async (_req, res) => {
+    try {
+        const avgGrades = await client("grades")
+            .select("rapper_id")
+            .avg("grade as avgGrade")
+            .groupBy("rapper_id");
+        res.status(200).json(avgGrades);
+    } catch (err) {
+        res.status(400).send(`Error calculating average grades: ${err}`);
+    }
 };
 
 // ADD NEW GRADE TO GRADES TABLE
-exports.addNewGrade = (req, res) => {
-    client("grades")
-        .insert(req.body)
-        .then((data) => {
-            res.status(200).json(data);
-        })
-        .catch((err) => {
-            res.status(400).send(`Error adding grade: ${err}`);
-            console.log(err);
-        });
+exports.addNewGrade = async (req, res) => {
+    try {
+        await client("grades").insert(req.body);
+        res.status(200).send("Grade added successfully");
+    } catch (err) {
+        res.status(400).send(`Error adding grade: ${err}`);
+        console.log(err);
+    }
 };

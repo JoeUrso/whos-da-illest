@@ -24,7 +24,14 @@ const GoToBattlesButton = ({ onButtonClick }) => (
 
 const RapperTable = ({ isLoading, rappers }) => {
     if (isLoading) {
-        return <LoadingSpinner size={12} />;
+        return (
+            <section className="homepage__rappers">
+                <h2 className="homepage__subheading">On Da Mic</h2>
+                <div className="homepage__rappers-table">
+                    <LoadingSpinner size={12} />
+                </div>
+            </section>
+        );
     }
 
     return (

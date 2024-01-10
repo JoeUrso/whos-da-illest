@@ -10,19 +10,17 @@ const client = Knex(knexConfig);
 require("dotenv").config();
 
 // SEND BATTLES TABLE
-exports.index = (_req, res) => {
-    client("battles")
-        .then((data) => {
-            res.status(200).json(data);
-        })
-        .catch((err) =>
-            res.status(400).send(`Error retrieving battles: ${err}`)
-        );
+exports.index = async (_req, res) => {
+    try {
+        const data = await client("battles");
+        res.status(200).json(data);
+    } catch (err) {
+        res.status(400).send(`Error retrieving battles: ${err}`);
+    }
 };
 
-const SPOTIFY_URL = "https://api.spotify.com/v1/search?";
-
 // GET TOKEN FROM SPOTIFY API
+const SPOTIFY_URL = "https://api.spotify.com/v1/search?";
 const clientId = process.env.SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET_KEY;
 
@@ -40,63 +38,74 @@ const authOptions = {
     }),
 };
 
-exports.getToken = (_req, res) => {
-    axios(authOptions)
-        .then((response) => {
-            let token = response.data.access_token;
-            res.status(200).json(token);
-        })
-        .catch((err) => res.status(400).send(`Error retrieving token: ${err}`));
+exports.getToken = async (_req, res) => {
+    try {
+        const response = await axios(authOptions);
+        let token = response.data.access_token;
+        res.status(200).json(token);
+    } catch (err) {
+        res.status(400).send(`Error retrieving token: ${err}`);
+    }
 };
 
-exports.getArtistData = (req, res) => {
+// GET ARTIST DATA FROM SPOTIFY API
+exports.getArtistData = async (req, res) => {
     let artistName = req.params.artistName;
 
-    axios(authOptions)
-        .then((response) => {
-            let token = response.data.access_token;
+    try {
+        const tokenResponse = await axios(authOptions);
+        let token = tokenResponse.data.access_token;
 
-            let header = {
-                Authorization: "Bearer " + token,
-                "Content-Type": "application/json",
-            };
+        let header = {
+            Authorization: "Bearer " + token,
+            "Content-Type": "application/json",
+        };
 
-            axios
-                .get(SPOTIFY_URL + `q=artist:${artistName}` + `&type=artist`, {
+        try {
+            const artistResponse = await axios.get(
+                SPOTIFY_URL + `q=artist:${artistName}` + `&type=artist`,
+                {
                     headers: header,
-                })
-                .then((response) => {
-                    console.log(response.data.artists.items[0]);
-                    res.status(200).json(response.data.artists.items[0]);
-                })
-                .catch((err) =>
-                    res.status(400).send(`Error retrieving artist data: ${err}`)
-                );
-        })
-        .catch((err) => res.status(400).send(`Error retrieving token: ${err}`));
+                }
+            );
+
+            console.log(artistResponse.data.artists.items[0]);
+            res.status(200).json(artistResponse.data.artists.items[0]);
+        } catch (err) {
+            res.status(400).send(`Error retrieving artist data: ${err}`);
+        }
+    } catch (err) {
+        res.status(400).send(`Error retrieving token: ${err}`);
+    }
 };
 
 // INCREMENT RAPPER WINS/LOSSES
-exports.incrementRapper1Wins = (req, res) => {
-    client("battles")
-        .where("id", "=", req.body.id)
-        .increment({ rapper1_wins: 1, total_battles: 1 })
-        .then((response) => {
-            res.sendStatus(200);
-        })
-        .catch((err) => {
-            res.status(400).send(`Error incrementing wins: ${err}`);
-        });
+const incrementBattleStats = async (battleId, incrementFields) => {
+    await client("battles")
+        .where("id", "=", battleId)
+        .increment(incrementFields);
 };
 
-exports.incrementRapper2Wins = (req, res) => {
-    client("battles")
-        .where("id", "=", req.body.id)
-        .increment({ rapper2_wins: 1, total_battles: 1 })
-        .then((response) => {
-            res.sendStatus(200);
-        })
-        .catch((err) => {
-            res.status(400).send(`Error incrementing wins: ${err}`);
+exports.incrementRapper1Wins = async (req, res) => {
+    try {
+        await incrementBattleStats(req.body.id, {
+            rapper1_wins: 1,
+            total_battles: 1,
         });
+        res.sendStatus(200);
+    } catch (err) {
+        res.status(400).send(`Error incrementing wins: ${err}`);
+    }
+};
+
+exports.incrementRapper2Wins = async (req, res) => {
+    try {
+        await incrementBattleStats(req.body.id, {
+            rapper2_wins: 1,
+            total_battles: 1,
+        });
+        res.sendStatus(200);
+    } catch (err) {
+        res.status(400).send(`Error incrementing wins: ${err}`);
+    }
 };
