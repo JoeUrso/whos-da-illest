@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../..";
 import classicScratch from "../../assets/sounds/ClassicScratch.mp3";
 import BattleInfo from "../../components/BattleInfo/BattleInfo";
-import { LoadingSpinner } from "../../components/LoadingSpinner/LoadingSpinner";
+import { LoadingSpinner } from "../../components/LoadingPage/LoadingPage";
 import RapperStats from "../../components/RapperStats/RapperStats";
 import "./Homepage.scss";
 
