@@ -6,9 +6,7 @@ const rappersController = require("../controllers/rappersController");
 router.route("/").get(rappersController.index);
 
 // PATCH TO UPDATE RAPPER WINS AND LOSSES
-router.route("/rapper1-wins").patch(rappersController.editRapper1Wins);
-router.route("/rapper1-losses").patch(rappersController.editRapper1Losses);
-router.route("/rapper2-wins").patch(rappersController.editRapper2Wins);
-router.route("/rapper2-losses").patch(rappersController.editRapper2Losses);
+router.route("/rapper-wins").patch(rappersController.editRapperWins);
+router.route("/rapper-losses").patch(rappersController.editRapperLosses);
 
 module.exports = router;
