@@ -2,7 +2,7 @@ const fs = require("fs");
 
 // READ CRITERIA JSON FILE
 function readCriteria() {
-    const data = fs.readFileSync("./data/criteria.json");
+    const data = fs.readFileSync("../data/criteria.json");
     const parsedData = JSON.parse(data);
     return parsedData;
 }
