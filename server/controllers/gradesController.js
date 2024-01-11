@@ -27,6 +27,7 @@ exports.AvgGrades = async (_req, res) => {
 
 // ADD NEW GRADE TO GRADES TABLE
 exports.addNewGrade = async (req, res) => {
+    console.log(req.body);
     try {
         await client("grades").insert(req.body);
         res.status(200).send("Grade added successfully");

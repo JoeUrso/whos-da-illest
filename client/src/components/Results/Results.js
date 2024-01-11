@@ -1,72 +1,86 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useBattleContext } from "../../context/GameContext";
+import { postGrade } from "../../utils/api";
 import "./Results.scss";
 
-export default function Results({
-    rapper1,
-    rapper2,
-    battle,
-    rapper1Grade,
-    rapper2Grade,
-    click3,
-}) {
-    let winner = "";
-    rapper1Grade > rapper2Grade
-        ? (winner = rapper1.name)
-        : (winner = rapper2.name);
+const RapperResult = ({ rapper, grade, isWinner }) => (
+    <div
+        className={`results__rapper-container ${
+            isWinner
+                ? "results__rapper-container--1-wins"
+                : "results__rapper-container--1-loses"
+        }`}
+    >
+        <h3 className="results__name">{rapper.name}</h3>
+        <h3 className="results__result">{isWinner ? "WIN" : "LOSE"}</h3>
+        <p className="results__grade">Your Grade: {grade}</p>
+    </div>
+);
+
+export default function Results() {
+    const {
+        rapper1,
+        rapper2,
+        battle,
+        rapper1Grade,
+        rapper2Grade,
+        setBattle,
+        setRapper1,
+        setRapper2,
+        setRapper1Grade,
+        setRapper2Grade,
+    } = useBattleContext();
+
+    const navigate = useNavigate();
+
+    const handleButtonClick = async () => {
+        await postGrade(rapper1Grade, battle.rapper1_id);
+        await postGrade(rapper2Grade, battle.rapper2_id);
+
+        const winner =
+            rapper1Grade > rapper2Grade ? rapper1.name : rapper2.name;
+
+        // await updateBattleAndRapper(winner, battle, rapper1, rapper2);
+
+        setBattle({});
+        setRapper1({});
+        setRapper2({});
+        setRapper1Grade(null);
+        setRapper2Grade(null);
+
+        navigate("/");
+    };
 
     return (
-        <section className="results">
-            <h2 className="results__heading">Battle Results</h2>
-            <article className="results__main-container">
-                {rapper1Grade > rapper2Grade ? (
-                    <div className="results__rapper-container results__rapper-container--1-wins">
-                        <h3 className="results__name">{rapper1.name}</h3>
-                        <h3 className="results__result">WIN</h3>
-                        <p className="results__grade">
-                            Your Grade: {rapper1Grade}
-                        </p>
-                    </div>
-                ) : (
-                    <div className="results__rapper-container results__rapper-container--1-loses">
-                        <h3 className="results__name">{rapper1.name}</h3>
-                        <h3 className="results__result">LOSE</h3>
-                        <p className="results__grade">
-                            Your Grade: {rapper1Grade}
-                        </p>
-                    </div>
-                )}
-                {rapper1Grade < rapper2Grade ? (
-                    <div className="results__rapper-container results__rapper-container--2-wins">
-                        <h3 className="results__name">{rapper2.name}</h3>
-                        <h3 className="results__result">WIN</h3>
-                        <p className="results__grade">
-                            Your Grade: {rapper2Grade}
-                        </p>
-                    </div>
-                ) : (
-                    <div className="results__rapper-container results__rapper-container--2-loses">
-                        <h3 className="results__name">{rapper2.name}</h3>
-                        <h3 className="results__result">LOSE</h3>
-                        <p className="results__grade">
-                            Your Grade: {rapper2Grade}
-                        </p>
-                    </div>
-                )}
-            </article>
-            <h4 className="results__heading">This Battle</h4>
-            <article className="results__record-container">
-                <p className="results__wins">{battle.rapper1_wins}</p>
-                <p className="results__hyphen">-</p>
-                <p className="results__wins">{battle.rapper2_wins}</p>
-            </article>
-            <button
-                className="results__button"
-                onClick={() => {
-                    click3(rapper1Grade, rapper2Grade, winner);
-                }}
-            >
-                Back to Battles!
-            </button>
-        </section>
+        <main className="battle">
+            <Link to="/" className="battle__heading">
+                WHO'S DA ILLEST?
+            </Link>
+            <section className="results">
+                <h2 className="results__heading">Battle Results</h2>
+                <article className="results__main-container">
+                    <RapperResult
+                        rapper={rapper1}
+                        grade={rapper1Grade}
+                        isWinner={rapper1Grade > rapper2Grade}
+                    />
+                    <RapperResult
+                        rapper={rapper2}
+                        grade={rapper2Grade}
+                        isWinner={rapper1Grade < rapper2Grade}
+                    />
+                </article>
+                <h4 className="results__heading">This Battle</h4>
+                <article className="results__record-container">
+                    <p className="results__wins">{battle.rapper1_wins}</p>
+                    <p className="results__hyphen">-</p>
+                    <p className="results__wins">{battle.rapper2_wins}</p>
+                </article>
+                <button className="results__button" onClick={handleButtonClick}>
+                    Back to Battles!
+                </button>
+            </section>
+        </main>
     );
 }

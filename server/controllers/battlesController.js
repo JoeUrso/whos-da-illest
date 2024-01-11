@@ -69,7 +69,6 @@ exports.getArtistData = async (req, res) => {
                 }
             );
 
-            console.log(artistResponse.data.artists.items[0]);
             res.status(200).json(artistResponse.data.artists.items[0]);
         } catch (err) {
             res.status(400).send(`Error retrieving artist data: ${err}`);

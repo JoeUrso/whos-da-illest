@@ -1,8 +1,11 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useBattleContext } from "../../context/GameContext";
+import { getCriteria } from "../../utils/api";
 import "./GradeRapper.scss";
 
-export default class GradeRapper extends Component {
-    state = {
+const GradeRapper = ({ rapper }) => {
+    const [grades, setGrades] = useState({
         presence: 0,
         flow: 0,
         rhymes: 0,
@@ -13,57 +16,41 @@ export default class GradeRapper extends Component {
         depth: 0,
         hits: 0,
         performance: 0,
-        rapperGrade: null,
-        isRapperSaved: false,
-        isExplainerShown: false,
-    };
+    });
+    const [criteria, setCriteria] = useState([]);
 
-    // DISPLAY THE SLIDERS POINTS
-    displayPoints = (event) => {
-        let name = event.target.name.toLowerCase();
-        let points = event.target.value;
+    const { setRapper1Grade, setRapper2Grade, rapper1, rapper2, battle } =
+        useBattleContext();
+    const navigate = useNavigate();
 
-        this.setState({
-            [name]: points,
+    useEffect(() => {
+        const fetchCriteria = async () => {
+            try {
+                const response = await getCriteria();
+                setCriteria(response);
+            } catch (error) {
+                console.error("Failed to fetch criteria:", error);
+            }
+        };
+
+        fetchCriteria();
+    }, []);
+
+    const displayPoints = (event) => {
+        setGrades({
+            ...grades,
+            [event.target.name.toLowerCase()]: event.target.value,
         });
     };
 
-    // STORES THE USERS GRADE
-    storeGradeAndReset1 = () => {
-        const {
-            presence,
-            flow,
-            rhymes,
-            complexity,
-            articulation,
-            creativity,
-            versatility,
-            depth,
-            hits,
-            performance,
-        } = this.state;
+    const storeGradeAndReset = () => {
+        const totalPoints = Object.values(grades).reduce(
+            (a, b) => a + parseInt(b),
+            0
+        );
+        const grade = totalPoints / 10;
 
-        let pointsArr = [
-            presence,
-            flow,
-            rhymes,
-            complexity,
-            articulation,
-            creativity,
-            versatility,
-            depth,
-            hits,
-            performance,
-        ];
-
-        let parsedPoints = pointsArr.map((point) => {
-            return parseInt(point);
-        });
-
-        let pointsSum = parsedPoints.reduce((a, b) => a + b, 0);
-        let grade = pointsSum / 10;
-
-        this.setState({
+        setGrades({
             presence: 0,
             flow: 0,
             rhymes: 0,
@@ -74,102 +61,63 @@ export default class GradeRapper extends Component {
             depth: 0,
             hits: 0,
             performance: 0,
-            rapperGrade: grade,
-            isRapperSaved: true,
         });
+
+        if (rapper === rapper1) {
+            setRapper1Grade(grade);
+            navigate(`/battle/${battle.id}/rapper2`);
+        } else if (rapper === rapper2) {
+            setRapper2Grade(grade);
+            navigate(`/battle/${battle.id}/results`);
+        }
     };
 
-    render() {
-        const { rapper, criteria, click1, click2, buttonText, isRapper1 } =
-            this.props;
-
-        return (
+    return (
+        <main className="battle">
+            <Link to="/" className="battle__heading">
+                WHO'S DA ILLEST?
+            </Link>
             <section className="grade">
                 <h2 className="grade__rapper-name">{rapper.name}</h2>
                 <article className="grade__container">
-                    {criteria.map((criterion) => {
-                        let key = criterion.criterion.toLowerCase();
-                        return (
-                            <div
-                                className="grade__card-container"
-                                key={criterion.id}
-                            >
-                                <div className="tooltip">
-                                    {criterion.criterion}
-                                    <span className="tooltip-text">
-                                        {criterion.explainer}
-                                    </span>
-                                </div>
-                                <div className="grade__slider-container">
-                                    <input
-                                        type="range"
-                                        name={criterion.criterion}
-                                        min={0}
-                                        max={100}
-                                        defaultValue={0}
-                                        className="grade__slider"
-                                        onChange={this.displayPoints}
-                                    ></input>
-                                </div>
-                                <p className="grade__value">
-                                    {this.state[key]}
-                                </p>
+                    {criteria.map((criterion) => (
+                        <div
+                            className="grade__card-container"
+                            key={criterion.id}
+                        >
+                            <div className="tooltip">
+                                {criterion.criterion}
+                                <span className="tooltip-text">
+                                    {criterion.explainer}
+                                </span>
                             </div>
-                        );
-                    })}
+                            <div className="grade__slider-container">
+                                <input
+                                    type="range"
+                                    name={criterion.criterion}
+                                    min={0}
+                                    max={100}
+                                    value={
+                                        grades[
+                                            criterion.criterion.toLowerCase()
+                                        ] || 0
+                                    }
+                                    className="grade__slider"
+                                    onChange={displayPoints}
+                                />
+                            </div>
+                            <p className="grade__value">
+                                {grades[criterion.criterion.toLowerCase()]}
+                            </p>
+                        </div>
+                    ))}
                 </article>
-
-                {isRapper1 === true && (
-                    <>
-                        {this.state.isRapperSaved === false && (
-                            <button
-                                className="grade__button"
-                                onClick={this.storeGradeAndReset1}
-                            >
-                                SAVE YA GRADE!
-                            </button>
-                        )}
-
-                        {this.state.isRapperSaved === true && (
-                            <button
-                                className="grade__button"
-                                onClick={() => {
-                                    click1(this.state.rapperGrade);
-                                    this.setState({
-                                        isRapper1Done: true,
-                                    });
-                                }}
-                            >
-                                {buttonText}
-                            </button>
-                        )}
-                    </>
-                )}
-
-                {isRapper1 === false && (
-                    <>
-                        {this.state.isRapperSaved === false && (
-                            <button
-                                className="grade__button"
-                                onClick={this.storeGradeAndReset1}
-                            >
-                                SAVE YA GRADE!
-                            </button>
-                        )}
-
-                        {this.state.isRapperSaved === true && (
-                            <button
-                                className="grade__button"
-                                onClick={() => {
-                                    click2(this.state.rapperGrade);
-                                }}
-                            >
-                                {buttonText}
-                            </button>
-                        )}
-                    </>
-                )}
+                <button className="grade__button" onClick={storeGradeAndReset}>
+                    Drop the Mic!
+                </button>
             </section>
-        );
-    }
-}
+        </main>
+    );
+};
+
+export default GradeRapper;

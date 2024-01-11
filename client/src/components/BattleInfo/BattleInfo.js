@@ -1,13 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useBattleContext } from "../../context/GameContext";
 import "./BattleInfo.scss";
 
 export default function BattleInfo({ battle }) {
+    const { setRapper1, setRapper2, setBattle } = useBattleContext();
+
+    const handleChooseBattle = () => {
+        setBattle(battle);
+        setRapper1(battle.rapper1_name);
+        setRapper2(battle.rapper2_name);
+    };
+
     return (
         <Link
             className="battle-info"
             key={battle.id}
-            to={"/battle/" + battle.id}
+            to={"/battle/" + battle.id + "/start"}
+            onClick={handleChooseBattle}
         >
             <article className="battle-info__container">
                 <div className="battle-info__name-container">

@@ -9,6 +9,7 @@ export default function RapperInfo({ rapper }) {
                 <img
                     className="rapper-info__image"
                     src={rapper.images[2].url}
+                    alt=""
                 ></img>
                 <div className="rapper-info__info-container">
                     <h4 className="rapper-info__info-headings">

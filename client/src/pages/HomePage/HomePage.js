@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "../..";
@@ -6,9 +5,8 @@ import classicScratch from "../../assets/sounds/ClassicScratch.mp3";
 import BattleInfo from "../../components/BattleInfo/BattleInfo";
 import { LoadingSpinner } from "../../components/LoadingPage/LoadingPage";
 import RapperStats from "../../components/RapperStats/RapperStats";
+import { fetchBattles, fetchRapperGrades, fetchRappers } from "../../utils/api";
 import "./Homepage.scss";
-
-const API_URL = process.env.API_URL || "http://localhost:8080";
 
 const HomePageHeading = () => (
     <Link to="/" className="homepage__heading">
@@ -52,7 +50,7 @@ const RapperTable = ({ isLoading, rappers }) => {
                         <RapperStats
                             key={rapper.id}
                             rapper={rapper}
-                            avgGrade={rapper.grade}
+                            avgGrade={Math.round(rapper.grade)}
                         />
                     ))}
             </div>
@@ -98,44 +96,22 @@ const HomePage = () => {
     };
 
     useEffect(() => {
-        const fetchRappersAndGrades = async () => {
+        const fetchData = async () => {
             try {
-                const responseRappers = await axios.get(API_URL + "/rappers");
-                const rappersData = responseRappers.data;
-
-                const responseGrades = await axios.get(
-                    API_URL + "/grades/avg-grades"
-                );
-                const gradesData = responseGrades.data;
-
-                const rappersWithGrades = rappersData.map((rapper) => {
-                    const foundGrade = gradesData.find(
-                        (grade) => grade.rapper_id === rapper.id
-                    );
-                    return {
-                        ...rapper,
-                        grade: foundGrade ? foundGrade.avgGrade : null,
-                    };
-                });
+                const rappersData = await fetchRappers();
+                const rappersWithGrades = await fetchRapperGrades(rappersData);
+                const battlesWithRapperNames = await fetchBattles(rappersData);
 
                 setRappers(rappersWithGrades);
+                setBattles(battlesWithRapperNames);
                 setIsLoading(false);
             } catch (error) {
-                console.error("Failed to fetch rappers and grades:", error);
+                //TODO set error state? setError(error.message);
+                alert(error.message);
             }
         };
 
-        const fetchBattles = async () => {
-            try {
-                const response = await axios.get(API_URL + "/battles");
-                setBattles(response.data);
-            } catch (error) {
-                console.error("Failed to fetch battles:", error);
-            }
-        };
-
-        fetchRappersAndGrades();
-        fetchBattles();
+        fetchData();
     }, []);
 
     return (

@@ -1,10 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import { GameProvider } from "./context/GameContext";
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <GameProvider>
+            <App />
+        </GameProvider>
     </React.StrictMode>,
     document.getElementById("root")
 );
