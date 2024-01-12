@@ -57,36 +57,6 @@ export const fetchBattles = async (rappersData) => {
     }
 };
 
-export const postGrade = async (grade, rapperId) => {
-    const newGrade = {
-        // TODO use a better id generator
-        id: Math.floor(Math.random() * 1000000),
-        grade: grade,
-        rapper_id: rapperId,
-    };
-    return axios.post(API_URL + "/grades", newGrade);
-};
-
-export const updateBattleAndRapper = async (
-    winner,
-    battle,
-    rapper1,
-    rapper2
-) => {
-    let winnerUrl, loserUrl;
-    if (winner.toLowerCase() === rapper1.name.toLowerCase()) {
-        winnerUrl = "/rappers/rapper1-wins";
-        loserUrl = "/rappers/rapper2-losses";
-    } else {
-        winnerUrl = "/rappers/rapper2-wins";
-        loserUrl = "/rappers/rapper1-losses";
-    }
-
-    await axios.patch(API_URL + "/battles/" + winner, battle);
-    await axios.patch(API_URL + winnerUrl, battle);
-    return axios.patch(API_URL + loserUrl, battle);
-};
-
 export const getBattle = async (battleId) => {
     const response = await axios.get(API_URL + "/battles");
     const battles = response.data;
@@ -103,4 +73,42 @@ export const getRapperData = async (rapperName) => {
 export const getCriteria = async () => {
     const response = await axios.get(API_URL + "/criteria");
     return response.data;
+};
+
+export const postGrade = async (grade, rapperId) => {
+    const newGrade = {
+        // TODO use a better id generator
+        id: Math.floor(Math.random() * 1000000),
+        grade: grade,
+        rapper_id: rapperId,
+    };
+    return axios.post(API_URL + "/grades", newGrade);
+};
+
+export const updateRapperStats = async (winnerId, loserId) => {
+    try {
+        await axios.patch(`${API_URL}/rappers/rapper-wins`, {
+            rapper_id: winnerId,
+        });
+        await axios.patch(`${API_URL}/rappers/rapper-losses`, {
+            rapper_id: loserId,
+        });
+    } catch (error) {
+        console.error(`Error updating rapper stats: ${error}`);
+    }
+};
+
+export const updateBattleStats = async (
+    battleId,
+    winnerId,
+    rapper1,
+    rapper2
+) => {
+    if (winnerId === rapper1.id) {
+        await axios.patch(API_URL + "/battles/rapper1", { id: battleId });
+    } else if (winnerId === rapper2.id) {
+        await axios.patch(API_URL + "/battles/rapper2", { id: battleId });
+    } else {
+        throw new Error("Invalid winnerId");
+    }
 };
