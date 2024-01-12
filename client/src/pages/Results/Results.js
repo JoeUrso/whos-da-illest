@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import classicScratch from "../../assets/sounds/ClassicScratch.mp3";
 import { useBattleContext } from "../../context/GameContext";
 import { postGrade, updateRapperStats } from "../../utils/api";
 import "./Results.scss";
@@ -34,6 +35,8 @@ export default function Results() {
 
     const navigate = useNavigate();
 
+    const classicScratchAudio = new Audio(classicScratch);
+
     const handleButtonClick = async () => {
         try {
             const { rapper1_id, rapper2_id } = battle;
@@ -52,6 +55,7 @@ export default function Results() {
             setRapper1Grade(null);
             setRapper2Grade(null);
 
+            classicScratchAudio.play();
             navigate("/");
         } catch (error) {
             console.error(`Error handling button click: ${error}`);

@@ -5,11 +5,11 @@ import {
     Routes,
 } from "react-router-dom";
 import "./App.scss";
-import BattleStart from "./components/BattleStart/BattleStart";
-import GradeRapper from "./components/GradeRapper/GradeRapper";
-import Results from "./components/Results/Results";
 import { useBattleContext } from "./context/GameContext";
+import BattleStart from "./pages/BattleStart/BattleStart";
+import GradeRapper from "./pages/GradeRapper/GradeRapper";
 import HomePage from "./pages/HomePage/HomePage";
+import Results from "./pages/Results/Results";
 
 function App() {
     const { rapper1, rapper2 } = useBattleContext();

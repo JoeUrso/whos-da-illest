@@ -1,8 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import scratch1 from "../../assets/sounds/Scratch1.mp3";
+import scratch2 from "../../assets/sounds/Scratch2.mp3";
 import { useBattleContext } from "../../context/GameContext";
 import { getCriteria } from "../../utils/api";
 import "./GradeRapper.scss";
+
+const Criteria = ({ criterion, grades, displayPoints }) => (
+    <div className="grade__card-container" key={criterion.id}>
+        <div className="tooltip">
+            {criterion.criterion}
+            <span className="tooltip-text">{criterion.explainer}</span>
+        </div>
+        <div className="grade__slider-container">
+            <input
+                type="range"
+                name={criterion.criterion}
+                min={0}
+                max={100}
+                value={grades[criterion.criterion.toLowerCase()] || 0}
+                className="grade__slider"
+                onChange={displayPoints}
+            />
+        </div>
+        <p className="grade__value">
+            {grades[criterion.criterion.toLowerCase()]}
+        </p>
+    </div>
+);
 
 const GradeRapper = ({ rapper }) => {
     const [grades, setGrades] = useState({
@@ -22,6 +47,9 @@ const GradeRapper = ({ rapper }) => {
     const { setRapper1Grade, setRapper2Grade, rapper1, rapper2, battle } =
         useBattleContext();
     const navigate = useNavigate();
+
+    const scratch1Audio = new Audio(scratch1);
+    const scratch2Audio = new Audio(scratch2);
 
     useEffect(() => {
         const fetchCriteria = async () => {
@@ -64,12 +92,16 @@ const GradeRapper = ({ rapper }) => {
         });
 
         if (rapper === rapper1) {
-            setRapper1Grade(grade);
+            scratch1Audio.play();
+            setRapper1Grade(Math.round(grade));
             navigate(`/battle/${battle.id}/rapper2`);
         } else if (rapper === rapper2) {
-            setRapper2Grade(grade);
+            scratch2Audio.play();
+            setRapper2Grade(Math.round(grade));
             navigate(`/battle/${battle.id}/results`);
         }
+
+        window.scrollTo(0, 0);
     };
 
     return (
@@ -81,35 +113,12 @@ const GradeRapper = ({ rapper }) => {
                 <h2 className="grade__rapper-name">{rapper.name}</h2>
                 <article className="grade__container">
                     {criteria.map((criterion) => (
-                        <div
-                            className="grade__card-container"
+                        <Criteria
                             key={criterion.id}
-                        >
-                            <div className="tooltip">
-                                {criterion.criterion}
-                                <span className="tooltip-text">
-                                    {criterion.explainer}
-                                </span>
-                            </div>
-                            <div className="grade__slider-container">
-                                <input
-                                    type="range"
-                                    name={criterion.criterion}
-                                    min={0}
-                                    max={100}
-                                    value={
-                                        grades[
-                                            criterion.criterion.toLowerCase()
-                                        ] || 0
-                                    }
-                                    className="grade__slider"
-                                    onChange={displayPoints}
-                                />
-                            </div>
-                            <p className="grade__value">
-                                {grades[criterion.criterion.toLowerCase()]}
-                            </p>
-                        </div>
+                            criterion={criterion}
+                            grades={grades}
+                            displayPoints={displayPoints}
+                        />
                     ))}
                 </article>
                 <button className="grade__button" onClick={storeGradeAndReset}>

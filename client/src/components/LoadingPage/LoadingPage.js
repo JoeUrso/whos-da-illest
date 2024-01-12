@@ -1,5 +1,6 @@
 import "./LoadingPage.scss";
 
+// TODO this currently looks like shit in the homepage, fix it
 export const LoadingSpinner = (size) => {
     return (
         <div role="status" className="loading-spinner">

@@ -1,9 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import watchThis from "../../assets/sounds/WatchThis.mp3";
 import { useBattleContext } from "../../context/GameContext";
 import { getRapperData } from "../../utils/api";
-import RapperInfo from "../RapperInfo/RapperInfo";
 import "./BattleStart.scss";
+
+const RapperInfo = ({ rapper }) => {
+    return (
+        <section className="rapper-info">
+            <h3 className="rapper-info__name">{rapper.name}</h3>
+            <article className="rapper-info__container">
+                <img
+                    className="rapper-info__image"
+                    src={rapper.images[2].url}
+                    alt=""
+                ></img>
+                <div className="rapper-info__info-container">
+                    <h4 className="rapper-info__info-headings">
+                        Spotify Followers
+                    </h4>
+                    <p className="rapper-info__info">
+                        {rapper.followers.total.toLocaleString("en-US")}
+                    </p>
+                    <h4 className="rapper-info__info-headings">
+                        Spotify Popularity Rating
+                    </h4>
+                    <p className="rapper-info__info">{rapper.popularity}</p>
+                    <h4 className="rapper-info__info-headings">SubGenre</h4>
+                    <p className="rapper-info__info rapper-info__info--genre">
+                        {rapper.genres[0]}
+                    </p>
+                </div>
+            </article>
+        </section>
+    );
+};
 
 const BattleStart = () => {
     const { battle, rapper1, rapper2, setRapper1, setRapper2 } =
@@ -11,6 +42,8 @@ const BattleStart = () => {
     const navigate = useNavigate();
 
     const [loading, setLoading] = useState(true);
+
+    const watchThisAudio = new Audio(watchThis);
 
     useEffect(() => {
         const fetchRapperData = async () => {
@@ -25,6 +58,8 @@ const BattleStart = () => {
     }, []);
 
     const startBattle = () => {
+        watchThisAudio.play();
+
         navigate(`/battle/${battle.id}/rapper1`);
     };
 
