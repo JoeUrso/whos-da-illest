@@ -104,9 +104,9 @@ export const updateBattleStats = async (
     rapper1,
     rapper2
 ) => {
-    if (winnerId === rapper1.id) {
+    if (winnerId === rapper1) {
         await axios.patch(API_URL + "/battles/rapper1", { id: battleId });
-    } else if (winnerId === rapper2.id) {
+    } else if (winnerId === rapper2) {
         await axios.patch(API_URL + "/battles/rapper2", { id: battleId });
     } else {
         throw new Error("Invalid winnerId");

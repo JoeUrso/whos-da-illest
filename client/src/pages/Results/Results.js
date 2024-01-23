@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import classicScratch from "../../assets/sounds/ClassicScratch.mp3";
 import { useBattleContext } from "../../context/GameContext";
-import { postGrade, updateRapperStats } from "../../utils/api";
+import {
+    getBattle,
+    postGrade,
+    updateBattleStats,
+    updateRapperStats,
+} from "../../utils/api";
 import "./Results.scss";
 
 const RapperResult = ({ rapper, grade, isWinner }) => (
@@ -37,29 +42,38 @@ export default function Results() {
 
     const classicScratchAudio = new Audio(classicScratch);
 
+    useEffect(() => {
+        (async () => {
+            try {
+                const { rapper1_id, rapper2_id, id } = battle;
+                await postGrade(Math.round(rapper1Grade), rapper1_id);
+                await postGrade(Math.round(rapper2Grade), rapper2_id);
+
+                const winner =
+                    rapper1Grade > rapper2Grade ? rapper1_id : rapper2_id;
+                const loser =
+                    rapper1Grade < rapper2Grade ? rapper1_id : rapper2_id;
+
+                await updateRapperStats(winner, loser);
+                await updateBattleStats(id, winner, rapper1_id, rapper2_id);
+
+                const updatedBattle = await getBattle(id);
+                setBattle(updatedBattle);
+            } catch (error) {
+                console.error(`Error handling button click: ${error}`);
+            }
+        })();
+    }, []);
+
     const handleButtonClick = async () => {
-        try {
-            const { rapper1_id, rapper2_id } = battle;
-            await postGrade(Math.round(rapper1Grade), rapper1_id);
-            await postGrade(Math.round(rapper2Grade), rapper2_id);
+        setBattle({});
+        setRapper1({});
+        setRapper2({});
+        setRapper1Grade(null);
+        setRapper2Grade(null);
 
-            const winner =
-                rapper1Grade > rapper2Grade ? rapper1_id : rapper2_id;
-            const loser = rapper1Grade < rapper2Grade ? rapper1_id : rapper2_id;
-
-            await updateRapperStats(winner, loser);
-
-            setBattle({});
-            setRapper1({});
-            setRapper2({});
-            setRapper1Grade(null);
-            setRapper2Grade(null);
-
-            classicScratchAudio.play();
-            navigate("/");
-        } catch (error) {
-            console.error(`Error handling button click: ${error}`);
-        }
+        classicScratchAudio.play();
+        navigate("/");
     };
 
     return (

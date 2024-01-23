@@ -2,14 +2,14 @@ module.exports = [
     {
         id: 1,
         name: "Jay-Z",
-        wins: 34,
-        losses: 12,
+        wins: 0,
+        losses: 0,
     },
     {
         id: 2,
         name: "Drake",
-        wins: 45,
-        losses: 15,
+        wins: 0,
+        losses: 0,
     },
     {
         id: 3,

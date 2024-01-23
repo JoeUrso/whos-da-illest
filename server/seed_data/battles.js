@@ -4,9 +4,9 @@ module.exports = [
         name: "Battle of the Chart Toppers",
         rapper1_id: 1,
         rapper2_id: 2,
-        rapper1_wins: 34,
-        rapper2_wins: 17,
-        total_battles: 51,
+        rapper1_wins: 0,
+        rapper2_wins: 0,
+        total_battles: 0,
     },
     {
         id: 2,

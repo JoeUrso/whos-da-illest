@@ -1,35 +1,5 @@
 module.exports = [
     {
-        id: 1,
-        grade: 88,
-        rapper_id: 1,
-    },
-    {
-        id: 2,
-        grade: 89,
-        rapper_id: 1,
-    },
-    {
-        id: 3,
-        grade: 96,
-        rapper_id: 1,
-    },
-    {
-        id: 4,
-        grade: 88,
-        rapper_id: 2,
-    },
-    {
-        id: 5,
-        grade: 90,
-        rapper_id: 2,
-    },
-    {
-        id: 6,
-        grade: 91,
-        rapper_id: 2,
-    },
-    {
         id: 7,
         grade: 88,
         rapper_id: 3,
