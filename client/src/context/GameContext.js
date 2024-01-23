@@ -27,12 +27,10 @@ export const GameProvider = ({ children }) => {
     };
 
     const setRapper1Grade = (newRapper1Grade) => {
-        console.log("newRapper1Grade", newRapper1Grade);
         _setRapper1Grade(newRapper1Grade);
     };
 
     const setRapper2Grade = (newRapper2Grade) => {
-        console.log("newRapper2Grade", newRapper2Grade);
         _setRapper2Grade(newRapper2Grade);
     };
 

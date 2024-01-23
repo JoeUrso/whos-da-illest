@@ -84,6 +84,7 @@ export default function Results() {
             <section className="results">
                 <h2 className="results__heading">Battle Results</h2>
                 <article className="results__main-container">
+                    {/* TODO fix the animations, sometimes the winner gets bumped in the wrong direction */}
                     <RapperResult
                         rapper={rapper1}
                         grade={rapper1Grade}
