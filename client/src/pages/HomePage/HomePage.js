@@ -1,3 +1,4 @@
+import { SignInButton, useUser } from "@clerk/clerk-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "../..";
@@ -69,7 +70,7 @@ const RapperTable = ({ isLoading, rappers }) => {
     );
 };
 
-const BattleInfo = ({ battle }) => {
+const BattleInfo = ({ battle, user }) => {
     const { setRapper1, setRapper2, setBattle } = useBattleContext();
 
     const handleChooseBattle = () => {
@@ -78,12 +79,14 @@ const BattleInfo = ({ battle }) => {
         setRapper2(battle.rapper2_name);
     };
 
+    const BattleLink = user ? Link : "div";
+
     return (
-        <Link
-            className="battle-info"
+        <BattleLink
+            className={`battle-info ${user ? "" : "disabled"}`}
             key={battle.id}
-            to={"/battle/" + battle.id + "/start"}
-            onClick={handleChooseBattle}
+            to={user ? "/battle/" + battle.id + "/start" : ""}
+            onClick={user ? handleChooseBattle : null}
         >
             <article className="battle-info__container">
                 <div className="battle-info__name-container">
@@ -107,11 +110,13 @@ const BattleInfo = ({ battle }) => {
                     </div>
                 </div>
             </article>
-        </Link>
+        </BattleLink>
     );
 };
 
-const BattleTable = ({ battles, scrollToDiv }) => (
+const BattleTable = ({ battles, scrollToDiv }) => {
+    const { user } = useUser();
+
     <section className="homepage__battles" ref={scrollToDiv}>
         <h2 className="homepage__subheading">Battle Board</h2>
         <p className="homepage__click-to-play">click a battle to play</p>
@@ -127,11 +132,11 @@ const BattleTable = ({ battles, scrollToDiv }) => (
                 .sort((a, b) => b.total_battles - a.total_battles)
                 .slice(0, 10)
                 .map((battle) => (
-                    <BattleInfo key={battle.id} battle={battle} />
+                    <BattleInfo key={battle.id} battle={battle} user={user} />
                 ))}
         </div>
-    </section>
-);
+    </section>;
+};
 
 const HomePage = () => {
     const [rappers, setRappers] = useState([]);
@@ -145,6 +150,8 @@ const HomePage = () => {
         scrollToDiv.current.scrollIntoView({ behavior: "smooth" });
         classicScratchAudio.play();
     };
+
+    const { user } = useUser();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -168,12 +175,16 @@ const HomePage = () => {
     return (
         <main className="homepage">
             <HomePageHeading />
-            <GoToBattlesButton
-                onButtonClick={() => {
-                    scrollHandler();
-                    classicScratchAudio.play();
-                }}
-            />
+            {user ? (
+                <GoToBattlesButton
+                    onButtonClick={() => {
+                        scrollHandler();
+                        classicScratchAudio.play();
+                    }}
+                />
+            ) : (
+                <SignInButton />
+            )}
             <RapperTable isLoading={isLoading} rappers={rappers} />
             <BattleTable battles={battles} scrollToDiv={scrollToDiv} />
         </main>
