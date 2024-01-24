@@ -7,6 +7,7 @@ module.exports = [
         rapper1_wins: 0,
         rapper2_wins: 0,
         total_battles: 0,
+        created_by: "user_1",
     },
     {
         id: 2,
@@ -16,6 +17,7 @@ module.exports = [
         rapper1_wins: 21,
         rapper2_wins: 13,
         total_battles: 34,
+        created_by: "user_1",
     },
     {
         id: 3,
@@ -25,6 +27,7 @@ module.exports = [
         rapper1_wins: 24,
         rapper2_wins: 19,
         total_battles: 43,
+        created_by: "user_1",
     },
     {
         id: 4,
@@ -34,6 +37,7 @@ module.exports = [
         rapper1_wins: 19,
         rapper2_wins: 27,
         total_battles: 46,
+        created_by: "user_1",
     },
     {
         id: 5,
@@ -43,5 +47,6 @@ module.exports = [
         rapper1_wins: 25,
         rapper2_wins: 19,
         total_battles: 44,
+        created_by: "user_1",
     },
 ];

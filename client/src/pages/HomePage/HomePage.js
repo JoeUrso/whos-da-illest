@@ -1,4 +1,4 @@
-import { SignInButton, useUser } from "@clerk/clerk-react";
+import { SignInButton, SignOutButton, useUser } from "@clerk/clerk-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "../..";
@@ -116,26 +116,35 @@ const BattleInfo = ({ battle, user }) => {
 
 const BattleTable = ({ battles, scrollToDiv }) => {
     const { user } = useUser();
+    console.log(user);
 
-    <section className="homepage__battles" ref={scrollToDiv}>
-        <h2 className="homepage__subheading">Battle Board</h2>
-        <p className="homepage__click-to-play">click a battle to play</p>
-        <div className="homepage__battles-table homepage__battles-table--mobile">
-            <div className="homepage__battles-table-headings">
-                <h3 className="homepage__battles-table-name">NAME</h3>
-                <h3 className="homepage__battles-table-rappers">RAPPERS</h3>
-                <h3 className="homepage__battles-table-battles-fought">
-                    FOUGHT
-                </h3>
+    return (
+        <section className="homepage__battles" ref={scrollToDiv}>
+            <h2 className="homepage__subheading">Battle Board</h2>
+            <p className="homepage__click-to-play">
+                {user ? "click a battle to play" : "sign in to play"}
+            </p>
+            <div className="homepage__battles-table homepage__battles-table--mobile">
+                <div className="homepage__battles-table-headings">
+                    <h3 className="homepage__battles-table-name">NAME</h3>
+                    <h3 className="homepage__battles-table-rappers">RAPPERS</h3>
+                    <h3 className="homepage__battles-table-battles-fought">
+                        FOUGHT
+                    </h3>
+                </div>
+                {battles
+                    .sort((a, b) => b.total_battles - a.total_battles)
+                    .slice(0, 10)
+                    .map((battle) => (
+                        <BattleInfo
+                            key={battle.id}
+                            battle={battle}
+                            user={user}
+                        />
+                    ))}
             </div>
-            {battles
-                .sort((a, b) => b.total_battles - a.total_battles)
-                .slice(0, 10)
-                .map((battle) => (
-                    <BattleInfo key={battle.id} battle={battle} user={user} />
-                ))}
-        </div>
-    </section>;
+        </section>
+    );
 };
 
 const HomePage = () => {
@@ -176,14 +185,19 @@ const HomePage = () => {
         <main className="homepage">
             <HomePageHeading />
             {user ? (
-                <GoToBattlesButton
-                    onButtonClick={() => {
-                        scrollHandler();
-                        classicScratchAudio.play();
-                    }}
-                />
+                <>
+                    <GoToBattlesButton
+                        onButtonClick={() => {
+                            scrollHandler();
+                            classicScratchAudio.play();
+                        }}
+                    />
+                    <SignOutButton />
+                </>
             ) : (
-                <SignInButton />
+                <SignInButton mode="modal">
+                    <button className="homepage__button">Sign In</button>
+                </SignInButton>
             )}
             <RapperTable isLoading={isLoading} rappers={rappers} />
             <BattleTable battles={battles} scrollToDiv={scrollToDiv} />

@@ -95,6 +95,10 @@
         }
 
         @include animate(vibrate, 0.5s, linear, infinite);
+
+        &.disabled {
+            animation: none;
+        }
     }
 
     &__container {
