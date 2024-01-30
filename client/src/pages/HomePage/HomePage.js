@@ -5,7 +5,12 @@ import "../..";
 import classicScratch from "../../assets/sounds/ClassicScratch.mp3";
 import { LoadingSpinner } from "../../components/LoadingPage/LoadingPage";
 import { useBattleContext } from "../../context/GameContext";
-import { fetchBattles, fetchRapperGrades, fetchRappers } from "../../utils/api";
+import {
+    addUserToDatabase,
+    fetchBattles,
+    fetchRapperGrades,
+    fetchRappers,
+} from "../../utils/api";
 import "./Homepage.scss";
 
 const HomePageHeading = () => (
@@ -116,7 +121,6 @@ const BattleInfo = ({ battle, user }) => {
 
 const BattleTable = ({ battles, scrollToDiv }) => {
     const { user } = useUser();
-    console.log(user);
 
     return (
         <section className="homepage__battles" ref={scrollToDiv}>
@@ -180,6 +184,20 @@ const HomePage = () => {
 
         fetchData();
     }, []);
+
+    useEffect(() => {
+        if (user) {
+            const { id, firstName, lastName, primaryEmailAddress } = user;
+            const newUser = {
+                id: id,
+                first_name: firstName,
+                last_name: lastName,
+                email_address: primaryEmailAddress.emailAddress,
+            };
+
+            addUserToDatabase(newUser);
+        }
+    }, [user]);
 
     return (
         <main className="homepage">

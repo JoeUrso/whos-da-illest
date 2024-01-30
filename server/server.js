@@ -5,6 +5,7 @@ const battlesRoutes = require("./routes/battlesRoute");
 const rappersRoutes = require("./routes/rappersRoute");
 const gradesRoutes = require("./routes/gradesRoute");
 const criteriaRoutes = require("./routes/criteriaRoute");
+const usersRoutes = require("./routes/usersRoute");
 const Knex = require("knex");
 
 const knexConfig = require("./knexfile");
@@ -23,6 +24,7 @@ app.use("/battles", battlesRoutes);
 app.use("/rappers", rappersRoutes);
 app.use("/grades", gradesRoutes);
 app.use("/criteria", criteriaRoutes);
+app.use("/users", usersRoutes);
 
 // LISTEN TO SERVER
 app.listen(PORT, () => {

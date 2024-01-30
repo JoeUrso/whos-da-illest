@@ -112,3 +112,11 @@ export const updateBattleStats = async (
         throw new Error("Invalid winnerId");
     }
 };
+
+export const addUserToDatabase = async (user) => {
+    try {
+        await axios.post(API_URL + "/users", user);
+    } catch (error) {
+        console.error(`Error updating user: ${error}`);
+    }
+};
