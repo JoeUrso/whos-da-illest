@@ -53,8 +53,6 @@ export const fetchBattles = async (rappersData) => {
             };
         });
 
-        console.log("api", battlesWithRapperNames);
-
         return { data: battlesWithRapperNames, error: null };
     } catch (error) {
         return { data: null, error: `Failed to fetch battles: ${error}` };
@@ -62,7 +60,6 @@ export const fetchBattles = async (rappersData) => {
 };
 
 export const getBattle = async (battleId) => {
-    console.log("api", battleId);
     try {
         const response = await axios.get(`${API_URL}/battles/${battleId}`);
         return { data: response.data, error: null };

@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "../..";
 import classicScratch from "../../assets/sounds/ClassicScratch.mp3";
-import { LoadingSpinner } from "../../components/LoadingPage/LoadingPage";
 import { useBattleContext } from "../../context/GameContext";
 import {
     addUserToDatabase,
@@ -38,13 +37,12 @@ const RapperStats = ({ rapper, avgGrade }) => {
 };
 
 const RapperTable = ({ isLoading, rappers }) => {
+    // TODO better loading state
     if (isLoading) {
         return (
             <section className="homepage__rappers">
                 <h2 className="homepage__subheading">On Da Mic</h2>
-                <div className="homepage__rappers-table">
-                    <LoadingSpinner size={12} />
-                </div>
+                <div className="homepage__rappers-table">loading...</div>
             </section>
         );
     }
@@ -121,7 +119,6 @@ const BattleInfo = ({ battle, user }) => {
 
 const BattleTable = ({ battles, scrollToDiv }) => {
     const { user } = useUser();
-    console.log(battles);
 
     return (
         <section className="homepage__battles" ref={scrollToDiv}>
