@@ -15,6 +15,18 @@ exports.index = async (_req, res) => {
     }
 };
 
+// SEND BATTLE BY ID
+exports.getBattleById = async (req, res) => {
+    try {
+        const battle = await client("battles")
+            .where("id", "=", req.params.id)
+            .first();
+        res.status(200).json(battle);
+    } catch (err) {
+        res.status(400).send(`Error retrieving battle: ${err}`);
+    }
+};
+
 // GET TOKEN FROM SPOTIFY API
 exports.getToken = async (_req, res) => {
     try {

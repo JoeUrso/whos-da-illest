@@ -1,3 +1,4 @@
+import { useUser } from "@clerk/clerk-react";
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import classicScratch from "../../assets/sounds/ClassicScratch.mp3";
@@ -42,12 +43,15 @@ export default function Results() {
 
     const classicScratchAudio = new Audio(classicScratch);
 
+    const { user } = useUser();
+
     useEffect(() => {
         (async () => {
             try {
                 const { rapper1_id, rapper2_id, id } = battle;
-                await postGrade(Math.round(rapper1Grade), rapper1_id);
-                await postGrade(Math.round(rapper2Grade), rapper2_id);
+                await postGrade(Math.round(rapper1Grade), rapper1_id, user.id);
+                await postGrade(Math.round(rapper2Grade), rapper2_id, user.id);
+                // TODO UPDATE USER STATS
 
                 const winner =
                     rapper1Grade > rapper2Grade ? rapper1_id : rapper2_id;
@@ -58,9 +62,9 @@ export default function Results() {
                 await updateBattleStats(id, winner, rapper1_id, rapper2_id);
 
                 const updatedBattle = await getBattle(id);
-                setBattle(updatedBattle);
+                setBattle(updatedBattle.data);
             } catch (error) {
-                console.error(`Error handling button click: ${error}`);
+                throw new Error(`Error handling button click: ${error}`);
             }
         })();
     }, []);

@@ -49,8 +49,8 @@ const BattleStart = () => {
         const fetchRapperData = async () => {
             const rapper1Data = await getRapperData(battle.rapper1_name);
             const rapper2Data = await getRapperData(battle.rapper2_name);
-            setRapper1(rapper1Data);
-            setRapper2(rapper2Data);
+            setRapper1(rapper1Data.data);
+            setRapper2(rapper2Data.data);
             setLoading(false);
         };
 

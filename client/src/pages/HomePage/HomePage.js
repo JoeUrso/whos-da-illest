@@ -121,6 +121,7 @@ const BattleInfo = ({ battle, user }) => {
 
 const BattleTable = ({ battles, scrollToDiv }) => {
     const { user } = useUser();
+    console.log(battles);
 
     return (
         <section className="homepage__battles" ref={scrollToDiv}>
@@ -170,11 +171,15 @@ const HomePage = () => {
         const fetchData = async () => {
             try {
                 const rappersData = await fetchRappers();
-                const rappersWithGrades = await fetchRapperGrades(rappersData);
-                const battlesWithRapperNames = await fetchBattles(rappersData);
+                const rappersWithGrades = await fetchRapperGrades(
+                    rappersData.data
+                );
+                const battlesWithRapperNames = await fetchBattles(
+                    rappersData.data
+                );
 
-                setRappers(rappersWithGrades);
-                setBattles(battlesWithRapperNames);
+                setRappers(rappersWithGrades.data);
+                setBattles(battlesWithRapperNames.data);
                 setIsLoading(false);
             } catch (error) {
                 //TODO set error state? setError(error.message);
