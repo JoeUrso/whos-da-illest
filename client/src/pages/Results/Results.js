@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import classicScratch from "../../assets/sounds/ClassicScratch.mp3";
 import { useBattleContext } from "../../context/GameContext";
 import {
+    addUserBattle,
     getBattle,
     postGrade,
     updateBattleStats,
@@ -51,7 +52,7 @@ export default function Results() {
                 const { rapper1_id, rapper2_id, id } = battle;
                 await postGrade(Math.round(rapper1Grade), rapper1_id, user.id);
                 await postGrade(Math.round(rapper2Grade), rapper2_id, user.id);
-                // TODO UPDATE USER STATS
+                await addUserBattle(user.id, id);
 
                 const winner =
                     rapper1Grade > rapper2Grade ? rapper1_id : rapper2_id;

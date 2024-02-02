@@ -149,18 +149,47 @@ export const addUserToDatabase = async (user) => {
     }
 };
 
-export const addUserBattle = async (battleId, userId) => {
-    const newBattle = {
-        battle_id: battleId,
-        user_id: userId,
-    };
+export const addUserBattle = async (userId, battleId) => {
+    const newBattle = { user_id: userId, battle_id: battleId };
     try {
-        const response = await axios.post(
-            `${API_URL}/users-battles`,
-            newBattle
-        );
+        const response = await axios.post(`${API_URL}/user-battles`, newBattle);
         return { data: response.data, error: null };
     } catch (error) {
         return { data: null, error: `Error adding user-battle: ${error}` };
+    }
+};
+
+export const fetchAllUserBattles = async () => {
+    try {
+        const response = await axios.get(`${API_URL}/user-battles`);
+        return { data: response.data, error: null };
+    } catch (error) {
+        return {
+            data: null,
+            error: `Failed to fetch all user battles: ${error}`,
+        };
+    }
+};
+
+export const fetchTheUsersBattles = async (userId) => {
+    try {
+        const response = await axios.get(`${API_URL}/user-battles/${userId}`);
+        return { data: response.data, error: null };
+    } catch (error) {
+        return { data: null, error: `Failed to fetch user battles: ${error}` };
+    }
+};
+
+export const fetchTheUsersBattlesCount = async (userId) => {
+    try {
+        const response = await axios.get(
+            `${API_URL}/user-battles/${userId}/count`
+        );
+        return { data: response.data, error: null };
+    } catch (error) {
+        return {
+            data: null,
+            error: `Failed to fetch user battles count: ${error}`,
+        };
     }
 };

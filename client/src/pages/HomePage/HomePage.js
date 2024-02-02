@@ -1,5 +1,5 @@
 import { SignInButton, SignOutButton, useUser } from "@clerk/clerk-react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "../..";
 import classicScratch from "../../assets/sounds/ClassicScratch.mp3";
@@ -11,6 +11,9 @@ import {
     fetchRappers,
 } from "../../utils/api";
 import "./Homepage.scss";
+
+// TODO add a user avatar thing in corner, so people can access their user page?
+// TODO add a user page, where they can see their stats, battles, etc.
 
 const HomePageHeading = () => (
     <Link to="/" className="homepage__heading">
@@ -130,15 +133,24 @@ const BattleInfo = ({ battle, user }) => {
     );
 };
 
-const BattleTable = ({ battles, scrollToDiv }) => {
+const BattleTable = forwardRef(({ battles }, scrollToDiv) => {
     const { user } = useUser();
 
     return (
         <section className="homepage__battles" ref={scrollToDiv}>
             <h2 className="homepage__subheading">Battle Board</h2>
-            <p className="homepage__click-to-play">
-                {user ? "click a battle to play" : "sign in to play"}
-            </p>
+
+            {user ? (
+                <p className="homepage__click-to-play">
+                    click a battle to play
+                </p>
+            ) : (
+                <SignInButton mode="modal">
+                    <p className="homepage__click-to-play homepage__click-to-play--sign-in">
+                        sign in to play
+                    </p>
+                </SignInButton>
+            )}
             <div className="homepage__battles-table homepage__battles-table--mobile">
                 <div className="homepage__battles-table-headings">
                     <h3 className="homepage__battles-table-name">NAME</h3>
@@ -160,7 +172,7 @@ const BattleTable = ({ battles, scrollToDiv }) => {
             </div>
         </section>
     );
-};
+});
 
 const HomePage = () => {
     const [rappers, setRappers] = useState([]);

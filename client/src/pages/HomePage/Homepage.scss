@@ -385,6 +385,10 @@
             @include tabletBodySmall;
             margin-bottom: 2rem;
         }
+
+        &--sign-in {
+            cursor: pointer;
+        }
     }
 
     &__battles-table {
