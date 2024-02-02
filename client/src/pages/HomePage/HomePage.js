@@ -37,12 +37,25 @@ const RapperStats = ({ rapper, avgGrade }) => {
 };
 
 const RapperTable = ({ isLoading, rappers }) => {
-    // TODO better loading state
     if (isLoading) {
         return (
             <section className="homepage__rappers">
                 <h2 className="homepage__subheading">On Da Mic</h2>
-                <div className="homepage__rappers-table">loading...</div>
+                <div className="homepage__rappers-table">
+                    <div className="homepage__rappers-table-headings">
+                        <h3 className="homepage__rappers-table-name">NAME</h3>
+                        <h3 className="homepage__rappers-table-w-l">W-L</h3>
+                        <h3 className="homepage__rappers-table-avg-grade">
+                            AVG GRADE
+                        </h3>
+                    </div>
+                    {Array.from({ length: 20 }).map((_, index) => (
+                        <div
+                            key={index}
+                            style={{ height: "20px", margin: "10px 0" }}
+                        ></div>
+                    ))}
+                </div>
             </section>
         );
     }
