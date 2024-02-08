@@ -12,8 +12,15 @@ import {
 } from "../../utils/api";
 import "./Homepage.scss";
 
+// TODO Cypress test for log in + battle flow
 // TODO add a user avatar thing in corner, so people can access their user page?
 // TODO add a user page, where they can see their stats, battles, etc.
+// TODO Cypress test for user page, updating their info, etc
+// TODO Add a create battle page
+// TODO Cypress test for create page
+// TODO add authentication on the backend?
+// TODO add a way to see all rappers, not just the top 20? Infinite scroll?
+// TODO add a way to see all battles, not just the top 10? Infinite scroll?
 
 const HomePageHeading = () => (
     <Link to="/" className="homepage__heading">
